@@ -5,37 +5,70 @@ namespace Imatic\Bundle\ControllerBundle\Api\Feature;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Data
 {
-    private $queryStack;
+    private $data;
 
     private $queryExecutor;
 
     public function __construct(QueryExecutorInterface $queryExecutor)
     {
-        $this->queryStack = [];
+        $this->data = [];
         $this->queryExecutor = $queryExecutor;
     }
 
-    public function addQuery($name, QueryObjectInterface $queryObject)
+    public function findOne(QueryObjectInterface $queryObject, $findOr404 = false, $name = null)
     {
-        $this->queryStack[$name] = $queryObject;
+        $object = $this->doFindOne($queryObject);
+        if ($name) {
+            $this->data[$name] = $object;
+        }
+
+        if (!$object && $findOr404) {
+            throw new NotFoundHttpException();
+        }
+
+        return $object;
     }
 
-    public function findOne($name)
+    public function find(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria, $name = null)
     {
-        return $this->doFindOne($this->queryStack[$name]);
+        $objects = $this->doFind($queryObject, $displayCriteria);
+        if ($name) {
+            $this->data[$name] = $objects;
+        }
+
+        return $objects;
     }
 
-    public function find($name, DisplayCriteriaInterface $displayCriteria)
+    public function count(QueryObjectInterface $queryObject, $name = null)
     {
-        return $this->doFind($this->queryStack[$name], $displayCriteria);
+        $count = $this->doCount($queryObject);
+        if ($name) {
+            $this->data[$name] = $count;
+        }
+
+        return $count;
     }
 
-    public function count($name)
+    /**
+     * @return array
+     */
+    public function all()
     {
-        return $this->queryExecutor->count($this->queryStack[$name]);
+        return $this->data;
+    }
+
+    public function execute(QueryObjectInterface $queryObject, $name = null)
+    {
+        $result = $this->doExecute($queryObject);
+        if ($name) {
+            $this->data[$name] = $result;
+        }
+
+        return $result;
     }
 
     protected function doFindOne(QueryObjectInterface $queryObject)
@@ -46,5 +79,15 @@ class Data
     protected function doFind(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria)
     {
         return $this->queryExecutor->find($queryObject, $displayCriteria);
+    }
+
+    protected function doCount(QueryObjectInterface $queryObject)
+    {
+        return $this->queryExecutor->count($queryObject);
+    }
+
+    protected function doExecute(QueryObjectInterface $queryObject)
+    {
+        return $this->queryExecutor->execute($queryObject);
     }
 }

@@ -35,11 +35,11 @@ trait ApiTrait
     }
 
     /**
-     * @return ListApi
+     * @return ListingApi
      */
     public function listing()
     {
-        return $this->getApi('list', func_get_args());
+        return $this->getApi('listing', func_get_args());
     }
 
     /**

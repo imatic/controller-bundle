@@ -6,6 +6,7 @@ use Imatic\Bundle\ControllerBundle\Api\Feature\Data;
 use Imatic\Bundle\ControllerBundle\Api\Feature\DataTrait;
 use Imatic\Bundle\ControllerBundle\Api\Feature\Template;
 use Imatic\Bundle\ControllerBundle\Api\Feature\TemplateTrait;
+use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class QueryApi extends Api
@@ -27,15 +28,5 @@ abstract class QueryApi extends Api
     {
         $this->data = $data;
         $this->template = $template;
-    }
-
-    protected function findOr404($name)
-    {
-        $item = $this->data->findOne($name);
-        if (!$item) {
-            throw new NotFoundHttpException();
-        }
-
-        return $item;
     }
 }

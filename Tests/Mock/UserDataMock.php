@@ -5,7 +5,7 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Mock;
 use Imatic\Bundle\ControllerBundle\Api\Feature\Data;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data\UserQuery;
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\User;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Entity\User;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 

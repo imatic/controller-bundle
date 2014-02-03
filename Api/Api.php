@@ -2,8 +2,6 @@
 
 namespace Imatic\Bundle\ControllerBundle\Api;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 abstract class Api
 {
     abstract public function getResponse();

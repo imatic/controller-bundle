@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures;
+namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\Entity;
 
 class User
 {

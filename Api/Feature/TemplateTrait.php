@@ -11,13 +11,6 @@ trait TemplateTrait
         return $this;
     }
 
-    public function setTemplateVariableName($name)
-    {
-        $this->template->setTemplateVariableName($name);
-
-        return $this;
-    }
-
     public function addTemplateVariable($name, $value)
     {
         $this->template->addTemplateVariable($name, $value);

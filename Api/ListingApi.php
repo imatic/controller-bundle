@@ -2,14 +2,16 @@
 
 namespace Imatic\Bundle\ControllerBundle\Api;
 
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class ShowApi extends QueryApi
+class ListingApi extends QueryApi
 {
-    public function show(QueryObjectInterface $queryObject)
+    public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
-        $this->data->findOne($queryObject, true, 'item');
+        // todo: pokud neni predano $displayCriteria tak nacist automaticky
+        $this->data->find($queryObject, $displayCriteria, 'items');
 
         return $this;
     }

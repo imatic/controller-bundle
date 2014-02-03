@@ -13,13 +13,12 @@ class Template
 
     private $templateName;
 
-    private $templateVariableName;
-
     private $templateVariables;
 
     public function __construct(EngineInterface $templating)
     {
         $this->templating = $templating;
+        $this->templateVariables = [];
     }
 
     public function getTemplateName()
@@ -32,16 +31,6 @@ class Template
         $this->templateName = $template;
     }
 
-    public function getTemplateVariableName()
-    {
-        return $this->templateVariableName;
-    }
-
-    public function setTemplateVariableName($name)
-    {
-        $this->templateVariableName = $name;
-    }
-
     public function addTemplateVariable($name, $value)
     {
         $this->templateVariables[$name] = $value;
@@ -50,6 +39,13 @@ class Template
     public function getTemplateVariables()
     {
         return $this->templateVariables;
+    }
+
+    public function addTemplateVariables(array $templateVariables)
+    {
+        foreach ($templateVariables as $name => $variable) {
+            $this->addTemplateVariable($name, $variable);
+        }
     }
 
     public function render()
