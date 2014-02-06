@@ -45,7 +45,7 @@ class DisplayCriteriaFactory
     }
 
     /**
-     * @param string $componentId
+     * @param string|null $componentId
      *
      * @return DisplayCriteria
      */
