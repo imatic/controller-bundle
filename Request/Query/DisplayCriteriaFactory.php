@@ -8,6 +8,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Pager;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerFactory;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Sorter;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\SorterRule;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -52,13 +53,32 @@ class DisplayCriteriaFactory
     public function getCriteria($componentId = null)
     {
         $request = $this->requestStack->getCurrentRequest();
-        $displayCriteriaData = array_merge($this->defaultData, $request->query->get($componentId, []));
+        $displayCriteriaData = $this->getDisplayCriteriaDataFromRequest($request, $componentId);
 
         return new DisplayCriteria(
             $this->createPager($displayCriteriaData['pager']),
             $this->createSorter($displayCriteriaData['sorter']),
             $this->createFilter($displayCriteriaData['filter'])
         );
+    }
+
+    /**
+     * @param Request     $request
+     * @param string|null $componentId
+     *
+     * @return array
+     */
+    protected function getDisplayCriteriaDataFromRequest(Request $request, $componentId = null)
+    {
+        if ($componentId !== null) {
+            return $displayCriteriaData = array_merge($this->defaultData, $request->query->get($componentId, []));
+        }
+
+        return $displayCriteriaData = [
+            'filter' => $request->query->get('filter', $this->defaultData['filter']),
+            'sorter' => $request->query->get('sorter', $this->defaultData['sorter']),
+            'pager' => $request->query->get('pager', $this->defaultData['pager']),
+        ];
     }
 
     /**
