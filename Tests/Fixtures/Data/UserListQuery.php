@@ -16,8 +16,8 @@ class UserListQuery implements QueryObjectInterface
     }
 
     /**
-     * @param ObjectManager $om
-     * @return mixed Instance of QueryBuilder, concrete type depends on used persistence backend
+     * @param  ObjectManager $om
+     * @return mixed         Instance of QueryBuilder, concrete type depends on used persistence backend
      */
     public function build(ObjectManager $om)
     {

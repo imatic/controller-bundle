@@ -16,7 +16,7 @@ class RequestParser
     protected $request;
 
     /**
-     * @param Request $request
+     * @param  Request       $request
      * @return RequestParser
      */
     public function __construct(Request $request)
@@ -70,6 +70,7 @@ class RequestParser
     public function getType()
     {
         $requestFormat = $this->request->getRequestFormat();
+
         return $requestFormat;
     }
 }

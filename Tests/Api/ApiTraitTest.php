@@ -3,7 +3,6 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Api\ShowApi;
 
 use Imatic\Bundle\ControllerBundle\Api\ApiRepository;
-use Imatic\Bundle\ControllerBundle\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Api\ShowApi;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Controller\TestController;
 use Imatic\Bundle\ControllerBundle\Tests\Mock\TemplateMock;

@@ -30,7 +30,7 @@ trait CommandTrait
     }
 
     /**
-     * @param string $name
+     * @param  string                 $name
      * @return CommandResultInterface
      */
     protected function executeCommand($name)

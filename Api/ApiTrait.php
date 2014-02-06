@@ -44,7 +44,7 @@ trait ApiTrait
 
     /**
      * @param string $name
-     * @param Api $api
+     * @param Api    $api
      */
     public function addApi($name, Api $api)
     {
@@ -56,7 +56,7 @@ trait ApiTrait
 
     /**
      * @param $name
-     * @param array $arguments
+     * @param  array           $arguments
      * @return Api
      * @throws \LogicException
      */

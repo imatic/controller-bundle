@@ -18,6 +18,7 @@ class UserDataMock extends Data
     protected function doFindOne(QueryObjectInterface $queryObject)
     {
         /** @var $queryObject UserQuery */
+
         return new User($queryObject->id);
     }
 

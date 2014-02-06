@@ -35,7 +35,7 @@ class Query
     protected $requestParser;
 
     /**
-     * @param Request $request
+     * @param  Request       $request
      * @return RequestHelper
      */
     public function __construct(Request $request)
