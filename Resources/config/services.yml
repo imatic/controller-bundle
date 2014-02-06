@@ -1,0 +1,6 @@
+services:
+    imatic_controller.display_criteria_factory:
+        class: Imatic\Bundle\ControllerBundle\Request\Query\DisplayCriteriaFactory
+        arguments:
+            - @request_stack
+            - @imatic_data.pager_factory
