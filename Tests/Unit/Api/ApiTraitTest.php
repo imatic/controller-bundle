@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Tests\Api\ShowApi;
+namespace Imatic\Bundle\ControllerBundle\Tests\Unit\Api\ShowApi;
 
 use Imatic\Bundle\ControllerBundle\Api\ApiRepository;
 use Imatic\Bundle\ControllerBundle\Api\ShowApi;
