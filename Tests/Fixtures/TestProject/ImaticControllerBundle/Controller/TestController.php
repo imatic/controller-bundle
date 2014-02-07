@@ -1,10 +1,9 @@
 <?php
-
-namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\Controller;
+namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Api\ApiTrait;
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data\UserListQuery;
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data\UserQuery;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 
 class TestController
 {

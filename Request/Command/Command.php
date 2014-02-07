@@ -29,7 +29,7 @@ class Command
 
     public function getIdentities($key = 'identities')
     {
-        return (array)$this->request->request->get($key);
+        return (array) $this->request->request->get($key);
     }
 }
 
@@ -48,7 +48,7 @@ class PatchCommand
     }
 
     /**
-     * @param string $handlerName
+     * @param  string           $handlerName
      * @return CommandInterface
      */
     public function getCommand($handlerName)
