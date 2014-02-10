@@ -1,9 +1,9 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Tests\Api\ShowApi;
+namespace Imatic\Bundle\ControllerBundle\Tests\Unit\Api\ShowApi;
 
 use Imatic\Bundle\ControllerBundle\Api\ShowApi;
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data\UserQuery;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Mock\TemplateMock;
 use Imatic\Bundle\ControllerBundle\Tests\Mock\UserDataMock;
 

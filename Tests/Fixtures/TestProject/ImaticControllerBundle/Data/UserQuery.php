@@ -1,6 +1,5 @@
 <?php
-
-namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\Data;
+namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
@@ -16,8 +15,8 @@ class UserQuery implements QueryObjectInterface
     }
 
     /**
-     * @param ObjectManager $om
-     * @return mixed Instance of QueryBuilder, concrete type depends on used persistence backend
+     * @param  ObjectManager $om
+     * @return mixed         Instance of QueryBuilder, concrete type depends on used persistence backend
      */
     public function build(ObjectManager $om)
     {
