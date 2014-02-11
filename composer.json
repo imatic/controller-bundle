@@ -23,11 +23,11 @@
     ],
     "require": {
         "php": ">=5.4",
-        "symfony/framework-bundle": "2.3.*",
-        "imatic/data-bundle": "dev-research_59"
+        "symfony/framework-bundle": "2.4.*",
+        "imatic/data-bundle": "dev-master"
     },
     "require-dev": {
-        "imatic/testing-bundle": "dev-master"
+        "imatic/testing-bundle": "2.4.*"
     },
     "autoload": {
         "psr-0": {
@@ -37,5 +37,8 @@
     "minimum-stability": "dev",
     "target-dir": "Imatic/Bundle/ControllerBundle",
     "extra": {
+        "branch-alias": {
+            "dev-master": "2.4.x-dev"
+        }
     }
 }

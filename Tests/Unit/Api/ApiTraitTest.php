@@ -2,8 +2,8 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\Unit\Api\ShowApi;
 
-use Imatic\Bundle\ControllerBundle\Api\ApiRepository;
-use Imatic\Bundle\ControllerBundle\Api\ShowApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller\TestController;
 use Imatic\Bundle\ControllerBundle\Tests\Mock\TemplateMock;
 use Imatic\Bundle\ControllerBundle\Tests\Mock\UserDataMock;

@@ -1,7 +1,8 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api;
+namespace Imatic\Bundle\ControllerBundle\Controller\Api\Listing;
 
+use Imatic\Bundle\ControllerBundle\Controller\Api\QueryApi;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,7 @@ class ListingApi extends QueryApi
     public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
         // todo: pokud neni predano $displayCriteria tak nacist automaticky
-        $this->data->find($queryObject, $displayCriteria, 'items');
+        $this->data->query('items', $queryObject, $displayCriteria);
 
         return $this;
     }

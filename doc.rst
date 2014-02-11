@@ -346,3 +346,22 @@ component
 - system sablon + base sablona
 - pripravene primo pro dane pouziti (controller toho precijen resi vic)
 - lze jednoduse resit system vice sablon na jedne strance [OK]
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+nedat API k sobe podle typu a vlastnosti? viz:
+
+zvazit, jestli to davat do namespace Contoller
+-> mozna spis ano, aby to bylo stejne i v klientskych bundlech, ktere definuji vlastni API apod
+-> nebo ControllerApi a ControllerFeature?
+
+Controller/Api/Listing
+- ListingApi
+- ListingApiTrait
+
+Controller/Feature/Template
+- TemplateTrait
+- Template

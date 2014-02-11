@@ -1,11 +1,11 @@
 <?php
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
-use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\DoctrineORMQueryObjectInterface;
 
-class UserListQuery implements QueryObjectInterface
+class UserListQuery implements DoctrineORMQueryObjectInterface
 {
     public $limit;
 
@@ -14,13 +14,9 @@ class UserListQuery implements QueryObjectInterface
         $this->limit = $limit;
     }
 
-    /**
-     * @param  ObjectManager $om
-     * @return mixed         Instance of QueryBuilder, concrete type depends on used persistence backend
-     */
-    public function build(ObjectManager $om)
+    public function build(EntityManager $em)
     {
-        return (new QueryBuilder($om))
+        return (new QueryBuilder($em))
             ->from('User', 'u')
             ->select('u')
             ->setMaxResults($this->limit);

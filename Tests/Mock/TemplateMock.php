@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\Mock;
 
-use Imatic\Bundle\ControllerBundle\Api\Feature\Template;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template;
 
 class TemplateMock extends Template
 {

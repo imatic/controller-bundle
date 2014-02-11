@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api;
+namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
 

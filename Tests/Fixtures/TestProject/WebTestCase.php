@@ -1,11 +1,8 @@
 <?php
-namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
+namespace Imatic\Bundle\TestsTemplateBundle\Tests\Fixtures\TestProject;
 
 use Imatic\Bundle\TestingBundle\Test\WebTestCase as BaseWebTestCase;
 
-/**
- * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
- */
 class WebTestCase extends BaseWebTestCase
 {
     /**
@@ -13,6 +10,6 @@ class WebTestCase extends BaseWebTestCase
      */
     protected static function getKernelClass()
     {
-        return 'Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\TestKernel';
+        return 'Imatic\Bundle\TestsTemplateBundle\Tests\Fixtures\TestProject\TestKernel';
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api;
+namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Exception\MissingApiRepositoryException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * ApiTrait
@@ -12,39 +11,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 trait ApiTrait
 {
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
      * @var ApiRepository
      */
     private $apiRepository;
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * @return ShowApi
-     */
-    public function show()
-    {
-        return $this->getApi('show', func_get_args());
-    }
-
-    /**
-     * @return ListingApi
-     */
-    public function listing()
-    {
-        return $this->getApi('listing', func_get_args());
-    }
-
     /**
      * @param string $name
-     * @param Api    $api
+     * @param Api $api
      */
     public function addApi($name, Api $api)
     {
@@ -56,13 +29,13 @@ trait ApiTrait
 
     /**
      * @param $name
-     * @param  array           $arguments
+     * @param  array $arguments
      * @return Api
-     * @throws \LogicException
+     * @throws MissingApiRepositoryException
      */
-    public function getApi($name, array $arguments = [])
+    protected function getApi($name, array $arguments = [])
     {
-        if (!$this->apiRepository && $this->container) {
+        if (!$this->apiRepository && isset($this->container)) {
             $this->apiRepository = $this->container->get('imatic_controller.api_repository');
         }
 

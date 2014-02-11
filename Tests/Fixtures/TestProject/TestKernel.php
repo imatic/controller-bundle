@@ -1,11 +1,10 @@
 <?php
-namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
+namespace Imatic\Bundle\TestsTemplateBundle\Tests\Fixtures\TestProject;
 
+use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\AppImaticControllerBundle;
 use Imatic\Bundle\TestingBundle\Test\TestKernel as BaseTestKernel;
 
-/**
- * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
- */
 class TestKernel extends BaseTestKernel
 {
     /**
@@ -16,10 +15,8 @@ class TestKernel extends BaseTestKernel
         $parentBundles = parent::registerBundles();
 
         $bundles = [
-            new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
-
-            new \Imatic\Bundle\ControllerBundle\ImaticControllerBundle(),
-            new \Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\AppImaticControllerBundle(),
+            new ImaticControllerBundle(),
+            new AppImaticControllerBundle()
         ];
 
         return array_merge($parentBundles, $bundles);

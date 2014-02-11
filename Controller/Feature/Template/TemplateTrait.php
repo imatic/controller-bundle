@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api\Feature;
+namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Template;
 
 trait TemplateTrait
 {
