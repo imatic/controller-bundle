@@ -8,7 +8,9 @@
 
 # tmp etc
 .DS_Store
-Thumbs.dbTests/Fixtures/TestProject/web/bundles
+Thumbs.db
+
+Tests/Fixtures/TestProject/web/bundles
 Tests/Fixtures/TestProject/cache
 Tests/Fixtures/TestProject/logs
 Tests/Fixtures/TestProject/ProjectBundle/DataFixtures
