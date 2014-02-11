@@ -19,7 +19,7 @@ class ApiTraitTest extends \PHPUnit_Framework_TestCase
         $controller->addApi('show', $showApi);
         $content = $controller->showAction(2)->getContent();
 
-        $this->assertEquals('template: test.twig, item: User 2', $content);
+        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
     }
 
     public function testControllerApiInject()
@@ -36,7 +36,7 @@ class ApiTraitTest extends \PHPUnit_Framework_TestCase
         $controller->setContainer($container);
         $content = $controller->showAction(2)->getContent();
 
-        $this->assertEquals('template: test.twig, item: User 2', $content);
+        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
     }
 
     /**
