@@ -27,6 +27,7 @@
         "imatic/data-bundle": "dev-master"
     },
     "require-dev": {
+        "sensio/framework-extra-bundle": "3.0.*",
         "imatic/testing-bundle": "2.4.*"
     },
     "autoload": {

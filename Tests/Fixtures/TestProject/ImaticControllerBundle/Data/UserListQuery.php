@@ -17,7 +17,7 @@ class UserListQuery implements DoctrineORMQueryObjectInterface
     public function build(EntityManager $em)
     {
         return (new QueryBuilder($em))
-            ->from('User', 'u')
+            ->from('AppImaticControllerBundle:User', 'u')
             ->select('u')
             ->setMaxResults($this->limit);
     }

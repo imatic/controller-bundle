@@ -6,15 +6,10 @@ _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt
 
-#admin:
-#    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-#    prefix: /admin
-#
-#_sonata_admin:
-#    resource: .
-#    type: sonata_admin
-#    prefix: /admin
-
-app_controller_bundle:
+app_imatic_controller:
     resource: @AppImaticControllerBundle/Resources/config/routing.yml
     prefix: /test
+
+#imatic_controller:
+#    resource: @ImaticControllerBundle/Resources/config/routing.yml
+

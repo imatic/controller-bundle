@@ -3,7 +3,7 @@ require __DIR__ . '/../../../bootstrap.php';
 umask(0007);
 
 use Symfony\Component\HttpFoundation\Request;
-use Imatic\Bundle\TestsTemplateBundle\Tests\Fixtures\TestProject\TestKernel;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\TestKernel;
 
 $_SERVER['PHP_AUTH_USER'] = 'user';
 $_SERVER['PHP_AUTH_PW'] = 'password';

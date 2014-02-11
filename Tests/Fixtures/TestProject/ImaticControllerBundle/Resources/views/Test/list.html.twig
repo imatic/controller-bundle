@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block action %}
+    <ul>
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

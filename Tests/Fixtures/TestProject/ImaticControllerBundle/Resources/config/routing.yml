@@ -1,0 +1,11 @@
+#app_imatic_controller_bundle:
+#    resource:   @AppImaticControllerBundle/Controller
+#    type:       annotation
+
+app_imatic_controller_test_show:
+    defaults:   { _controller: AppImaticControllerBundle:Test:show }
+    path:       /test/show/{id}
+
+app_imatic_controller_test_list:
+    defaults:   { _controller: AppImaticControllerBundle:Test:list }
+    path:       /test/list

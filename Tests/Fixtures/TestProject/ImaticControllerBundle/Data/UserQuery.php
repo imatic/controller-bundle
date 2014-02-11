@@ -18,9 +18,9 @@ class UserQuery implements DoctrineORMQueryObjectInterface, SingleResultQueryObj
     public function build(EntityManager $em)
     {
         return (new QueryBuilder($em))
-            ->from('User', 'u')
+            ->from('AppImaticControllerBundle:User', 'u')
             ->select('u')
-            ->where('id = :id')
+            ->where('u.id = :id')
             ->setParameter('id', $this->id);
     }
 }

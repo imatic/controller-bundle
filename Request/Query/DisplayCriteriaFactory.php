@@ -82,7 +82,7 @@ class DisplayCriteriaFactory
     }
 
     /**
-     * @param array $pagerData ['page' => page_number, 'per_page' => results_per_page_number]
+     * @param array $pagerData ['page' => page_number, 'limit' => results_per_page_number]
      *
      * @return Pager
      */

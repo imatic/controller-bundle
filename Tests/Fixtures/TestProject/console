@@ -5,5 +5,5 @@ umask(0007);
 
 use Imatic\Bundle\TestingBundle\Test\Console;
 
-$console = new Console('Imatic\Bundle\TestsTemplateBundle\Tests\Fixtures\TestProject\TestKernel');
+$console = new Console('Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\TestKernel');
 $console->run();
