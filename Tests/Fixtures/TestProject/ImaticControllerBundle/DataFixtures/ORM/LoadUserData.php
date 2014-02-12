@@ -11,6 +11,9 @@ class LoadUserData extends AbstractFixture
     {
         for ($i = 1; $i <= 10; $i++) {
             $user = new User($i);
+            $user->setActive($i % 2 == 0);
+            $user->setName('User ' . $i);
+            $user->setAge(10 + ($i * 5));
             $manager->persist($user);
         }
 

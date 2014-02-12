@@ -1,15 +1,13 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api\Feature;
+namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect;
 
 trait RedirectTrait
 {
-    public function successRedirect($routeName, array $parameters = [])
+    public function successRedirect($routeName, $parameters)
     {
-        return $this;
-    }
+        $this->redirect->setSuccessRedirect($routeName, $parameters);
 
-    protected function getSuccessRedirectUrl()
-    {
+        return $this;
     }
 }

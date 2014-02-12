@@ -10,6 +10,42 @@ services:
         arguments:
             - @templating
 
+    imatic_controller.api.feature.form:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Form\Form
+        arguments:
+            - @form.factory
+
+    imatic_controller.api.feature.response:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\Response
+
+    imatic_controller.api.feature.request:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\Request
+        arguments:
+            - @request_stack
+
+    imatic_controller.api.feature.command:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\Command
+        arguments:
+            - @imatic_data.command_executor
+            - @imatic_data.command_handler_repository
+            - @imatic_controller.api.feature.framework.bundle_guesser
+
+    imatic_controller.api.feature.redirect:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\Redirect
+        arguments:
+            - @router
+
+    imatic_controller.api.feature.message:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\Message
+        arguments:
+            - @session
+            - @translator
+
+    imatic_controller.api.feature.framework.bundle_guesser:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesser
+        arguments:
+            - @kernel
+
     # api - concrete
     imatic_controller.api.show:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi
@@ -26,6 +62,20 @@ services:
             - @imatic_controller.api.feature.template
         tags:
             - { name: imatic_controller.api, alias: listing }
+
+    imatic_controller.api.form:
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi
+        arguments:
+            - @imatic_controller.api.feature.command
+            - @imatic_controller.api.feature.form
+            - @imatic_controller.api.feature.data
+            - @imatic_controller.api.feature.template
+            - @imatic_controller.api.feature.response
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.redirect
+            - @imatic_controller.api.feature.message
+        tags:
+            - { name: imatic_controller.api, alias: form }
 
     # api - common
     imatic_controller.api_repository:

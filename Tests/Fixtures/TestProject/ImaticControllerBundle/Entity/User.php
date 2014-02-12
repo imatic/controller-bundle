@@ -17,18 +17,63 @@ class User
      */
     private $id;
 
-    public function __construct($id)
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
+    public function __construct($id = null)
     {
         $this->id = $id;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getName()
     {
-        return 'User ' . $this->id;
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    public function setAge($age)
+    {
+        $this->age = $age;
     }
 
     public function __toString()
     {
-        return $this->getName();
+        return (string)$this->getName();
     }
 }

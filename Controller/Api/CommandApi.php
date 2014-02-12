@@ -2,9 +2,9 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\Command;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\Data;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template;
-use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
 
 abstract class CommandApi extends Api
 {
@@ -25,14 +25,14 @@ abstract class CommandApi extends Api
     protected $template;
 
     /**
-     * @var CommandExecutorInterface
+     * @var Command
      */
-    protected $commandExecutor;
+    protected $command;
 
-    public function __construct(CommandExecutorInterface $commandExecutor, Data $data, Template $template)
+    public function __construct(Command $command, Data $data, Template $template)
     {
         $this->data = $data;
         $this->template = $template;
-        $this->commandExecutor = $commandExecutor;
+        $this->command = $command;
     }
 }

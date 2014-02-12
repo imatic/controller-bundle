@@ -6,6 +6,14 @@ app_imatic_controller_test_show:
     defaults:   { _controller: AppImaticControllerBundle:Test:show }
     path:       /test/show/{id}
 
+app_imatic_controller_test_edit:
+    defaults:   { _controller: AppImaticControllerBundle:Test:edit }
+    path:       /test/edit/{id}
+
+app_imatic_controller_test_create:
+    defaults:   { _controller: AppImaticControllerBundle:Test:create }
+    path:       /test/create
+
 app_imatic_controller_test_list:
     defaults:   { _controller: AppImaticControllerBundle:Test:list }
     path:       /test/list

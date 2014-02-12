@@ -19,12 +19,17 @@ class UserDataMock extends Data
     {
         if ($queryObject instanceof SingleResultQueryObjectInterface) {
             /** @var $queryObject UserQuery */
-            return new User($queryObject->id);
+            $user = new User($queryObject->id);
+            $user->setName('User ' . $queryObject->id);
+
+            return $user;
         } else {
             $return = [];
             /** @var $queryObject UserListQuery */
             for ($i = 1; $i <= $queryObject->limit; $i++) {
-                $return[$i] = new User($i);
+                $user = new User($i);
+                $user->setName('User ' . $queryObject->id);
+                $return[$i] = $user;
             }
 
             return $return;

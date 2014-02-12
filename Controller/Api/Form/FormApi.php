@@ -1,64 +1,113 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Api;
+namespace Imatic\Bundle\ControllerBundle\Controller\Api\Form;
 
-use Imatic\Bundle\ControllerBundle\Api\Feature\Data;
-use Imatic\Bundle\ControllerBundle\Api\Feature\DataTrait;
-use Imatic\Bundle\ControllerBundle\Api\Feature\FormTrait;
-use Imatic\Bundle\ControllerBundle\Api\Feature\RequestTrait;
-use Imatic\Bundle\ControllerBundle\Api\Feature\Template;
-use Imatic\Bundle\ControllerBundle\Api\Feature\TemplateTrait;
-use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
+use Imatic\Bundle\ControllerBundle\Controller\Api\CommandApi;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\Command;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\Data;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\Form;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\Message;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\Redirect;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\Request;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\Response;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateTrait;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class FormApi extends CommandApi
 {
-    use DataTrait
+    use DataTrait;
     use TemplateTrait;
-    use FormTrait;
-    use RequestTrait;
+    use CommandTrait;
+    use RedirectTrait;
 
     /**
-     * @var FormFactoryInterface
+     * @var Form
      */
-    private $formFactory;
+    private $form;
 
-    public function __construct(CommandExecutorInterface $commandExecutor, Data $data, Template $template, FormFactoryInterface $formFactory)
+    /**
+     * @var Response
+     */
+    private $response;
+
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var Redirect
+     */
+    private $redirect;
+
+    /**
+     * @var Message
+     */
+    private $message;
+
+    public function __construct(
+        Command $command,
+        Form $form,
+        Data $data,
+        Template $template,
+        Response $response,
+        Request $request,
+        Redirect $redirect,
+        Message $message
+    )
     {
-        parent::__construct($commandExecutor, $data, $template);
-        $this->formFactory = $formFactory;
+        parent::__construct($command, $data, $template);
+
+        $this->form = $form;
+        $this->response = $response;
+        $this->request = $request;
+        $this->redirect = $redirect;
+        $this->message = $message;
     }
 
-    public function form($form)
+    public function form($form, $emptyValue = null)
     {
-        $this->setFormName($form);
+        $this->form->setName($form);
+        $this->form->setEmptyValue($emptyValue);
 
         return $this;
     }
 
     public function edit(QueryObjectInterface $queryObject)
     {
-        $this->setFormEmptyValue($this->data->findOne($queryObject, true));
+        $item = $this->data->query('item', $queryObject);
+        $this->form->setEmptyValue($item);
+        $this->response->throwNotFoundUnless($item);
+
+        return $this;
     }
 
     public function getResponse()
     {
-        $request = $this->getRequest();
+        $request = $this->request->getCurrentRequest();
 
-        $form = $this->formFactory->create($this->getFormName(), $this->getFormEmptyValue());
+        $form = $this->form->getForm();
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $command->handle();
-//            $message->success();
-//            $redirect->redirect();
-        } else {
-//            $message->error();
+            $data = $form->getData();
+            $result = $this->command->execute(['data' => $data]);
+            $this->message->addCommandMessage($this->command->getBundleName(), $this->command->getCommandName(), $result);
+            if ($result->isSuccessful()) {
+                return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
+                    'result' => $result,
+                    'data' => $data
+                ]));
+            }
         }
 
+        $this->template->addTemplateVariable('form', $form->createView());
         $this->template->addTemplateVariables($this->data->all());
 
-        return new Response($this->template->render());
+        return new HttpResponse($this->template->render());
     }
 }
