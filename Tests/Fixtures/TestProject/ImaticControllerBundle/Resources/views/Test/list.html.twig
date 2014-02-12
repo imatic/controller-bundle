@@ -1,12 +1,25 @@
 {% extends '::base.html.twig' %}
 
 {% block action %}
-    <ul>
+    <table>
         {% for item in items %}
-            <li>
-                {{ item }}
-                <a href="{{ path('app_imatic_controller_test_delete', {'id': item.id}) }}">delete</a>
-            </li>
+            <tr>
+                <td>
+                    {{ item }}
+                </td>
+                <td>
+                    <a href="{{ path('app_user_edit', {'id':item.id}) }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id':item.id}) }}">show</a>
+                </td>
+                <td>
+                    <form action="{{ path('app_user_delete', {'id': item.id}) }}" method="post">
+                        <input type="submit" value="delete">
+                        <input type="hidden" name="_method" value="delete">
+                    </form>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% endblock %}

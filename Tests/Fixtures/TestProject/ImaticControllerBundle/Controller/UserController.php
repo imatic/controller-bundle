@@ -15,9 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * @Config\Route("/api")
+ * @Config\Route("/user")
  */
-class TestController implements ContainerAwareInterface
+class UserController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     use ApiTrait;
@@ -27,7 +27,8 @@ class TestController implements ContainerAwareInterface
     use ListingApiTrait;
 
     /**
-     * @Config\Route("/show/{id}")
+     * @Config\Route("/{id}", name="app_user_show")
+     * @Config\Method("GET")
      */
     public function showAction($id)
     {
@@ -38,7 +39,8 @@ class TestController implements ContainerAwareInterface
     }
 
     /**
-     * @Config\Route("/list")
+     * @Config\Route("", name="app_user_list")
+     * @Config\Method("GET")
      */
     public function listAction()
     {
@@ -49,7 +51,8 @@ class TestController implements ContainerAwareInterface
     }
 
     /**
-     * @Config\Route("/edit/{id}")
+     * @Config\Route("/edit/{id}", name="app_user_edit")
+     * @Config\Method({"GET", "POST"})
      */
     public function editAction($id)
     {
@@ -57,20 +60,21 @@ class TestController implements ContainerAwareInterface
             ->form('app_imatic_controller_user')
             ->commandName('user.edit')
             ->edit(new UserQuery($id))
-            ->successRedirect('app_imatic_controller_test_show', ['id' => $id])
+            ->successRedirect('app_user_edit', ['id' => $id])
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
             ->getResponse();
     }
 
     /**
-     * @Config\Route("/create")
+     * @Config\Route("/create", name="app_user_create")
+     * @Config\Method({"GET", "PUT"})
      */
     public function createAction()
     {
         return $this
             ->form('app_imatic_controller_user', new User())
             ->commandName('user.create')
-            ->successRedirect('app_imatic_controller_test_edit', function (CommandResultInterface $result, User $user) {
+            ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
             })
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
@@ -78,13 +82,14 @@ class TestController implements ContainerAwareInterface
     }
 
     /**
-     * @Config\Route("/delete/{id}")
+     * @Config\Route("/delete/{id}", name="app_user_delete")
+     * @Config\Method("DELETE")
      */
     public function deleteAction($id)
     {
         return $this
             ->command('user.delete', ['user' => $id])
-            ->redirect('app_imatic_controller_test_list')
+            ->redirect('app_user_list')
             ->getResponse();
     }
 }
