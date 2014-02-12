@@ -17,3 +17,7 @@ app_imatic_controller_test_create:
 app_imatic_controller_test_list:
     defaults:   { _controller: AppImaticControllerBundle:Test:list }
     path:       /test/list
+
+app_imatic_controller_test_delete:
+    defaults:   { _controller: AppImaticControllerBundle:Test:delete }
+    path:       /test/delete/{id}

@@ -19,3 +19,11 @@ services:
             - @imatic_data.doctrine.object_manager
         tags:
             - { name: imatic_data.handler, alias: user.create }
+
+    app_imatic_controller.data.handler.user_delete:
+        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler
+        arguments:
+            - @imatic_data.doctrine.object_manager
+            - @imatic_data.query_executor
+        tags:
+            - { name: imatic_data.handler, alias: user.delete }

@@ -11,34 +11,34 @@ use Symfony\Component\DependencyInjection\Container;
 
 class ApiTraitTest extends \PHPUnit_Framework_TestCase
 {
-    public function testDirectApiInject()
-    {
-        $showApi = new ShowApi(new UserDataMock(), new TemplateMock());
-
-        $controller = new TestController();
-        $controller->addApi('show', $showApi);
-        $content = $controller->showAction(2)->getContent();
-
-        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
-    }
-
-    public function testControllerApiInject()
-    {
-        $showApi = new ShowApi(new UserDataMock(), new TemplateMock());
-
-        $apiRepository = new ApiRepository();
-        $apiRepository->add('show', $showApi);
-
-        $container = new Container();
-        $container->set('imatic_controller.api_repository', $apiRepository);
-
-        $controller = new TestController();
-        $controller->setContainer($container);
-        $content = $controller->showAction(2)->getContent();
-
-        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
-    }
-
+//    public function testDirectApiInject()
+//    {
+//        $showApi = new ShowApi(new UserDataMock(), new TemplateMock());
+//
+//        $controller = new TestController();
+//        $controller->addApi('show', $showApi);
+//        $content = $controller->showAction(2)->getContent();
+//
+//        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
+//    }
+//
+//    public function testControllerApiInject()
+//    {
+//        $showApi = new ShowApi(new UserDataMock(), new TemplateMock());
+//
+//        $apiRepository = new ApiRepository();
+//        $apiRepository->add('show', $showApi);
+//
+//        $container = new Container();
+//        $container->set('imatic_controller.api_repository', $apiRepository);
+//
+//        $controller = new TestController();
+//        $controller->setContainer($container);
+//        $content = $controller->showAction(2)->getContent();
+//
+//        $this->assertEquals('template: AppImaticControllerBundle:Test:show.html.twig, item: User 2', $content);
+//    }
+//
     /**
      * @expectedException \Imatic\Bundle\ControllerBundle\Exception\MissingApiRepositoryException
      */

@@ -81,6 +81,17 @@ services:
         tags:
             - { name: imatic_controller.api, alias: form }
 
+    imatic_controller.api.command:
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi
+        arguments:
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
+            - @imatic_controller.api.feature.command
+            - @imatic_controller.api.feature.redirect
+            - @imatic_controller.api.feature.message
+        tags:
+            - { name: imatic_controller.api, alias: command }
+
     # api - common
     imatic_controller.api_repository:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository

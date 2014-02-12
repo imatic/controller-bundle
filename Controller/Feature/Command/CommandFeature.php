@@ -13,6 +13,11 @@ class CommandFeature
 {
     private $commandName;
 
+    /**
+     * @var array
+     */
+    private $commandParameters;
+
     private $allowedCommands;
 
     /**
@@ -38,6 +43,7 @@ class CommandFeature
         $this->commandExecutor = $commandExecutor;
         $this->bundleGuesser = $bundleGuesser;
         $this->handlerRepository = $handlerRepository;
+        $this->commandParameters = [];
     }
 
     public function setAllowedCommands(array $allowedCommands)
@@ -70,9 +76,16 @@ class CommandFeature
         if (!$this->isValid()) {
             throw new InvalidCommandExecutionException($this->commandName);
         }
+
+        $parameters = array_merge($this->commandParameters, $parameters);
         $command = new CommandToExecute($this->commandName, $parameters);
 
         return $this->commandExecutor->execute($command);
+    }
+
+    public function setCommandParameters($commandParameters)
+    {
+        $this->commandParameters = $commandParameters;
     }
 
     public function getCommandName()

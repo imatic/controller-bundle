@@ -3,7 +3,10 @@
 {% block action %}
     <ul>
         {% for item in items %}
-            <li>{{ item }}</li>
+            <li>
+                {{ item }}
+                <a href="{{ path('app_imatic_controller_test_delete', {'id': item.id}) }}">delete</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -24,9 +24,14 @@ class RedirectFeature
         $this->redirects = [];
     }
 
-    public function setSuccessRedirect($routeName, $parameters)
+    public function setSuccessRedirect($routeName, $parameters = null)
     {
         $this->setRedirect('success', $routeName, $parameters);
+    }
+
+    public function setErrorRedirect($routeName, $parameters = null)
+    {
+        $this->setRedirect('error', $routeName, $parameters);
     }
 
     public function getSuccessRedirectUrl($parameters = [])
@@ -34,7 +39,12 @@ class RedirectFeature
         return $this->getRedirectUrl('success', $parameters);
     }
 
-    protected function getRedirectUrl($name, $parameters = [])
+    public function getErrorRedirectUrl($parameters = [])
+    {
+        return $this->getRedirectUrl('error', $parameters);
+    }
+
+    public function getRedirectUrl($name, $parameters = [])
     {
         if (!array_key_exists($name, $this->redirects)) {
             throw new InvalidRedirectException($name);
@@ -49,8 +59,9 @@ class RedirectFeature
         return $this->urlGenerator->generate($this->redirects[$name]['route'], $parameters);
     }
 
-    protected function setRedirect($name, $routeName, $parameters)
+    protected function setRedirect($name, $routeName, $parameters = null)
     {
+        $parameters = (null === $parameters ? [] : $parameters);
         if (!is_array($parameters) && !($parameters instanceof \Closure)) {
             throw new InvalidRedirectParameterException($parameters);
         }

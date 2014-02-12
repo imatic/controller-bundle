@@ -2,6 +2,7 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApiTrait;
@@ -20,6 +21,7 @@ class TestController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     use ApiTrait;
+    use CommandApiTrait;
     use ShowApiTrait;
     use FormApiTrait;
     use ListingApiTrait;
@@ -72,6 +74,17 @@ class TestController implements ContainerAwareInterface
                 return ['id' => $user->getId()];
             })
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
+            ->getResponse();
+    }
+
+    /**
+     * @Config\Route("/delete/{id}")
+     */
+    public function deleteAction($id)
+    {
+        return $this
+            ->command('user.delete', ['user' => $id])
+            ->redirect('app_imatic_controller_test_list')
             ->getResponse();
     }
 }

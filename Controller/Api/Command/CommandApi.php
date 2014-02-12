@@ -11,7 +11,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTr
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 
-abstract class CommandApi extends Api
+class CommandApi extends Api
 {
     use CommandFeatureTrait;
     use RedirectFeatureTrait;
@@ -38,5 +38,23 @@ abstract class CommandApi extends Api
         $this->command = $command;
         $this->redirect = $redirect;
         $this->message = $message;
+    }
+
+    public function command($commandName, array $commandParameters = [])
+    {
+        $this->command->setCommandName($commandName);
+        $this->command->setCommandParameters($commandParameters);
+
+        return $this;
+    }
+
+    public function getResponse()
+    {
+        $result = $this->command->execute();
+
+        $this->message->addCommandMessage($this->command->getBundleName(), $this->command->getCommandName(), $result);
+        $name = $result->isSuccessful() ? 'success' : 'error';
+
+        return $this->response->createRedirect($this->redirect->getRedirectUrl($name, ['result' => $result]));
     }
 }
