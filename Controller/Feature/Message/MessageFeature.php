@@ -6,7 +6,7 @@ use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class Message
+class MessageFeature
 {
     /**
      * @var Session

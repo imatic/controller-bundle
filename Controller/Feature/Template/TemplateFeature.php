@@ -4,7 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Template;
 
 use Symfony\Component\Templating\EngineInterface;
 
-class Template
+class TemplateFeature
 {
     /**
      * @var EngineInterface

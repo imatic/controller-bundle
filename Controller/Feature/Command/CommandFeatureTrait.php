@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
-trait CommandTrait
+trait CommandFeatureTrait
 {
     public function allowedCommandNames(array $commandNames)
     {

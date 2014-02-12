@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect;
 
-trait RedirectTrait
+trait RedirectFeatureTrait
 {
     public function successRedirect($routeName, $parameters)
     {

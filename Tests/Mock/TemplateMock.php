@@ -2,9 +2,9 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\Mock;
 
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 
-class TemplateMock extends Template
+class TemplateMock extends TemplateFeature
 {
     public function __construct()
     {

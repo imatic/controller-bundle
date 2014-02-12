@@ -4,7 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Request;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class Request
+class RequestFeature
 {
     /**
      * @var RequestStack

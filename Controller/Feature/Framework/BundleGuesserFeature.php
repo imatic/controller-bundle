@@ -4,7 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Framework;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class BundleGuesser
+class BundleGuesserFeature
 {
     /**
      * @var KernelInterface

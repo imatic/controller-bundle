@@ -2,14 +2,14 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesser;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesserFeature;
 use Imatic\Bundle\ControllerBundle\Exception\InvalidCommandExecutionException;
 use Imatic\Bundle\DataBundle\Data\Command\Command as CommandToExecute;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerRepositoryInterface;
 
-class Command
+class CommandFeature
 {
     private $commandName;
 
@@ -26,14 +26,14 @@ class Command
     private $handlerRepository;
 
     /**
-     * @var BundleGuesser
+     * @var BundleGuesserFeature
      */
     private $bundleGuesser;
 
     public function __construct(
         CommandExecutorInterface $commandExecutor,
         HandlerRepositoryInterface $handlerRepository,
-        BundleGuesser $bundleGuesser)
+        BundleGuesserFeature $bundleGuesser)
     {
         $this->commandExecutor = $commandExecutor;
         $this->bundleGuesser = $bundleGuesser;

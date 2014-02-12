@@ -6,7 +6,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface
 use Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 
-class Data
+class DataFeature
 {
     private $data;
 

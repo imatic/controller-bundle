@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Template;
 
-trait TemplateTrait
+trait TemplateFeatureTrait
 {
     public function setTemplateName($template)
     {

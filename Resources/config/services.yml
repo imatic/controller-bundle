@@ -1,48 +1,48 @@
 services:
     # api - features
     imatic_controller.api.feature.data:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Data\Data
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature
         arguments:
             - @imatic_data.query_executor
 
     imatic_controller.api.feature.template:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature
         arguments:
             - @templating
 
     imatic_controller.api.feature.form:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Form\Form
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature
         arguments:
             - @form.factory
 
     imatic_controller.api.feature.response:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\Response
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature
 
     imatic_controller.api.feature.request:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\Request
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature
         arguments:
             - @request_stack
 
     imatic_controller.api.feature.command:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\Command
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature
         arguments:
             - @imatic_data.command_executor
             - @imatic_data.command_handler_repository
             - @imatic_controller.api.feature.framework.bundle_guesser
 
     imatic_controller.api.feature.redirect:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\Redirect
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature
         arguments:
             - @router
 
     imatic_controller.api.feature.message:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\Message
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature
         arguments:
             - @session
             - @translator
 
     imatic_controller.api.feature.framework.bundle_guesser:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesser
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesserFeature
         arguments:
             - @kernel
 

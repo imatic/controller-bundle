@@ -3,62 +3,62 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\CommandApi;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\Command;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\Data;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\Form;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\Message;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\Redirect;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\Request;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\Response;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\Template;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeatureTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeatureTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class FormApi extends CommandApi
 {
-    use DataTrait;
-    use TemplateTrait;
-    use CommandTrait;
-    use RedirectTrait;
+    use DataFeatureTrait;
+    use TemplateFeatureTrait;
+    use CommandFeatureTrait;
+    use RedirectFeatureTrait;
 
     /**
-     * @var Form
+     * @var FormFeature
      */
     private $form;
 
     /**
-     * @var Response
+     * @var ResponseFeature
      */
     private $response;
 
     /**
-     * @var Request
+     * @var RequestFeature
      */
     private $request;
 
     /**
-     * @var Redirect
+     * @var RedirectFeature
      */
     private $redirect;
 
     /**
-     * @var Message
+     * @var MessageFeature
      */
     private $message;
 
     public function __construct(
-        Command $command,
-        Form $form,
-        Data $data,
-        Template $template,
-        Response $response,
-        Request $request,
-        Redirect $redirect,
-        Message $message
+        CommandFeature $command,
+        FormFeature $form,
+        DataFeature $data,
+        TemplateFeature $template,
+        ResponseFeature $response,
+        RequestFeature $request,
+        RedirectFeature $redirect,
+        MessageFeature $message
     )
     {
         parent::__construct($command, $data, $template);

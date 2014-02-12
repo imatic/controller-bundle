@@ -4,7 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Form;
 
 use Symfony\Component\Form\FormFactoryInterface;
 
-class Form
+class FormFeature
 {
     /**
      * @var string

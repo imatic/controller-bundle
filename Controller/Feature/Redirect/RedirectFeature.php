@@ -6,7 +6,7 @@ use Imatic\Bundle\ControllerBundle\Exception\InvalidRedirectException;
 use Imatic\Bundle\ControllerBundle\Exception\InvalidRedirectParameterException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class Redirect
+class RedirectFeature
 {
     /**
      * @var UrlGeneratorInterface
