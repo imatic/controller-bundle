@@ -2,19 +2,16 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Show;
 
-use Imatic\Bundle\ControllerBundle\Controller\Api\QueryApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
 use Imatic\Bundle\DataBundle\Data\Query\SingleResultQueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ShowApi extends QueryApi
 {
     public function show(SingleResultQueryObjectInterface $queryObject)
     {
-        $result = $this->data->query('item',  $queryObject);
-        if (!$result) {
-            throw new NotFoundHttpException();
-        }
+        $result = $this->data->query('item', $queryObject);
+        $this->response->throwNotFoundUnless($result);
 
         return $this;
     }

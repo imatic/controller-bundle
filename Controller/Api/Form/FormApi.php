@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Form;
 
-use Imatic\Bundle\ControllerBundle\Controller\Api\CommandApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
@@ -16,58 +16,44 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
-use Symfony\Component\HttpFoundation\Response as HttpResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class FormApi extends CommandApi
 {
     use DataFeatureTrait;
     use TemplateFeatureTrait;
-    use CommandFeatureTrait;
-    use RedirectFeatureTrait;
+
+    /**
+     * @var TemplateFeature
+     */
+    protected $template;
+
+    /**
+     * @var DataFeature
+     */
+    protected $data;
 
     /**
      * @var FormFeature
      */
     private $form;
 
-    /**
-     * @var ResponseFeature
-     */
-    private $response;
-
-    /**
-     * @var RequestFeature
-     */
-    private $request;
-
-    /**
-     * @var RedirectFeature
-     */
-    private $redirect;
-
-    /**
-     * @var MessageFeature
-     */
-    private $message;
-
     public function __construct(
+        RequestFeature $request,
+        ResponseFeature $response,
         CommandFeature $command,
+        RedirectFeature $redirect,
+        MessageFeature $message,
         FormFeature $form,
         DataFeature $data,
-        TemplateFeature $template,
-        ResponseFeature $response,
-        RequestFeature $request,
-        RedirectFeature $redirect,
-        MessageFeature $message
+        TemplateFeature $template
     )
     {
-        parent::__construct($command, $data, $template);
+        parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->form = $form;
-        $this->response = $response;
-        $this->request = $request;
-        $this->redirect = $redirect;
-        $this->message = $message;
+        $this->data = $data;
+        $this->template = $template;
     }
 
     public function form($form, $emptyValue = null)
@@ -108,6 +94,6 @@ class FormApi extends CommandApi
         $this->template->addTemplateVariable('form', $form->createView());
         $this->template->addTemplateVariables($this->data->all());
 
-        return new HttpResponse($this->template->render());
+        return new Response($this->template->render());
     }
 }

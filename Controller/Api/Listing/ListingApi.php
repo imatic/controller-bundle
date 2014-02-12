@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Listing;
 
-use Imatic\Bundle\ControllerBundle\Controller\Api\QueryApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;

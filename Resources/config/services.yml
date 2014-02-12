@@ -50,30 +50,34 @@ services:
     imatic_controller.api.show:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi
         arguments:
-            - @imatic_controller.api.feature.data
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
+            - @imatic_controller.api.feature.data
         tags:
             - { name: imatic_controller.api, alias: show }
 
     imatic_controller.api.listing:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi
         arguments:
-            - @imatic_controller.api.feature.data
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
+            - @imatic_controller.api.feature.data
         tags:
             - { name: imatic_controller.api, alias: listing }
 
     imatic_controller.api.form:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi
         arguments:
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.command
+            - @imatic_controller.api.feature.redirect
+            - @imatic_controller.api.feature.message
             - @imatic_controller.api.feature.form
             - @imatic_controller.api.feature.data
             - @imatic_controller.api.feature.template
-            - @imatic_controller.api.feature.response
-            - @imatic_controller.api.feature.request
-            - @imatic_controller.api.feature.redirect
-            - @imatic_controller.api.feature.message
         tags:
             - { name: imatic_controller.api, alias: form }
 
