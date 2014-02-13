@@ -84,3 +84,7 @@ security:
 #        imatic_custom_field.admin.custom_field_extension:
 #            implements:
 #                - Imatic\Bundle\CustomFieldBundle\Model\ORM\CustomFieldEntityInterface
+
+imatic_data:
+    pager:
+        default_limit: 20

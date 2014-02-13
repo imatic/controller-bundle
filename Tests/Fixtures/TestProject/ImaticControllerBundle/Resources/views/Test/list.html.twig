@@ -28,4 +28,10 @@
             </tr>
         {% endfor %}
     </table>
+
+    <div>
+        {% for page in displayCriteria.pager.links %}
+            <a href="{{ path('app_user_list', {'pager[page]':page}) }}">{{ page }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

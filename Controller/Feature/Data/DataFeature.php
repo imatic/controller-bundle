@@ -53,6 +53,15 @@ class DataFeature
         return $this->data;
     }
 
+    public function get($name, $default = null)
+    {
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
+
+        return $default;
+    }
+
     protected function doQuery(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->execute($queryObject, $displayCriteria);

@@ -11,8 +11,15 @@ class ListingApi extends QueryApi
 {
     public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
-        // todo: pokud neni predano $displayCriteria tak nacist automaticky
+        if (null === $displayCriteria) {
+            $displayCriteria = $this->request->getDisplayCriteria();
+        }
+
         $this->data->query('items', $queryObject, $displayCriteria);
+        $this->data->count('itemsCount', $queryObject);
+
+        $displayCriteria->getPager()->setTotal($this->data->get('itemsCount'));
+        $this->template->addTemplateVariable('displayCriteria', $displayCriteria);
 
         return $this;
     }

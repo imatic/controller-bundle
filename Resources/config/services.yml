@@ -22,6 +22,7 @@ services:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature
         arguments:
             - @request_stack
+            - @imatic_controller.display_criteria_factory
 
     imatic_controller.api.feature.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature

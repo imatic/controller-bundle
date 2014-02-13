@@ -9,7 +9,7 @@ class LoadUserData extends AbstractFixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $user = new User($i);
             $user->setActive($i % 2 == 0);
             $user->setName('User ' . $i);

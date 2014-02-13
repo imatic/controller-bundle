@@ -47,7 +47,7 @@ class UserController implements ContainerAwareInterface
     public function listAction()
     {
         return $this
-            ->listing(new UserListQuery(3))
+            ->listing(new UserListQuery())
             ->setTemplateName('AppImaticControllerBundle:Test:list.html.twig')
             ->getResponse();
     }
