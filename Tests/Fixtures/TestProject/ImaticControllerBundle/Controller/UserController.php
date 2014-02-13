@@ -29,7 +29,7 @@ class UserController implements ContainerAwareInterface
     use ListingApiTrait;
 
     /**
-     * @Config\Route("/{id}", name="app_user_show")
+     * @Config\Route("/{id}", name="app_user_show", requirements={"id"="\d+"})
      * @Config\Method("GET")
      */
     public function showAction($id)

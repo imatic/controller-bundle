@@ -17,6 +17,11 @@ class FormFeature
     protected $emptyValue;
 
     /**
+     * @var array
+     */
+    protected $options;
+
+    /**
      * @var FormFactoryInterface
      */
     private $formFactory;
@@ -24,6 +29,7 @@ class FormFeature
     public function __construct(FormFactoryInterface $formFactory)
     {
         $this->formFactory = $formFactory;
+        $this->options = [];
     }
 
     public function getEmptyValue()
@@ -34,6 +40,16 @@ class FormFeature
     public function setEmptyValue($value)
     {
         $this->emptyValue = $value;
+    }
+
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+    }
+
+    public function addOption($name, $value)
+    {
+        $this->options[$name] = $value;
     }
 
     public function getName()
@@ -51,6 +67,6 @@ class FormFeature
      */
     public function getForm()
     {
-        return $this->formFactory->create($this->name, $this->emptyValue);
+        return $this->formFactory->create($this->name, $this->emptyValue, $this->options);
     }
 }

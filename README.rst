@@ -15,3 +15,4 @@ TODO
 - docs
 - test bundle directory structure
 - default templates and template names (listing, show, edit, create)
+- lazy API services

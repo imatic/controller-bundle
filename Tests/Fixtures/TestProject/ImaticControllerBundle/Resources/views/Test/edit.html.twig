@@ -1,5 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block action %}
-    {{ form(form, {'action': url(app.request.get('_route'), {id: item.id | default(null)})}) }}
+    {{ form(form, {
+    'action': url(app.request.get('_route'), {id: item.id | default(null)}),
+    'method': (item is defined) ? 'post' : 'put'
+    }) }}
 {% endblock %}

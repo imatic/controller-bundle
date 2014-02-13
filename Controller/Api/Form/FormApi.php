@@ -58,6 +58,7 @@ class FormApi extends CommandApi
     {
         $this->form->setName($form);
         $this->form->setEmptyValue($emptyValue);
+        $this->form->addOption('method', 'PUT');
 
         return $this;
     }
@@ -66,6 +67,7 @@ class FormApi extends CommandApi
     {
         $item = $this->data->query('item', $queryObject);
         $this->form->setEmptyValue($item);
+        $this->form->addOption('method', 'POST');
         $this->response->throwNotFoundUnless($item);
 
         return $this;
