@@ -77,8 +77,10 @@ class FormApi extends CommandApi
     {
         $request = $this->request->getCurrentRequest();
 
+        $this->form->addOption('action', $this->request->getCurrentUri());
         $form = $this->form->getForm();
         $form->handleRequest($request);
+
         if ($form->isValid()) {
             $data = $form->getData();
             $result = $this->command->execute(['data' => $data]);

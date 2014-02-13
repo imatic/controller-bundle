@@ -20,4 +20,14 @@ class RequestFeature
     {
         return $this->requestStack->getCurrentRequest();
     }
+
+    public function getCurrentRoute()
+    {
+        return $this->getCurrentRequest()->get('_route');
+    }
+
+    public function getCurrentUri()
+    {
+        return $this->getCurrentRequest()->getUri();
+    }
 }
