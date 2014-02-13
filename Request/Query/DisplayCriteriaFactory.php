@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * @todo Podle typu dat (json/xml...) pridat servanty
  * ($this->servants['json']->getCriteria($displayCriteriaData))
- *
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
  */
 class DisplayCriteriaFactory
@@ -47,7 +46,6 @@ class DisplayCriteriaFactory
 
     /**
      * @param string|null $componentId
-     *
      * @return DisplayCriteria
      */
     public function getCriteria($componentId = null)
@@ -63,9 +61,8 @@ class DisplayCriteriaFactory
     }
 
     /**
-     * @param Request     $request
+     * @param Request $request
      * @param string|null $componentId
-     *
      * @return array
      */
     protected function getDisplayCriteriaDataFromRequest(Request $request, $componentId = null)
@@ -83,7 +80,6 @@ class DisplayCriteriaFactory
 
     /**
      * @param array $pagerData ['page' => page_number, 'limit' => results_per_page_number]
-     *
      * @return Pager
      */
     protected function createPager(array $pagerData)
@@ -98,7 +94,6 @@ class DisplayCriteriaFactory
 
     /**
      * @param array $filterData ['fieldName' => ['value' => 'fieldValue', 'operator' => 'operator']]
-     *
      * @return Filter
      */
     protected function createFilter(array $filterData)
@@ -113,7 +108,6 @@ class DisplayCriteriaFactory
 
     /**
      * @param array $sorterData ['fieldName' => '<asc|desc>']
-     *
      * @return Sorter
      */
     protected function createSorter(array $sorterData)

@@ -12,4 +12,3 @@ app_imatic_controller:
 
 #imatic_controller:
 #    resource: @ImaticControllerBundle/Resources/config/routing.yml
-

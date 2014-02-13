@@ -3,12 +3,10 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;

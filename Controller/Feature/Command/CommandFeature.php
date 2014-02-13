@@ -76,7 +76,6 @@ class CommandFeature
         $bundle = $this->bundleGuesser->guess($this->handlerRepository->getHandler(new CommandToExecute($this->commandName)));
 
         // todo: nemusi vratit bundle, ale null:(
-
         return $bundle->getName();
     }
 
@@ -96,7 +95,7 @@ class CommandFeature
     }
 
     /**
-     * @param array $parameters
+     * @param  array $parameters
      * @throws InvalidCommandExecutionException
      * @return CommandResultInterface
      */

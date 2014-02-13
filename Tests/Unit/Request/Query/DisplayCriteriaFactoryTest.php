@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
 {
     private $displayCriteriaFactory;
+
     private $currentRequest;
 
     protected function setUp()
@@ -22,8 +23,7 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnCallback(function () {
                 return $this->currentRequest;
-            }))
-        ;
+            }));
 
         $pagerFactory = $this->getMock('Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerFactory');
 
@@ -32,8 +32,7 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('createPager')
             ->will($this->returnCallback(function ($page, $limit) {
                 return new Pager($page, $limit);
-            }))
-        ;
+            }));
 
         $this->displayCriteriaFactory = new DisplayCriteriaFactory($requestStack, $pagerFactory);
     }

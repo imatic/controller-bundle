@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Tests\Unit\Api\ShowApi;
+namespace Imatic\Bundle\ControllerBundle\Tests\Unit\Api;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;

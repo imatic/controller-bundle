@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Request;
+namespace Imatic\Bundle\ControllerBundle\Request\Query;
 
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterInterface;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerInterface;
@@ -15,17 +15,17 @@ class Query
     protected $request;
 
     /**
-     * @var Pager
+     * @var PagerInterface
      */
     protected $pager;
 
     /**
-     * @var Sorter
+     * @var SorterInterface
      */
     protected $sorter;
 
     /**
-     * @var Filter
+     * @var FilterInterface
      */
     protected $filter;
 
@@ -35,7 +35,7 @@ class Query
     protected $requestParser;
 
     /**
-     * @param  Request       $request
+     * @param  Request $request
      * @return RequestHelper
      */
     public function __construct(Request $request)

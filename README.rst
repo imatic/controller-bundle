@@ -14,3 +14,4 @@ TODO
 - tests
 - docs
 - test bundle directory structure
+- default templates and template names (listing, show, edit, create)

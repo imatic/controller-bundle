@@ -4,13 +4,11 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Api\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;

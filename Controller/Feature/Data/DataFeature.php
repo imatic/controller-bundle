@@ -19,9 +19,9 @@ class DataFeature
     }
 
     /**
-     * @param string $name
-     * @param QueryObjectInterface $queryObject
-     * @param DisplayCriteriaInterface $displayCriteria
+     * @param  string $name
+     * @param  QueryObjectInterface $queryObject
+     * @param  DisplayCriteriaInterface $displayCriteria
      * @return mixed
      */
     public function query($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
@@ -33,8 +33,8 @@ class DataFeature
     }
 
     /**
-     * @param string $name
-     * @param QueryObjectInterface $queryObject
+     * @param  string $name
+     * @param  QueryObjectInterface $queryObject
      * @return int
      */
     public function count($name, QueryObjectInterface $queryObject)
