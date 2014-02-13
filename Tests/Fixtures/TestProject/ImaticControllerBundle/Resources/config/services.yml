@@ -27,3 +27,10 @@ services:
             - @imatic_data.query_executor
         tags:
             - { name: imatic_data.handler, alias: user.delete }
+
+    app_imatic_controller.data.handler.user_activate:
+        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler
+        arguments:
+            - @imatic_data.doctrine.object_manager
+        tags:
+            - { name: imatic_data.handler, alias: user.activate }

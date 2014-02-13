@@ -51,6 +51,35 @@ class CommandFeature
         $this->allowedCommands = $allowedCommands;
     }
 
+    public function setCommandParameters(array $commandParameters)
+    {
+        $this->commandParameters = $commandParameters;
+    }
+
+    public function addCommandParameter($name, $object)
+    {
+        $this->commandParameters[$name] = $object;
+    }
+
+    public function getCommandName()
+    {
+        return $this->commandName;
+    }
+
+    public function setCommandName($commandName)
+    {
+        $this->commandName = $commandName;
+    }
+
+    public function getBundleName()
+    {
+        $bundle = $this->bundleGuesser->guess($this->handlerRepository->getHandler(new CommandToExecute($this->commandName)));
+
+        // todo: nemusi vratit bundle, ale null:(
+
+        return $bundle->getName();
+    }
+
     public function isValid()
     {
         $valid = true;
@@ -81,29 +110,5 @@ class CommandFeature
         $command = new CommandToExecute($this->commandName, $parameters);
 
         return $this->commandExecutor->execute($command);
-    }
-
-    public function setCommandParameters($commandParameters)
-    {
-        $this->commandParameters = $commandParameters;
-    }
-
-    public function getCommandName()
-    {
-        return $this->commandName;
-    }
-
-    public function setCommandName($commandName)
-    {
-        $this->commandName = $commandName;
-    }
-
-    public function getBundleName()
-    {
-        $bundle = $this->bundleGuesser->guess($this->handlerRepository->getHandler(new CommandToExecute($this->commandName)));
-
-        // todo: nemusi vratit bundle, ale null:(
-
-        return $bundle->getName();
     }
 }

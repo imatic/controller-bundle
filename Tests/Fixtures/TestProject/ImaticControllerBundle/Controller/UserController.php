@@ -3,6 +3,7 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticContro
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApiTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApiTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApiTrait;
@@ -22,6 +23,7 @@ class UserController implements ContainerAwareInterface
     use ContainerAwareTrait;
     use ApiTrait;
     use CommandApiTrait;
+    use ObjectCommandApiTrait;
     use ShowApiTrait;
     use FormApiTrait;
     use ListingApiTrait;
@@ -89,6 +91,18 @@ class UserController implements ContainerAwareInterface
     {
         return $this
             ->command('user.delete', ['user' => $id])
+            ->redirect('app_user_list')
+            ->getResponse();
+    }
+
+    /**
+     * @Config\Route("/activate/{id}", name="app_user_activate")
+     * @Config\Method("PATCH")
+     */
+    public function activateAction($id)
+    {
+        return $this
+            ->objectCommand('user.activate', [], new UserQuery($id))
             ->redirect('app_user_list')
             ->getResponse();
     }

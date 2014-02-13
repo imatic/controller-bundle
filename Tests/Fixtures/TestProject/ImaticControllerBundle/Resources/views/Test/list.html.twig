@@ -5,13 +5,19 @@
         {% for item in items %}
             <tr>
                 <td>
-                    {{ item }}
+                    {{ item }} ({{ item.active ? 'Active' : 'Inactive' }})
                 </td>
                 <td>
                     <a href="{{ path('app_user_edit', {'id':item.id}) }}">edit</a>
                 </td>
                 <td>
                     <a href="{{ path('app_user_show', {'id':item.id}) }}">show</a>
+                </td>
+                <td>
+                    <form action="{{ path('app_user_activate', {'id': item.id}) }}" method="post">
+                        <input type="submit" value="{{ item.active ? 'deactivate' : 'activate' }}">
+                        <input type="hidden" name="_method" value="patch">
+                    </form>
                 </td>
                 <td>
                     <form action="{{ path('app_user_delete', {'id': item.id}) }}" method="post">
