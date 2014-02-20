@@ -16,10 +16,10 @@ class ListingApi extends QueryApi
         }
 
         $this->data->query('items', $queryObject, $displayCriteria);
-        $this->data->count('itemsCount', $queryObject);
+        $this->data->count('items_count', $queryObject);
 
-        $displayCriteria->getPager()->setTotal($this->data->get('itemsCount'));
-        $this->template->addTemplateVariable('displayCriteria', $displayCriteria);
+        $displayCriteria->getPager()->setTotal($this->data->get('items_count'));
+        $this->template->addTemplateVariable('display_criteria', $displayCriteria);
 
         return $this;
     }
