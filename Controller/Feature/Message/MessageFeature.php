@@ -34,7 +34,7 @@ class MessageFeature
             }
         } else {
             // Standard message
-            $type = $commandResult->isSuccessful() ? 'success' : 'error';
+            $type = $commandResult->isSuccessful() ? 'success' : 'danger';
             $messageText = sprintf('%s.%s', $commandName, $type);
             $this->add($type, $bundle, $messageText);
         }
@@ -43,7 +43,7 @@ class MessageFeature
     /**
      * Catalog/Domain = $BundleName.Messages
      *
-     * @param string $type (success|error|warning|info)
+     * @param string $type (success|danger|warning|info)
      * @param string $bundle (AppUserBundle)
      * @param string $message command names or messages from handlers (user.create, user.delete, some message..)
      * @param array $parameters translation message parameters ([name = John, ...])
