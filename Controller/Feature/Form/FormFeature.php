@@ -2,7 +2,9 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Form;
 
+use Symfony\Component\Form\ClickableInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 
 class FormFeature
 {
@@ -63,7 +65,22 @@ class FormFeature
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface
+     * @param FormInterface $form
+     * @return string|null
+     */
+    public function getSubmittedName(FormInterface $form)
+    {
+        foreach ($form as $field) {
+            if ($field instanceof ClickableInterface && $field->isClicked()) {
+                return $field->getName();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return FormInterface
      */
     public function getForm()
     {

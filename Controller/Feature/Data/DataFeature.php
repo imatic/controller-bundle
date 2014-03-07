@@ -62,6 +62,11 @@ class DataFeature
         return $default;
     }
 
+    public function set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+
     protected function doQuery(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->execute($queryObject, $displayCriteria);

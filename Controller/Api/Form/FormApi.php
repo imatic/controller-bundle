@@ -63,12 +63,18 @@ class FormApi extends CommandApi
         return $this;
     }
 
-    public function edit(QueryObjectInterface $queryObject)
+    public function edit(QueryObjectInterface $queryObject, \Closure $closure = null)
     {
         $item = $this->data->query('item', $queryObject);
+        $this->response->throwNotFoundUnless($item);
+
+        if ($closure) {
+            $item = $closure($item);
+            $this->data->set('item', $item);
+        }
+
         $this->form->setEmptyValue($item);
         $this->form->addOption('method', 'POST');
-        $this->response->throwNotFoundUnless($item);
 
         return $this;
     }
@@ -82,8 +88,9 @@ class FormApi extends CommandApi
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $action = $this->form->getSubmittedName($form);
             $data = $form->getData();
-            $result = $this->command->execute(['data' => $data]);
+            $result = $this->command->execute(['data' => $data, 'action' => $action]);
             $this->message->addCommandMessage($this->command->getBundleName(), $this->command->getCommandName(), $result);
             if ($result->isSuccessful()) {
                 return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
