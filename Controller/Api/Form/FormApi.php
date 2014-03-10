@@ -69,7 +69,7 @@ class FormApi extends CommandApi
         $this->response->throwNotFoundUnless($item);
 
         if ($closure) {
-            $item = $closure($item);
+            $item = $closure($item, $this->data);
             $this->data->set('item', $item);
         }
 
