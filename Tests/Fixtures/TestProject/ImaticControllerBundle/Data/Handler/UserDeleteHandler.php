@@ -7,14 +7,14 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerInterface;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\DoctrineORMObjectManager;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager;
 use Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface;
 
 class UserDeleteHandler implements HandlerInterface
 {
 
     /**
-     * @var DoctrineORMObjectManager
+     * @var ObjectManager
      */
     private $objectManager;
 
@@ -23,7 +23,7 @@ class UserDeleteHandler implements HandlerInterface
      */
     private $queryExecutor;
 
-    public function __construct(DoctrineORMObjectManager $objectManager, QueryExecutorInterface $queryExecutor)
+    public function __construct(ObjectManager $objectManager, QueryExecutorInterface $queryExecutor)
     {
         $this->objectManager = $objectManager;
         $this->queryExecutor = $queryExecutor;

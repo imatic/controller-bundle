@@ -7,7 +7,7 @@ use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 
 trait DataFeatureTrait
 {
-    public function addValue($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria)
+    public function addValue($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
         $this->data->query($name, $queryObject, $displayCriteria);
 

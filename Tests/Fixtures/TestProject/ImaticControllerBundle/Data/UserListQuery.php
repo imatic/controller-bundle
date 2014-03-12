@@ -3,9 +3,9 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticContro
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\DoctrineORMQueryObjectInterface;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\QueryObjectInterface;
 
-class UserListQuery implements DoctrineORMQueryObjectInterface
+class UserListQuery implements QueryObjectInterface
 {
     public function build(EntityManager $em)
     {
