@@ -56,6 +56,11 @@ class CommandFeature
         $this->commandParameters = $commandParameters;
     }
 
+    public function addCommandParameters(array $commandParameters)
+    {
+        $this->commandParameters = array_merge($this->commandParameters, $commandParameters);
+    }
+
     public function addCommandParameter($name, $object)
     {
         $this->commandParameters[$name] = $object;

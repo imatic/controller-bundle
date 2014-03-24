@@ -39,11 +39,6 @@ class ApiRepository
         return $this->call($name, $arguments);
     }
 
-    public function listing()
-    {
-        return $this->call('listing', func_get_args());
-    }
-
     public function call($name, array $arguments)
     {
         $api = $this->get($name);

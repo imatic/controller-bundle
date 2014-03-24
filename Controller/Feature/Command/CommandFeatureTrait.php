@@ -17,4 +17,11 @@ trait CommandFeatureTrait
 
         return $this;
     }
+
+    public function commandParameters(array $parameters)
+    {
+        $this->command->setCommandParameters($parameters);
+
+        return $this;
+    }
 }

@@ -104,6 +104,6 @@ class FormApi extends CommandApi
         $this->template->addTemplateVariable('form', $form->createView());
         $this->template->addTemplateVariables($this->data->all());
 
-        return new Response($this->template->render());
+        return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
     }
 }
