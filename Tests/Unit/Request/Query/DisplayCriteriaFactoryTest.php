@@ -14,29 +14,6 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
 
     private $currentRequest;
 
-    protected function setUp()
-    {
-        $requestStack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
-
-        $requestStack
-            ->expects($this->any())
-            ->method('getCurrentRequest')
-            ->will($this->returnCallback(function () {
-                return $this->currentRequest;
-            }));
-
-        $pagerFactory = $this->getMock('Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerFactory');
-
-        $pagerFactory
-            ->expects($this->any())
-            ->method('createPager')
-            ->will($this->returnCallback(function ($page, $limit) {
-                return new Pager($page, $limit);
-            }));
-
-        $this->displayCriteriaFactory = new DisplayCriteriaFactory($requestStack, $pagerFactory);
-    }
-
     public function testGetCriteriaShouldReturnDefaultValuesIfComponentIsNotInsideRequest()
     {
         $this->currentRequest = new Request();
@@ -61,10 +38,8 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
                 'sorter' => [
                     'name' => 'ASC',
                 ],
-                'pager' => [
-                    'page' => 31,
-                    'limit' => 123,
-                ],
+                'page' => 31,
+                'limit' => 123,
             ],
         ]);
 
@@ -97,10 +72,8 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
             'sorter' => [
                 'name' => 'ASC',
             ],
-            'pager' => [
-                'page' => 31,
-                'limit' => 123,
-            ],
+            'page' => 31,
+            'limit' => 123,
         ]);
 
         $displayCriteria = $this->displayCriteriaFactory->getCriteria();
@@ -118,5 +91,28 @@ class DisplayCriteriaFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('name', $filter->getAt(0)->getColumn());
         $this->assertEquals('Lee', $filter->getAt(0)->getValue());
         $this->assertEquals('NOT LIKE', $filter->getAt(0)->getOperator());
+    }
+
+    protected function setUp()
+    {
+        $requestStack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
+
+        $requestStack
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnCallback(function () {
+                return $this->currentRequest;
+            }));
+
+        $pagerFactory = $this->getMock('Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerFactory');
+
+        $pagerFactory
+            ->expects($this->any())
+            ->method('createPager')
+            ->will($this->returnCallback(function ($page, $limit) {
+                return new Pager($page, $limit);
+            }));
+
+        $this->displayCriteriaFactory = new DisplayCriteriaFactory($requestStack, $pagerFactory);
     }
 }

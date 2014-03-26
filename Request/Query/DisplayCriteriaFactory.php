@@ -8,7 +8,6 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Pager;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\PagerFactory;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Sorter;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\SorterRule;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -28,12 +27,6 @@ class DisplayCriteriaFactory
      */
     protected $pagerFactory;
 
-    protected $defaultData = [
-        'filter' => [],
-        'sorter' => [],
-        'pager' => [],
-    ];
-
     /**
      * @param RequestStack $requestStack
      * @param PagerFactory $pagerFactory
@@ -50,46 +43,46 @@ class DisplayCriteriaFactory
      */
     public function getCriteria($componentId = null)
     {
-        $request = $this->requestStack->getCurrentRequest();
-        $displayCriteriaData = $this->getDisplayCriteriaDataFromRequest($request, $componentId);
-
         return new DisplayCriteria(
-            $this->createPager($displayCriteriaData['pager']),
-            $this->createSorter($displayCriteriaData['sorter']),
-            $this->createFilter($displayCriteriaData['filter'])
+            $this->createPager(
+                $this->getAttribute('page', null, $componentId),
+                $this->getAttribute('limit', null, $componentId)
+            ),
+            $this->createSorter(
+                $this->getAttribute('sorter', [], $componentId)
+            ),
+            $this->createFilter(
+                $this->getAttribute('filter', [], $componentId)
+            )
         );
     }
 
     /**
-     * @param Request $request
-     * @param string|null $componentId
-     * @return array
+     * @param string $name
+     * @param mixed|null $default
+     * @param string|null $component
+     * @return mixed
      */
-    protected function getDisplayCriteriaDataFromRequest(Request $request, $componentId = null)
+    protected function getAttribute($name, $default = null, $component = null)
     {
-        if ($componentId !== null) {
-            return $displayCriteriaData = array_merge($this->defaultData, $request->query->get($componentId, []));
+        $request = $this->requestStack->getCurrentRequest();
+
+        $path = $name;
+        if ($component) {
+            $path = $component . '[' . $name . ']';
         }
 
-        return $displayCriteriaData = [
-            'filter' => $request->query->get('filter', $this->defaultData['filter']),
-            'sorter' => $request->query->get('sorter', $this->defaultData['sorter']),
-            'pager' => $request->query->get('pager', $this->defaultData['pager']),
-        ];
+        return $request->query->get($path, $default, true);
     }
 
     /**
-     * @param array $pagerData ['page' => page_number, 'limit' => results_per_page_number]
+     * @param int|null $page
+     * @param int|null $limit
      * @return Pager
      */
-    protected function createPager(array $pagerData)
+    protected function createPager($page, $limit)
     {
-        $data = array_merge([
-            'page' => 1,
-            'limit' => null
-        ], $pagerData);
-
-        return $this->pagerFactory->createPager($data['page'], $data['limit']);
+        return $this->pagerFactory->createPager($page, $limit);
     }
 
     /**
