@@ -22,7 +22,7 @@ services:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature
         arguments:
             - @request_stack
-            - @imatic_controller.display_criteria_factory
+            - @imatic_data.display_criteria_factory
 
     imatic_controller.api.feature.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature
@@ -108,10 +108,3 @@ services:
     # api - common
     imatic_controller.api_repository:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository
-
-    # display criteria
-    imatic_controller.display_criteria_factory:
-        class: Imatic\Bundle\ControllerBundle\Request\Query\DisplayCriteriaFactory
-        arguments:
-            - @request_stack
-            - @imatic_data.pager_factory

@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Request;
 
-use Imatic\Bundle\ControllerBundle\Request\Query\DisplayCriteriaFactory;
+use Imatic\Bundle\DataBundle\Request\Query\DisplayCriteriaFactory;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -49,11 +49,11 @@ class RequestFeature
     }
 
     /**
-     * @param string|null $componentId
+     * @param array $options
      * @return DisplayCriteriaInterface
      */
-    public function getDisplayCriteria($componentId = null)
+    public function getDisplayCriteria(array $options = [])
     {
-        return $this->displayCriteriaFactory->getCriteria($componentId);
+        return $this->displayCriteriaFactory->createCriteria($options);
     }
 }
