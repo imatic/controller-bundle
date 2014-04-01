@@ -9,23 +9,45 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ListingApi extends QueryApi
 {
+    protected $filter;
+
+    protected $defaultSorter;
+
+    protected $queryObject;
+
+    protected $displayCriteria;
+
     public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
-        if (null === $displayCriteria) {
-            $displayCriteria = $this->request->getDisplayCriteria();
-        }
+        $this->displayCriteria = $displayCriteria;
+        $this->queryObject = $queryObject;
 
-        $this->data->query('items', $queryObject, $displayCriteria);
-        $this->data->count('items_count', $queryObject);
+        return $this;
+    }
 
-        $displayCriteria->getPager()->setTotal($this->data->get('items_count'));
-        $this->template->addTemplateVariable('display_criteria', $displayCriteria);
+    public function filter($filter)
+    {
+        $this->filter = $filter;
 
         return $this;
     }
 
     public function getResponse()
     {
+        if (null === $this->displayCriteria) {
+            $dcOptions = [];
+            if ($this->filter) {
+                $dcOptions['filter'] = $this->filter;
+            }
+            $this->displayCriteria = $this->request->getDisplayCriteria($dcOptions);
+        }
+
+        $this->data->query('items', $this->queryObject, $this->displayCriteria);
+        $this->data->count('items_count', $this->queryObject);
+
+        $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
+        $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
+
         $this->template->addTemplateVariables($this->data->all());
 
         return new Response($this->template->render());
