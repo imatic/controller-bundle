@@ -11,6 +11,8 @@ class ListingApi extends QueryApi
 {
     protected $filter;
 
+    protected $sort;
+
     protected $defaultSorter;
 
     protected $queryObject;
@@ -32,12 +34,22 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    public function defaultSort(array $sort)
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
     public function getResponse()
     {
         if (null === $this->displayCriteria) {
             $dcOptions = [];
             if ($this->filter) {
                 $dcOptions['filter'] = $this->filter;
+            }
+            if ($this->sort) {
+                $dcOptions['sorter'] = $this->sort;
             }
             $this->displayCriteria = $this->request->getDisplayCriteria($dcOptions);
         }
