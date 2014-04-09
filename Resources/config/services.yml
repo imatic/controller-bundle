@@ -35,6 +35,7 @@ services:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature
         arguments:
             - @router
+            - @request_stack
 
     imatic_controller.api.feature.message:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature

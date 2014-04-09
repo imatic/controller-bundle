@@ -4,6 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect;
 
 use Imatic\Bundle\ControllerBundle\Exception\InvalidRedirectException;
 use Imatic\Bundle\ControllerBundle\Exception\InvalidRedirectParameterException;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RedirectFeature
@@ -18,10 +19,16 @@ class RedirectFeature
      */
     private $redirects;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, RequestStack $request)
     {
         $this->urlGenerator = $urlGenerator;
         $this->redirects = [];
+        $this->requestStack = $request;
     }
 
     public function setSuccessRedirect($routeName, $parameters = null)
@@ -56,7 +63,13 @@ class RedirectFeature
             $parameters = array_merge($this->redirects[$name]['parameters'], $parameters);
         }
 
-        return $this->urlGenerator->generate($this->redirects[$name]['route'], $parameters);
+        if ('@current' === $this->redirects[$name]['route']) {
+            $url = $this->requestStack->getCurrentRequest()->getUri();
+        } else {
+            $url = $this->urlGenerator->generate($this->redirects[$name]['route'], $parameters);
+        }
+
+        return $url;
     }
 
     protected function setRedirect($name, $routeName, $parameters = null)
