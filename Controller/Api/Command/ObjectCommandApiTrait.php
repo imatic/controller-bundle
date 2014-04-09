@@ -5,7 +5,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 trait ObjectCommandApiTrait
 {
     /**
-     * @return CommandApi
+     * @return ObjectCommandApi
      */
     public function objectCommand()
     {

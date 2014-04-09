@@ -105,6 +105,17 @@ services:
         tags:
             - { name: imatic_controller.api, alias: objectCommand }
 
+    imatic_controller.api.command.batch:
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi
+        arguments:
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
+            - @imatic_controller.api.feature.command
+            - @imatic_controller.api.feature.redirect
+            - @imatic_controller.api.feature.message
+        tags:
+            - { name: imatic_controller.api, alias: batchCommand }
+
     # api - common
     imatic_controller.api_repository:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository

@@ -34,7 +34,7 @@ class MessageFeature
             }
         } else {
             // Standard message
-            $type = $commandResult->isSuccessful() ? 'success' : 'danger';
+            $type = $commandResult->isSuccessful() ? 'success' : 'error';
             $messageText = sprintf('%s.%s', $commandName, $type);
             $this->add($type, $bundle, $messageText);
         }

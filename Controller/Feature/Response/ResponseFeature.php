@@ -8,9 +8,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ResponseFeature
 {
-    public function throwAccessDenied()
+    public function throwAccessDenied($message = 'Access denied')
     {
-        return new AccessDeniedException();
+        throw new AccessDeniedException($message);
     }
 
     public function throwNotFound($message = null)
