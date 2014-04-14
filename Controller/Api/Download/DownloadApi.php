@@ -15,7 +15,7 @@ class DownloadApi extends QueryApi
 
     protected $fileInfoInterface = 'Imatic\Bundle\DocumentBundle\File\FileInfoInterface';
 
-    public function download($object, $forceDownload = false)
+    public function download($object, $forceDownload = true)
     {
         $file = null;
         $name = null;
@@ -32,7 +32,10 @@ class DownloadApi extends QueryApi
                 $file = $object->getFile();
                 $name = $file->getFilename();
 
-                if ($object instanceof $this->fileInfoInterface) {
+                if (
+                    $object instanceof $this->fileInfoInterface ||
+                    is_callable([$object, 'getFileName'])
+                ) {
                     $name = $object->getFilename();
                 }
             }
