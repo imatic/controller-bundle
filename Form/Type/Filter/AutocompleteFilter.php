@@ -10,6 +10,6 @@ class AutocompleteFilter extends Filter
 {
     public function configure()
     {
-        $this->addRule(new FilterRuleText('search', null, [], [FilterOperatorMap::OPERATOR_CONTAINS]));
+        $this->add(new FilterRuleText('search', null, [], [FilterOperatorMap::OPERATOR_CONTAINS]));
     }
 }
