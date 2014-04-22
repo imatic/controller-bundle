@@ -29,7 +29,6 @@ services:
         arguments:
             - @imatic_data.command_executor
             - @imatic_data.command_handler_repository
-            - @imatic_controller.api.feature.framework.bundle_guesser
 
     imatic_controller.api.feature.redirect:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature
@@ -42,11 +41,6 @@ services:
         arguments:
             - @session
             - @translator
-
-    imatic_controller.api.feature.framework.bundle_guesser:
-        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesserFeature
-        arguments:
-            - @kernel
 
     # api - concrete
     imatic_controller.api.show:

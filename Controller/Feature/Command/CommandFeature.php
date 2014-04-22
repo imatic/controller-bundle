@@ -2,7 +2,6 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Framework\BundleGuesserFeature;
 use Imatic\Bundle\ControllerBundle\Exception\InvalidCommandExecutionException;
 use Imatic\Bundle\DataBundle\Data\Command\Command as CommandToExecute;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
@@ -30,18 +29,11 @@ class CommandFeature
      */
     private $handlerRepository;
 
-    /**
-     * @var BundleGuesserFeature
-     */
-    private $bundleGuesser;
-
     public function __construct(
         CommandExecutorInterface $commandExecutor,
-        HandlerRepositoryInterface $handlerRepository,
-        BundleGuesserFeature $bundleGuesser)
+        HandlerRepositoryInterface $handlerRepository)
     {
         $this->commandExecutor = $commandExecutor;
-        $this->bundleGuesser = $bundleGuesser;
         $this->handlerRepository = $handlerRepository;
         $this->commandParameters = [];
     }
@@ -74,14 +66,6 @@ class CommandFeature
     public function setCommandName($commandName)
     {
         $this->commandName = $commandName;
-    }
-
-    public function getBundleName()
-    {
-        $bundle = $this->bundleGuesser->guess($this->handlerRepository->getHandler(new CommandToExecute($this->commandName)));
-
-        // todo: nemusi vratit bundle, ale null:(
-        return $bundle->getName();
     }
 
     public function isValid()

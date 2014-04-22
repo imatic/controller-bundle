@@ -92,7 +92,7 @@ class FormApi extends CommandApi
             $action = $this->form->getSubmittedName($form);
             $data = $form->getData();
             $result = $this->command->execute(['data' => $data, 'action' => $action]);
-            $this->message->addCommandMessage($this->command->getBundleName(), $this->command->getCommandName(), $result);
+            $this->message->addCommandMessage($result);
             if ($result->isSuccessful()) {
                 return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
                     'result' => $result,

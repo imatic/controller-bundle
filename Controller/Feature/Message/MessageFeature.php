@@ -24,34 +24,42 @@ class MessageFeature
         $this->translator = $translator;
     }
 
-    public function addCommandMessage($bundle, $commandName, CommandResultInterface $commandResult)
+    public function addCommandMessage(CommandResultInterface $commandResult)
     {
-        // Result messages
-        if ($commandResult->hasMessages()) {
-            foreach ($commandResult->getMessages() as $message) {
-                $messageText = sprintf('%s.%s', $commandName, $message->getText());
-                $this->add($message->getType(), $bundle, $messageText, $message->getParameters());
+        foreach ($commandResult->getMessages() as $message) {
+            $translated = $this->trans($message->getMessage(), $message->getParameters(), $message->getTranslationDomain());
+            if ($message->getMessage() == $translated) {
+                // Default translation for untranslated messages
+                $this->session->getFlashBag()->add(
+                    $message->getType(),
+                    $this->trans($message->getText(), $message->getParameters(), 'ImaticDataBundleMessages')
+                );
+            } else {
+                // Standard translation
+                $this->add(
+                    $message->getType(),
+                    $message->getMessage(),
+                    $message->getParameters(),
+                    $message->getTranslationDomain()
+                );
             }
-        } else {
-            // Standard message
-            $type = $commandResult->isSuccessful() ? 'success' : 'error';
-            $messageText = sprintf('%s.%s', $commandName, $type);
-            $this->add($type, $bundle, $messageText);
         }
     }
 
     /**
-     * Catalog/Domain = $BundleName.Messages
-     *
      * @param string $type (success|danger|warning|info)
-     * @param string $bundle (AppUserBundle)
      * @param string $message command names or messages from handlers (user.create, user.delete, some message..)
      * @param array $parameters translation message parameters ([name = John, ...])
+     * @param string $translationDomain
      */
-    public function add($type, $bundle, $message, array $parameters = [])
+    public function add($type, $message, array $parameters, $translationDomain)
     {
-        $domain = sprintf('%sMessages', $bundle);
-        $message = $this->translator->trans($message, $parameters, $domain);
+        $message = $this->trans($message, $parameters, $translationDomain);
         $this->session->getFlashBag()->add($type, $message);
+    }
+
+    private function trans($message, $parameters, $domain)
+    {
+        return $this->translator->trans($message, $parameters, $domain);
     }
 }

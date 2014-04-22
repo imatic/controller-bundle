@@ -52,7 +52,7 @@ class CommandApi extends Api
     {
         $result = $this->command->execute();
 
-        $this->message->addCommandMessage($this->command->getBundleName(), $this->command->getCommandName(), $result);
+        $this->message->addCommandMessage($result);
         $name = $result->isSuccessful() ? 'success' : 'error';
 
         return $this->response->createRedirect($this->redirect->getRedirectUrl($name, ['result' => $result]));
