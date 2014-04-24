@@ -35,11 +35,12 @@ class DataFeature
     /**
      * @param  string $name
      * @param  QueryObjectInterface $queryObject
+     * @param  DisplayCriteriaInterface $displayCriteria
      * @return int
      */
-    public function count($name, QueryObjectInterface $queryObject)
+    public function count($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
-        $count = $this->doCount($queryObject);
+        $count = $this->doCount($queryObject, $displayCriteria);
         $this->data[$name] = $count;
 
         return $count;
@@ -72,8 +73,8 @@ class DataFeature
         return $this->queryExecutor->execute($queryObject, $displayCriteria);
     }
 
-    protected function doCount(QueryObjectInterface $queryObject)
+    protected function doCount(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
-        return $this->queryExecutor->count($queryObject);
+        return $this->queryExecutor->count($queryObject, $displayCriteria);
     }
 }
