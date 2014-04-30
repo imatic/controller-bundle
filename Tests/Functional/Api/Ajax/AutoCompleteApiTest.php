@@ -1,5 +1,5 @@
 <?php
-namespace Imatic\Bundle\ControllerBundle\Tests\Integration\Api\Ajax;
+namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Api\Ajax;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 
