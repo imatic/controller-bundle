@@ -3,8 +3,6 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Download;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeatureTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
 use Imatic\Bundle\DataBundle\Data\Query\SingleResultQueryObjectInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;

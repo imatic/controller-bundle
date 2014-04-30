@@ -2,8 +2,6 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeatureTrait;
-
 class BatchCommandApi extends CommandApi
 {
     public function batchCommand(array $allowedCommands)
