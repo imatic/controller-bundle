@@ -111,7 +111,7 @@ class UserController implements ContainerAwareInterface
 
     /**
      * @Config\Route("/greet/{username}")
-     * @config\Method("GET")
+     * @Config\Method("GET")
      */
     public function greetAction($username)
     {
@@ -122,5 +122,18 @@ class UserController implements ContainerAwareInterface
             ->redirect('app_user_list')
             ->getResponse()
         ;
+    }
+
+    /**
+     * @Config\Route("/greet-batch")
+     */
+    public function greetBatchAction()
+    {
+        return $this
+            ->batchCommand([
+                'greet' => 'user.greet.batch',
+            ])
+            ->redirect('app_user_list')
+            ->getResponse();
     }
 }
