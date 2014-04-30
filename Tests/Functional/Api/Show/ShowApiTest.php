@@ -8,7 +8,7 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
  */
 class ShowApiTest extends WebTestCase
 {
-    public function testShowShouldShowTheUsers()
+    public function testShowShouldShowTheUser()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/test/user/1');
