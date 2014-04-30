@@ -18,6 +18,7 @@ class TestKernel extends BaseTestKernel
         $parentBundles = parent::registerBundles();
 
         $bundles = [
+            new \Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new WebProfilerBundle(),
             new ImaticControllerBundle(),
             new AppImaticControllerBundle(),

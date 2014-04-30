@@ -88,3 +88,6 @@ security:
 imatic_data:
     pager:
         default_limit: 20
+
+genemu_form:
+    select2: ~

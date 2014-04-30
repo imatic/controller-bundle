@@ -142,3 +142,5 @@ services:
     # api - common
     imatic_controller.api_repository:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository
+        arguments:
+            - @service_container

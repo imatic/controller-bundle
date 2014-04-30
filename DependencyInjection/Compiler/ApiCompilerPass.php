@@ -3,7 +3,6 @@ namespace Imatic\Bundle\ControllerBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 
 class ApiCompilerPass implements CompilerPassInterface
 {
@@ -24,7 +23,7 @@ class ApiCompilerPass implements CompilerPassInterface
             foreach ($tagAttributes as $attributes) {
                 $apiRepositoryDef->addMethodCall('add', [
                     $attributes['alias'],
-                    new Reference($id),
+                    $id,
                 ]);
             }
         }

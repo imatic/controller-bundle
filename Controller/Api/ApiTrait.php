@@ -17,14 +17,14 @@ trait ApiTrait
 
     /**
      * @param string $name
-     * @param Api $api
+     * @param string $serviceId
      */
-    public function addApi($name, Api $api)
+    public function addApi($name, $serviceId)
     {
         if (null == $this->apiRepository) {
-            $this->apiRepository = new ApiRepository();
+            $this->apiRepository = new ApiRepository($this->container);
         }
-        $this->apiRepository->add($name, $api);
+        $this->apiRepository->add($name, $serviceId);
     }
 
     /**

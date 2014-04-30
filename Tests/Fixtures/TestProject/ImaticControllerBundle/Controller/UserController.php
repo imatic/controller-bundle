@@ -14,6 +14,7 @@ use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApiTrait;
 
 /**
  * @Config\Route("/user")
@@ -27,6 +28,19 @@ class UserController implements ContainerAwareInterface
     use ShowApiTrait;
     use FormApiTrait;
     use ListingApiTrait;
+    use AutocompleteApiTrait;
+
+    /**
+     * @Config\Route("/autocomplete", name="app_user_autocomplete")
+     * @Config\Method("GET")
+     */
+    public function autoCompleteAction()
+    {
+        return $this->autocomplete()
+            ->autocomplete(new UserListQuery())
+            ->getResponse()
+        ;
+    }
 
     /**
      * @Config\Route("/{id}", name="app_user_show", requirements={"id"="\d+"})

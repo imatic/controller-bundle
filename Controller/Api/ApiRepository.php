@@ -3,28 +3,35 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ApiRepository
 {
     /**
-     * @var Api[]
+     * @var string[]
      */
     private $apis;
 
-    public function __construct()
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container)
     {
+        $this->container = $container;
         $this->apis = [];
     }
 
-    public function add($name, Api $api)
+    public function add($name, $serviceId)
     {
-        $this->apis[$name] = $api;
+        $this->apis[$name] = $serviceId;
     }
 
     public function get($name)
     {
         if ($this->has($name)) {
-            return $this->apis[$name];
+            return $this->container->get($this->apis[$name]);
         }
         throw new ApiNotFoundException($name);
     }
