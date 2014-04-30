@@ -58,8 +58,7 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
-        tags:
-            - { name: imatic_controller.api, alias: show }
+        scope: prototype
 
     imatic_controller.api.listing:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi
@@ -68,8 +67,7 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
-        tags:
-            - { name: imatic_controller.api, alias: listing }
+        scope: prototype
 
     imatic_controller.api.form:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi
@@ -82,8 +80,7 @@ services:
             - @imatic_controller.api.feature.form
             - @imatic_controller.api.feature.data
             - @imatic_controller.api.feature.template
-        tags:
-            - { name: imatic_controller.api, alias: form }
+        scope: prototype
 
     imatic_controller.api.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi
@@ -93,8 +90,7 @@ services:
             - @imatic_controller.api.feature.command
             - @imatic_controller.api.feature.redirect
             - @imatic_controller.api.feature.message
-        tags:
-            - { name: imatic_controller.api, alias: command }
+        scope: prototype
 
     imatic_controller.api.command.object:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi
@@ -105,8 +101,7 @@ services:
             - @imatic_controller.api.feature.redirect
             - @imatic_controller.api.feature.message
             - @imatic_controller.api.feature.data
-        tags:
-            - { name: imatic_controller.api, alias: objectCommand }
+        scope: prototype
 
     imatic_controller.api.command.batch:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi
@@ -116,8 +111,7 @@ services:
             - @imatic_controller.api.feature.command
             - @imatic_controller.api.feature.redirect
             - @imatic_controller.api.feature.message
-        tags:
-            - { name: imatic_controller.api, alias: batchCommand }
+        scope: prototype
 
     imatic_controller.api.download:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi
@@ -126,8 +120,7 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
-        tags:
-            - { name: imatic_controller.api, alias: download }
+        scope: prototype
 
     imatic_controller.api.autocomplete:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi
@@ -136,11 +129,4 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
-        tags:
-            - { name: imatic_controller.api, alias: autocomplete }
-
-    # api - common
-    imatic_controller.api_repository:
-        class: Imatic\Bundle\ControllerBundle\Controller\Api\ApiRepository
-        arguments:
-            - @service_container
+        scope: prototype

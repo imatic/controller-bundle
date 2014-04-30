@@ -2,7 +2,15 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
-use Imatic\Bundle\ControllerBundle\Exception\MissingApiRepositoryException;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
+use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
 
 /**
  * ApiTrait
@@ -11,42 +19,91 @@ use Imatic\Bundle\ControllerBundle\Exception\MissingApiRepositoryException;
 trait ApiTrait
 {
     /**
-     * @var ApiRepository
+     * @return AutocompleteApi
      */
-    private $apiRepository;
-
-    /**
-     * @param string $name
-     * @param string $serviceId
-     */
-    public function addApi($name, $serviceId)
+    public function autocomplete()
     {
-        if (null == $this->apiRepository) {
-            $this->apiRepository = new ApiRepository($this->container);
-        }
-        $this->apiRepository->add($name, $serviceId);
+        return $this->getApi('imatic_controller.api.autocomplete', 'autocomplete', func_get_args());
     }
 
     /**
-     * @param $name
-     * @param  array $arguments
-     * @return Api
-     * @throws MissingApiRepositoryException
+     * @return BatchCommandApi
      */
-    protected function getApi($name, array $arguments = [])
+    public function batchCommand()
     {
-        if (!$this->apiRepository && isset($this->container)) {
-            $this->apiRepository = $this->container->get('imatic_controller.api_repository');
+        return $this->getApi('imatic_controller.api.command.batch', 'batchCommand', func_get_args());
+    }
+
+    /**
+     * @return CommandApi
+     */
+    public function command()
+    {
+        return $this->getApi('imatic_controller.api.command', 'command', func_get_args());
+    }
+
+    /**
+     * @return ObjectCommandApi
+     */
+    public function objectCommand()
+    {
+        return $this->getApi('imatic_controller.api.command.object', 'objectCommand', func_get_args());
+    }
+
+    /**
+     * @return DownloadApi
+     */
+    public function download()
+    {
+        return $this->getApi('', 'download', func_get_args());
+    }
+
+    /**
+     * @return FormApi
+     */
+    public function form()
+    {
+        return $this->getApi('imatic_controller.api.form', 'form', func_get_args());
+    }
+
+    /**
+     * @return ListingApi
+     */
+    public function listing()
+    {
+        return $this->getApi('imatic_controller.api.listing', 'listing', func_get_args());
+    }
+
+    /**
+     * @return ShowApi
+     */
+    public function show()
+    {
+        return $this->getApi('imatic_controller.api.show', 'show', func_get_args());
+    }
+
+    /**
+     * @param string $id
+     * @param string $name
+     * @param array $arguments
+     * @return Api
+     */
+    protected function getApi($id, $name, array $arguments = [])
+    {
+        if (!isset($this->container)) {
+            throw new \RuntimeException('$container is not attribute of class "%s"', __CLASS__);
         }
 
-        if (!$this->apiRepository) {
-            throw new MissingApiRepositoryException();
+        if (!$this->container->has($id)) {
+            throw new ApiNotFoundException($name);
         }
+
+        $api = $this->container->get($id);
 
         if ($arguments) {
-            return $this->apiRepository->call($name, $arguments);
-        } else {
-            return $this->apiRepository->get($name);
+            return call_user_func_array([$api, $name], $arguments);
         }
+
+        return $api;
     }
 }

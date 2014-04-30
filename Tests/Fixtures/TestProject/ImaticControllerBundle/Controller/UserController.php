@@ -23,12 +23,6 @@ class UserController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     use ApiTrait;
-    use CommandApiTrait;
-    use ObjectCommandApiTrait;
-    use ShowApiTrait;
-    use FormApiTrait;
-    use ListingApiTrait;
-    use AutocompleteApiTrait;
 
     /**
      * @Config\Route("/autocomplete", name="app_user_autocomplete")
