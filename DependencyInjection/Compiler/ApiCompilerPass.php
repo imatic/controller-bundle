@@ -16,6 +16,11 @@ class ApiCompilerPass implements CompilerPassInterface
         $apiRepositoryDef = $container->findDefinition('imatic_controller.api_repository');
 
         foreach ($apiServices as $id => $tagAttributes) {
+            $container->findDefinition($id)
+                ->setScope('prototype')
+                ->setLazy(true)
+            ;
+
             foreach ($tagAttributes as $attributes) {
                 $apiRepositoryDef->addMethodCall('add', [
                     $attributes['alias'],

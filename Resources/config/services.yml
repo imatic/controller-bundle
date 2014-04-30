@@ -4,43 +4,51 @@ services:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature
         arguments:
             - @imatic_data.query_executor
+        scope: prototype
 
     imatic_controller.api.feature.template:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature
         arguments:
             - @templating
+        scope: prototype
 
     imatic_controller.api.feature.form:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature
         arguments:
             - @form.factory
+        scope: prototype
 
     imatic_controller.api.feature.response:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature
+        scope: prototype
 
     imatic_controller.api.feature.request:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature
         arguments:
             - @request_stack
             - @imatic_data.display_criteria_factory
+        scope: prototype
 
     imatic_controller.api.feature.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature
         arguments:
             - @imatic_data.command_executor
             - @imatic_data.command_handler_repository
+        scope: prototype
 
     imatic_controller.api.feature.redirect:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature
         arguments:
             - @router
             - @request_stack
+        scope: prototype
 
     imatic_controller.api.feature.message:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature
         arguments:
             - @session
             - @translator
+        scope: prototype
 
     # api - concrete
     imatic_controller.api.show:
