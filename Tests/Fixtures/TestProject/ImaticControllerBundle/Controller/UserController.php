@@ -2,11 +2,6 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
@@ -14,7 +9,6 @@ use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApiTrait;
 
 /**
  * @Config\Route("/user")

@@ -1,14 +1,15 @@
 <html>
 <body>
 
-{% for type, messages in app.session.flashbag.all %}
-    {% for message in messages %}
-        <p><strong>{{ type }}</strong> {{ message }}</p>
+    {% for type, messages in app.session.flashbag.all %}
+        {% for message in messages %}
+            <p><strong>{{ type }}</strong> {{ message }}</p>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
 
-{% block action %}
-{% endblock %}
-
+    <div id="action">
+        {% block action %}
+        {% endblock %}
+    </div>
 </body>
 </html>
