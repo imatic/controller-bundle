@@ -108,4 +108,19 @@ class UserController implements ContainerAwareInterface
             ->redirect('app_user_list')
             ->getResponse();
     }
+
+    /**
+     * @Config\Route("/greet/{username}")
+     * @config\Method("GET")
+     */
+    public function greetAction($username)
+    {
+        return $this->command()
+            ->command('user.greet', [
+                'username' => $username,
+            ])
+            ->redirect('app_user_list')
+            ->getResponse()
+        ;
+    }
 }

@@ -9,5 +9,13 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
  */
 class CommandApiTest extends WebTestCase
 {
+    public function testCommandShouldGreetUser()
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/test/user/greet/USERNAME');
+        $this->assertEquals(200, $client->getInternalResponse()->getStatus());
 
+        $this->assertEquals('Hello USERNAME!', trim($crawler->filter('#messages')->text()));
+    }
 }
