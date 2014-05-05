@@ -18,7 +18,7 @@ class AutocompleteApi extends QueryApi
     public function autocomplete(QueryObjectInterface $queryObject)
     {
         $this->labelFunction = function ($item) {
-            return (string)$item;
+            return (string) $item;
         };
         $this->identifierFunction = function ($item) {
             return $item->getId();

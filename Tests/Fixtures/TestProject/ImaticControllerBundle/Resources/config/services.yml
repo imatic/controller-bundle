@@ -6,6 +6,16 @@ services:
             - { name: form.type, alias: app_imatic_controller_user }
 
     # handlers
+    app_imatic_controller.data.handler.user_greet:
+        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler
+        tags:
+            - { name: imatic_data.handler, alias: user.greet }
+
+    app_imatic_controller.data.handler.user_greet_batch:
+        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler
+        tags:
+            - { name: imatic_data.handler, alias: user.greet.batch }
+
     app_imatic_controller.data.handler.user_edit:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler
         arguments:

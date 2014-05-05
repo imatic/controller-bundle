@@ -2,11 +2,6 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApiTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
@@ -22,11 +17,18 @@ class UserController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     use ApiTrait;
-    use CommandApiTrait;
-    use ObjectCommandApiTrait;
-    use ShowApiTrait;
-    use FormApiTrait;
-    use ListingApiTrait;
+
+    /**
+     * @Config\Route("/autocomplete", name="app_user_autocomplete")
+     * @Config\Method("GET")
+     */
+    public function autoCompleteAction()
+    {
+        return $this->autocomplete()
+            ->autocomplete(new UserListQuery())
+            ->getResponse()
+        ;
+    }
 
     /**
      * @Config\Route("/{id}", name="app_user_show", requirements={"id"="\d+"})
@@ -105,5 +107,44 @@ class UserController implements ContainerAwareInterface
             ->objectCommand('user.activate', [], new UserQuery($id))
             ->redirect('app_user_list')
             ->getResponse();
+    }
+
+    /**
+     * @Config\Route("/greet/{username}")
+     * @Config\Method("GET")
+     */
+    public function greetAction($username)
+    {
+        return $this->command()
+            ->command('user.greet', [
+                'username' => $username,
+            ])
+            ->redirect('app_user_list')
+            ->getResponse()
+        ;
+    }
+
+    /**
+     * @Config\Route("/greet-batch")
+     */
+    public function greetBatchAction()
+    {
+        return $this
+            ->batchCommand([
+                'greet' => 'user.greet.batch',
+            ])
+            ->redirect('app_user_list')
+            ->getResponse();
+    }
+
+    /**
+     * @Config\Route("/data")
+     */
+    public function dataAction()
+    {
+        return $this->download()
+            ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
+            ->getResponse()
+        ;
     }
 }
