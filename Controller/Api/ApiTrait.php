@@ -55,7 +55,7 @@ trait ApiTrait
      */
     public function download()
     {
-        return $this->getApi('', 'download', func_get_args());
+        return $this->getApi('imatic_controller.api.download', 'download', func_get_args());
     }
 
     /**

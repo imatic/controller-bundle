@@ -136,4 +136,15 @@ class UserController implements ContainerAwareInterface
             ->redirect('app_user_list')
             ->getResponse();
     }
+
+    /**
+     * @Config\Route("/data")
+     */
+    public function dataAction()
+    {
+        return $this->download()
+            ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
+            ->getResponse()
+        ;
+    }
 }
