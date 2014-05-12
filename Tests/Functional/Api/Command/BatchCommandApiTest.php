@@ -22,8 +22,6 @@ class BatchCommandApiTest extends WebTestCase
         ]);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertContains('Hello user1!', $crawler->filter('#messages')->text());
-        $this->assertContains('Hello user2!', $crawler->filter('#messages')->text());
-        $this->assertContains('Hello user3!', $crawler->filter('#messages')->text());
+        $this->assertContains('Hromadná akce byla provedena pro 3', $crawler->filter('#messages')->text());
     }
 }

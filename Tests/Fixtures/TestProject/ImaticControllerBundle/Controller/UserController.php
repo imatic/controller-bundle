@@ -130,9 +130,7 @@ class UserController implements ContainerAwareInterface
     public function greetBatchAction()
     {
         return $this
-            ->batchCommand([
-                'greet' => 'user.greet.batch',
-            ])
+            ->batchCommand('user.greet.batch')
             ->redirect('app_user_list')
             ->getResponse();
     }

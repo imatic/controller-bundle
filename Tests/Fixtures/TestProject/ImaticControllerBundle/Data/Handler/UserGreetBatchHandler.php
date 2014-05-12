@@ -2,25 +2,27 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler;
 
-use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
-use Imatic\Bundle\DataBundle\Data\Command\CommandResult;
+use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorAwareInterface;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\AbstractBatchHandler;
+use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorAwareTrait;
+use Imatic\Bundle\DataBundle\Data\Command\Command;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerInterface;
-use Imatic\Bundle\DataBundle\Data\Command\Message;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\QueryExecutor;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
  */
-class UserGreetBatchHandler implements HandlerInterface
+class UserGreetBatchHandler extends AbstractBatchHandler implements HandlerInterface, CommandExecutorAwareInterface
 {
-    public function handle(CommandInterface $command)
+    use CommandExecutorAwareTrait;
+
+    public function __construct(QueryExecutor $queryExecutor)
     {
-        $usernames = $command->getParameter('selected');
+        $this->queryExecutor = $queryExecutor;
+    }
 
-        $messages = [];
-        foreach ($usernames as $username) {
-            $messages[] = new Message('', sprintf('Hello %s!', $username));
-        }
-
-        return new CommandResult(true, $messages);
+    protected function handleOne($id)
+    {
+        return $this->commandExecutor->execute(new Command('user.greet', ['username' => $id]));
     }
 }
