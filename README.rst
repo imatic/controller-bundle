@@ -145,9 +145,7 @@ Použití
         public function greetBatchAction()
         {
             return $this
-                ->batchCommand([
-                    'greet' => 'user.greet.batch',
-                ])
+                ->batchCommand('user.greet.batch')
                 ->redirect('app_user_list')
                 ->getResponse();
         }
@@ -213,15 +211,16 @@ greetBatchAction
 ````````````````
 
 * příklad na batch command API
-* je možné specifikovat více commandů
-* který command se provede se rozhodne podle request parametrů (pro náš command tedy hledáme requestu parametr "greet" => "command")
 * command handleru se dále předá parametr "selected" z requestu (např idčka uživatelů, se kterými chceme něco udělat)
+* je možné specifikovat více commandů (např. ["greet" => "command"])
+    * který command se provede se rozhodne podle request parametrů (pro náš command tedy hledáme requestu parametr "greet" => "command")
 
 dataAction
 ``````````
 
 * příklad download API
 * v našem příkladu stáhne soubor userData
+* je též možné předat jako argument SingleResultQueryObjectInterface který vrací FileObjectInterface
 
 Podrobnosti
 -----------
