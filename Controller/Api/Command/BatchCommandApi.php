@@ -4,21 +4,31 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
 class BatchCommandApi extends CommandApi
 {
-    public function batchCommand(array $allowedCommands)
+    /**
+     * @param array|string $allowedCommands
+     * @return BatchCommandApi
+     */
+    public function batchCommand($allowedCommands)
     {
-        $this->command->setAllowedCommands($allowedCommands);
-
         $request = $this->request->getCurrentRequest();
-        $command = null;
 
-        foreach ($request->request->all() as $commandCandidateName => $commandCandidateLabel) {
-            if (array_key_exists($commandCandidateName, $allowedCommands)) {
-                $command = $allowedCommands[$commandCandidateName];
+        $command = null;
+        if (is_array($allowedCommands)) {
+            $this->command->setAllowedCommands($allowedCommands);
+
+            foreach ($request->request->all() as $commandCandidateName => $commandCandidateLabel) {
+                if (array_key_exists($commandCandidateName, $allowedCommands)) {
+                    $command = $allowedCommands[$commandCandidateName];
+                }
+            }
+
+            if (!$command) {
+                $this->response->throwAccessDenied(sprintf('Calling a denied command "%s"', $command));
             }
         }
 
         if (!$command) {
-            $this->response->throwAccessDenied(sprintf('Calling a denied command "%s"', $command));
+            $command = $allowedCommands;
         }
 
         $this->command->setCommandName($command);

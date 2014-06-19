@@ -1,6 +1,13 @@
 ImaticControllerBundle
 ======================
 
+**Použití fluent controller API usnadnění a sjednocení práce kterou provádí controller.**
+
+Bohužel se často se stává, že controller obsahuje business logiku, nebo duplicitní kód což není správně.
+Controller API sjednocuje kód a umožňuje psát logiku pro controller velmi jednoduše a přitom správně a robustně.
+
+Controller API využívá funkcionality `DataBundle <https://bitbucket.org/imatic/imatic-databundle>`_, je vhodné si první přečíst jeho dokumentaci.
+
 Použití
 -------
 
@@ -138,9 +145,7 @@ Použití
         public function greetBatchAction()
         {
             return $this
-                ->batchCommand([
-                    'greet' => 'user.greet.batch',
-                ])
+                ->batchCommand('user.greet.batch')
                 ->redirect('app_user_list')
                 ->getResponse();
         }
@@ -173,7 +178,7 @@ listAction
 ``````````
 
 * příklad použití listing API
-* navíc je možné předat filter/sorter a displayCriteria
+* navíc je možné předat vlastní filter/sorter/pager (displayCriteria viz DataBundle), pokud se nepředá, je vytvořen automaticky
 
 editAction
 ``````````
@@ -206,33 +211,27 @@ greetBatchAction
 ````````````````
 
 * příklad na batch command API
-* je možné specifikovat více commandů
-* který command se provede se rozhodne podle request parametrů (pro náš command tedy hledáme requestu parametr "greet" => "command")
 * command handleru se dále předá parametr "selected" z requestu (např idčka uživatelů, se kterými chceme něco udělat)
+* je možné specifikovat více commandů (např. ["greet" => "command"])
+    * který command se provede se rozhodne podle request parametrů (pro náš command tedy hledáme requestu parametr "greet" => "command")
 
 dataAction
 ``````````
 
 * příklad download API
 * v našem příkladu stáhne soubor userData
+* je též možné předat jako argument SingleResultQueryObjectInterface který vrací FileObjectInterface
 
 Podrobnosti
 -----------
 
-* detaily jednotlivých příkladů (jak vypadají commandy např.) lze nalézt v testovacím projektu
+* detaily jednotlivých příkladů (jak vypadají commandy např.) lze nalézt v testovacím projektu, který je v adresáři ``Tests/Fixtures/TestProject/``
 * příklady requestů lze zase najít ve funkčních testech pro jednotlivé APIs
 
 TODO
 ----
 
-- display criteria
 - security & permissions
-- abstract services and handlers (delete, edit, create)
 - debug mode
 - todo in code
-- batch actions
-- tests
-- docs
-- test bundle directory structure
 - default templates and template names (listing, show, edit, create)
-- lazy API services
