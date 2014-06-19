@@ -51,6 +51,21 @@ class RedirectFeature
         return $this->getRedirectUrl('error', $parameters);
     }
 
+    public function hasSuccessRedirect()
+    {
+        return array_key_exists('success', $this->redirects);
+    }
+    
+    public function hasErrorRedirect()
+    {
+        return array_key_exists('error', $this->redirects);
+    }
+
+    public function hasRedirect($name)
+    {
+        return array_key_exists($name, $this->redirects);
+    }
+
     public function getRedirectUrl($name, $parameters = [])
     {
         if (!array_key_exists($name, $this->redirects)) {

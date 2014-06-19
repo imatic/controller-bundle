@@ -55,6 +55,17 @@ class CommandApi extends Api
         $this->message->addCommandMessage($result);
         $name = $result->isSuccessful() ? 'success' : 'error';
 
+        if (!$this->redirect->hasRedirect($name)) {
+            if ($result->hasException()) {
+                throw $result->getException();
+            } else {
+                throw new \RuntimeException(sprintf(
+                    'Command "%s" has failed.',
+                    $this->command->getCommandName()
+                ));
+            }
+        }
+
         return $this->response->createRedirect($this->redirect->getRedirectUrl($name, ['result' => $result]));
     }
 }
