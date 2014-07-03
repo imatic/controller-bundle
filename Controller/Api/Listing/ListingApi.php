@@ -41,7 +41,26 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    public function getValue($name)
+    {
+        $this->calculateData();
+
+        return parent::getValue($name);
+    }
+
     public function getResponse()
+    {
+        $this->calculateData();
+
+        $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
+        $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
+
+        $this->template->addTemplateVariables($this->data->all());
+
+        return new Response($this->template->render());
+    }
+
+    private function calculateData()
     {
         if (null === $this->displayCriteria) {
             $dcOptions = [];
@@ -56,12 +75,5 @@ class ListingApi extends QueryApi
 
         $this->data->query('items', $this->queryObject, $this->displayCriteria);
         $this->data->count('items_count', $this->queryObject, $this->displayCriteria);
-
-        $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
-        $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
-
-        $this->template->addTemplateVariables($this->data->all());
-
-        return new Response($this->template->render());
     }
 }

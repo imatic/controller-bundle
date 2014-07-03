@@ -13,4 +13,9 @@ trait DataFeatureTrait
 
         return $this;
     }
+
+    public function getValue($name)
+    {
+        return $this->data->get($name);
+    }
 }
