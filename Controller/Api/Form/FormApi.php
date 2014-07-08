@@ -80,7 +80,22 @@ class FormApi extends CommandApi
         return $this;
     }
 
+    public function getForm()
+    {
+        return $this->handleForm();
+    }
+
     public function getResponse()
+    {
+        $form = $this->handleForm();
+
+        $this->template->addTemplateVariable('form', $form->createView());
+        $this->template->addTemplateVariables($this->data->all());
+
+        return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
+    }
+
+    private function handleForm()
     {
         $request = $this->request->getCurrentRequest();
 
@@ -101,9 +116,6 @@ class FormApi extends CommandApi
             }
         }
 
-        $this->template->addTemplateVariable('form', $form->createView());
-        $this->template->addTemplateVariables($this->data->all());
-
-        return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
+        return $form;
     }
 }
