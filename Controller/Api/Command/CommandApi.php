@@ -10,6 +10,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
+use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 
 class CommandApi extends Api
 {
@@ -48,11 +49,20 @@ class CommandApi extends Api
         return $this;
     }
 
-    public function getResponse()
+    /**
+     * @return CommandResultInterface
+     */
+    public function getResult()
     {
         $result = $this->command->execute();
-
         $this->message->addCommandMessage($result);
+
+        return $result;
+    }
+
+    public function getResponse()
+    {
+        $result = $this->getResult();
         $name = $result->isSuccessful() ? 'success' : 'error';
 
         if (!$this->redirect->hasRedirect($name)) {
