@@ -13,7 +13,9 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
+use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class FormApi extends CommandApi
@@ -80,42 +82,43 @@ class FormApi extends CommandApi
         return $this;
     }
 
-    public function getForm()
-    {
-        return $this->handleForm();
-    }
-
     public function getResponse()
     {
-        $form = $this->handleForm();
+        $handle = $this->handleForm();
+        /** @var FormInterface $form */
+        $form = $handle['form'];
+        /** @var CommandResultInterface $result */
+        $result = $handle['result'];
 
         $this->template->addTemplateVariable('form', $form->createView());
         $this->template->addTemplateVariables($this->data->all());
 
-        return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
+        if ($result && $result->isSuccessful()) {
+            return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
+                'result' => $result,
+                'data' => $form->getData(),
+            ]));
+        } else {
+            return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
+        }
     }
 
-    private function handleForm()
+    public function handleForm()
     {
         $request = $this->request->getCurrentRequest();
 
         $this->form->addOption('action', $this->request->getCurrentUri());
         $form = $this->form->getForm();
         $form->handleRequest($request);
+        $result = null;
 
         if ($form->isValid()) {
             $action = $this->form->getSubmittedName($form);
             $data = $form->getData();
             $result = $this->command->execute(['data' => $data, 'action' => $action]);
             $this->message->addCommandMessage($result);
-            if ($result->isSuccessful()) {
-                return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
-                    'result' => $result,
-                    'data' => $data
-                ]));
-            }
         }
 
-        return $form;
+        return ['form' => $form, 'result' => $result];
     }
 }
