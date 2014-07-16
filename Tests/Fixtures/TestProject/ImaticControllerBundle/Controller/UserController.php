@@ -56,7 +56,7 @@ class UserController implements ContainerAwareInterface
 
     /**
      * @Config\Route("/edit/{id}", name="app_user_edit")
-     * @Config\Method({"GET", "POST"})
+     * @Config\Method({"GET", "PUT"})
      */
     public function editAction($id)
     {
@@ -71,7 +71,7 @@ class UserController implements ContainerAwareInterface
 
     /**
      * @Config\Route("/create", name="app_user_create")
-     * @Config\Method({"GET", "PUT"})
+     * @Config\Method({"GET", "POST"})
      */
     public function createAction()
     {
