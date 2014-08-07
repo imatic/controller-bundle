@@ -63,19 +63,27 @@ class CommandApi extends Api
     public function getResponse()
     {
         $result = $this->getResult();
-        $name = $result->isSuccessful() ? 'success' : 'error';
+        
+        if ($result->hasException()) {
+            throw $result->getException();
+        }
 
-        if (!$this->redirect->hasRedirect($name)) {
-            if ($result->hasException()) {
-                throw $result->getException();
-            } else {
+        if ($result->has('response')) {
+            $response = $result->get('response');
+        } else {
+            $name = $result->isSuccessful() ? 'success' : 'error';
+            if (!$this->redirect->hasRedirect($name)) {
                 throw new \RuntimeException(sprintf(
                     'Command "%s" has failed.',
                     $this->command->getCommandName()
                 ));
             }
+
+            $response = $this->response->createRedirect(
+                $this->redirect->getRedirectUrl($name, ['result' => $result])
+            );
         }
 
-        return $this->response->createRedirect($this->redirect->getRedirectUrl($name, ['result' => $result]));
+        return $response;
     }
 }
