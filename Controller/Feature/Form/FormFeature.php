@@ -14,6 +14,11 @@ class FormFeature
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    /**
      * @var mixed
      */
     protected $emptyValue;
@@ -64,6 +69,16 @@ class FormFeature
         $this->name = $name;
     }
 
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
     /**
      * @param FormInterface $form
      * @return string|null
@@ -84,6 +99,6 @@ class FormFeature
      */
     public function getForm()
     {
-        return $this->formFactory->create($this->name, $this->emptyValue, $this->options);
+        return $this->formFactory->createNamed($this->name, $this->type, $this->emptyValue, $this->options);
     }
 }

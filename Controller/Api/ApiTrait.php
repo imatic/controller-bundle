@@ -67,6 +67,14 @@ trait ApiTrait
     }
 
     /**
+     * @return FormApi
+     */
+    public function namedForm()
+    {
+        return $this->getApi('imatic_controller.api.form', 'namedForm', func_get_args());
+    }
+
+    /**
      * @return ListingApi
      */
     public function listing()
