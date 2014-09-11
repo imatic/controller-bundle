@@ -56,9 +56,15 @@ class FormApi extends CommandApi
         $this->template = $template;
     }
 
-    public function form($form, $emptyValue = null, array $options = [])
+    public function form($type, $emptyValue = null, array $options = [])
     {
-        $this->form->setName($form);
+        return $this->namedForm($type, $type, $emptyValue, $options);
+    }
+
+    public function namedForm($name, $type, $emptyValue = null, array $options = [])
+    {
+        $this->form->setName($name);
+        $this->form->setType($type);
         $this->form->setEmptyValue($emptyValue);
         $this->form->setOptions($options);
         $this->form->addOption('method', 'POST');
