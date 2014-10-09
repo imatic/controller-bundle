@@ -3,9 +3,14 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Listing;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory;
 
 class ListingApi extends QueryApi
 {
@@ -18,6 +23,15 @@ class ListingApi extends QueryApi
     protected $queryObject;
 
     protected $displayCriteria;
+
+    /** @var FilterFactory */
+    protected $filterFactory;
+
+    public function __construct(RequestFeature $request, ResponseFeature $response, TemplateFeature $template, DataFeature $data, FilterFactory $filterFactory)
+    {
+        parent::__construct($request, $response, $template, $data);
+        $this->filterFactory = $filterFactory;
+    }
 
     public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
@@ -65,7 +79,7 @@ class ListingApi extends QueryApi
         if (null === $this->displayCriteria) {
             $dcOptions = [];
             if ($this->filter) {
-                $dcOptions['filter'] = $this->filter;
+                $dcOptions['filter'] = $this->filterFactory->create($this->filter);
             }
             if ($this->sort) {
                 $dcOptions['sorter'] = $this->sort;
@@ -75,5 +89,13 @@ class ListingApi extends QueryApi
 
         $this->data->query('items', $this->queryObject, $this->displayCriteria);
         $this->data->count('items_count', $this->queryObject, $this->displayCriteria);
+
+        $query = [];
+        if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
+            $query = $this->request->getCurrentRequest()->query->all();
+            $query['filter_type'] = $this->filter;
+        }
+
+        $this->data->set('query', json_encode($query));
     }
 }

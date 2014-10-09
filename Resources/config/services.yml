@@ -67,6 +67,7 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
+            - @imatic_data.filter_factory
         scope: prototype
 
     imatic_controller.api.form:

@@ -32,7 +32,11 @@ class BatchCommandApi extends CommandApi
         }
 
         $this->command->setCommandName($command);
-        $this->command->setCommandParameters(['selected' => $request->request->get('selected', [])]);
+        $this->command->setCommandParameters([
+            'selected' => $request->request->get('selected', []),
+            'selectedAll' => $request->request->get('selectedAll', false),
+            'query' => $request->get('query', []),
+        ]);
 
         return $this;
     }
