@@ -131,3 +131,22 @@ services:
             - @imatic_controller.api.feature.template
             - @imatic_controller.api.feature.data
         scope: prototype
+
+    imatic_controller.api.export:
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi
+        arguments:
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
+            - @imatic_importexport.exporter
+            - @imatic_controller.api.download
+        scope: prototype
+
+    imatic_controller.api.import:
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Export\ImportApi
+        arguments:
+            - @imatic_controller.api.feature.request
+            - @imatic_controller.api.feature.response
+            - @imatic_controller.api.feature.template
+            - @imatic_controller.api.feature.redirect
+            - @imatic_importexport.importer
+        scope: prototype

@@ -7,15 +7,13 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Config\Route("/user")
  */
-class UserController implements ContainerAwareInterface
+class UserController extends Controller
 {
-    use ContainerAwareTrait;
     use ApiTrait;
 
     /**
@@ -144,5 +142,43 @@ class UserController implements ContainerAwareInterface
             ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
             ->getResponse()
         ;
+    }
+
+    /**
+     * @Config\Route("/export")
+     */
+    public function exportAction()
+    {
+        return $this->export()
+            ->export(new UserListQuery(), 'csv', 'users.csv')
+            ->getResponse()
+        ;
+    }
+
+    /**
+     * @Counfig\Route("/import", name="app_user_import")
+     */
+    public function importAction()
+    {
+        return $this->import()
+            ->import('file', [
+                'dataDefinition' => [
+                    'name',
+                    'age',
+                    'active',
+                ],
+            ])
+            ->successRedirect('app_user_import_success')
+            ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
+            ->getResponse()
+        ;
+    }
+
+    /**
+     * @Config\Route("import-success", name="app_user_import_success")
+     */
+    public function importSuccessAction()
+    {
+        return $this->render('AppImaticControllerBundle:Test:importSuccess.html.twig');
     }
 }
