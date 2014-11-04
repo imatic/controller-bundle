@@ -8,6 +8,7 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactory;
 
 /**
  * @Config\Route("/user")
@@ -156,22 +157,32 @@ class UserController extends Controller
     }
 
     /**
-     * @Counfig\Route("/import", name="app_user_import")
+     * @Config\Route("/import", name="app_user_import")
      */
     public function importAction()
     {
         return $this->import()
-            ->import('file', [
+            ->import('imatic_importexport.file', [
                 'dataDefinition' => [
                     'name',
                     'age',
                     'active',
                 ],
+                'form' => 'app_imatic_controller_user',
+                'command' => 'user.create',
             ])
             ->successRedirect('app_user_import_success')
             ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
             ->getResponse()
         ;
+    }
+
+    /**
+     * @return FormFactory
+     */
+    public function getFormFactory()
+    {
+         return $this->container->get('form.factory');
     }
 
     /**

@@ -9,6 +9,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Imatic\Bundle\ImportExportBundle\Export\Exporter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Imatic\Bundle\ImportExportBundle\Util\File;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
@@ -39,9 +40,7 @@ class ExportApi extends Api
     public function export(QueryObjectInterface $queryObject, $format, $name, array $options = [])
     {
         $result = $this->exporter->export($queryObject, $format, $options);
-        $tmp = tmpfile();
-        $tmpMetadata = stream_get_meta_data($tmp);
-        $tmpUri = $tmpMetadata['uri'];
+        $tmpUri = File::createTempFile('csv');
         file_put_contents($tmpUri, $result);
 
         $this->outputFile = new UploadedFile($tmpUri, $name);

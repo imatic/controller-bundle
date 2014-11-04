@@ -1,3 +1,6 @@
+parameters:
+    imatic_importexport.file_import.class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileImport
+
 services:
     # api - features
     imatic_controller.api.feature.data:
@@ -142,7 +145,7 @@ services:
         scope: prototype
 
     imatic_controller.api.import:
-        class: Imatic\Bundle\ControllerBundle\Controller\Api\Export\ImportApi
+        class: Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi
         arguments:
             - @imatic_controller.api.feature.request
             - @imatic_controller.api.feature.response
@@ -150,3 +153,12 @@ services:
             - @imatic_controller.api.feature.redirect
             - @imatic_importexport.importer
         scope: prototype
+
+    imatic_controller.file_transformer:
+        class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer
+        arguments:
+            - @form.factory
+            - @imatic_controller.api.feature.command
+        scope: prototype
+        tags:
+            - { name: kernel.event_subscriber }

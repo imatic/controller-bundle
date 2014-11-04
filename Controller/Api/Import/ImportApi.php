@@ -45,7 +45,9 @@ class ImportApi extends Api
 
     public function import($name, array $options = [])
     {
-        $this->importer->import($name, $options);
+        if ($this->request->getCurrentRequest()->isMethod('POST')) {
+            $this->importer->import($name, $options);
+        }
 
         return $this;
     }
