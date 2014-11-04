@@ -158,7 +158,6 @@ services:
         class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer
         arguments:
             - @form.factory
-            - @imatic_controller.api.feature.command
-        scope: prototype
+            - @imatic_data.command_executor
         tags:
             - { name: kernel.event_subscriber }

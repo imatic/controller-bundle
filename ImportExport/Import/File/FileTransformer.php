@@ -4,6 +4,8 @@ namespace Imatic\Bundle\ControllerBundle\ImportExport\Import\File;
 
 use Exception;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
+use Imatic\Bundle\DataBundle\Data\Command\Command;
+use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
 use Imatic\Bundle\ImportBundle\Event\RecordImportEvent;
 use Imatic\Bundle\ImportExportBundle\Import\File\FileTransformer as BaseFileTransformer;
 use Symfony\Component\Form\FormFactory;
@@ -14,13 +16,13 @@ use Symfony\Component\Form\FormInterface;
  */
 class FileTransformer extends BaseFileTransformer
 {
-    /** @var CommandFeature */
-    protected $command;
+    /** @var CommandExecutorInterface */
+    protected $commandExecutor;
 
-    public function __construct(FormFactory $formFactory, CommandFeature $command)
+    public function __construct(FormFactory $formFactory, CommandExecutorInterface $commandExecutor)
     {
         parent::__construct($formFactory);
-        $this->command = $command;
+        $this->commandExecutor = $commandExecutor;
     }
 
     protected function handleRecord(FormInterface $form, RecordImportEvent $event)
@@ -30,10 +32,10 @@ class FileTransformer extends BaseFileTransformer
             return;
         }
 
-        $this->command->setCommandName($import->getOption('command'));
-        $result = $this->command->execute([
+        $command = new Command($import->getOption('command'), [
             'data' => $form->getData(),
         ]);
+        $result = $this->commandExecutor->execute($command);
 
         if (!$result->isSuccessful()) {
             throw new Exception('Import failed');
