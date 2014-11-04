@@ -52,6 +52,11 @@ class ImportApi extends Api
         return $this;
     }
 
+    public function getResult()
+    {
+        return [];
+    }
+
     public function getResponse()
     {
         if ($this->request->getCurrentRequest()->isMethod('POST')) {
