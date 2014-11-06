@@ -7,15 +7,14 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactory;
 
 /**
  * @Config\Route("/user")
  */
-class UserController implements ContainerAwareInterface
+class UserController extends Controller
 {
-    use ContainerAwareTrait;
     use ApiTrait;
 
     /**
@@ -144,5 +143,53 @@ class UserController implements ContainerAwareInterface
             ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
             ->getResponse()
         ;
+    }
+
+    /**
+     * @Config\Route("/export")
+     */
+    public function exportAction()
+    {
+        return $this->export()
+            ->export(new UserListQuery(), 'csv', 'users.csv')
+            ->getResponse()
+        ;
+    }
+
+    /**
+     * @Config\Route("/import", name="app_user_import")
+     */
+    public function importAction()
+    {
+        return $this->import()
+            ->import('imatic_importexport.file', [
+                'dataDefinition' => [
+                    'name',
+                    'age',
+                    'active',
+                ],
+                'form' => 'app_imatic_controller_user',
+                'command' => 'user.create',
+            ])
+            ->successRedirect('app_user_import_success')
+            ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
+            ->getResponse()
+        ;
+    }
+
+    /**
+     * @return FormFactory
+     */
+    public function getFormFactory()
+    {
+         return $this->container->get('form.factory');
+    }
+
+    /**
+     * @Config\Route("import-success", name="app_user_import_success")
+     */
+    public function importSuccessAction()
+    {
+        return $this->render('AppImaticControllerBundle:Test:importSuccess.html.twig');
     }
 }

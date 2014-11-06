@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+
+{% block action %}
+    <form method="post" action="{{ path('app_user_import') }}" enctype="multipart/form-data">
+        <input type="file" name="import">
+        <button>Submit</button>
+    </form>
+{% endblock %}

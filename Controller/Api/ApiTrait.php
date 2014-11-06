@@ -11,6 +11,8 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
 use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 
 /**
  * ApiTrait
@@ -88,6 +90,22 @@ trait ApiTrait
     public function show()
     {
         return $this->getApi('imatic_controller.api.show', 'show', func_get_args());
+    }
+
+    /**
+     * @return ExportApi
+     */
+    public function export()
+    {
+        return $this->getApi('imatic_controller.api.export', 'export', func_get_args());
+    }
+
+    /**
+     * @return ImportApi
+     */
+    public function import()
+    {
+        return $this->getApi('imatic_controller.api.import', 'import', func_get_args());
     }
 
     /**
