@@ -4,7 +4,9 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Api\Download;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
 use Imatic\Bundle\DataBundle\Data\Query\SingleResultQueryObjectInterface;
+use SplFileInfo;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class DownloadApi extends QueryApi
@@ -18,9 +20,14 @@ class DownloadApi extends QueryApi
         $file = null;
         $name = null;
 
-        if ($object instanceof \SplFileInfo) {
+        if ($object instanceof SplFileInfo) {
             $file = $object;
-            $name = $object->getFilename();
+
+            if ($object instanceof UploadedFile) {
+                $name = $object->getClientOriginalName();
+            } else {
+                $name = $object->getFilename();
+            }
         } else {
             if ($object instanceof SingleResultQueryObjectInterface) {
                 $object = $this->data->query('object', $object);
