@@ -27,7 +27,7 @@
         "sensio/framework-extra-bundle": "3.0.*",
         "imatic/data-bundle": "*",
         "genemu/form-bundle": "2.2.*",
-        "imatic/importexport-bundle": "*"
+        "imatic/importexport-bundle": "dev-RESEARCH-114"
     },
     "require-dev": {
         "imatic/testing-bundle": "2.4.*"
