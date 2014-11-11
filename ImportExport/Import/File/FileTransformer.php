@@ -3,7 +3,6 @@
 namespace Imatic\Bundle\ControllerBundle\ImportExport\Import\File;
 
 use Exception;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
 use Imatic\Bundle\DataBundle\Data\Command\Command;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
 use Imatic\Bundle\ImportBundle\Event\RecordImportEvent;

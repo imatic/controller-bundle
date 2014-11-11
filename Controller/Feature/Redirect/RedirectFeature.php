@@ -55,7 +55,7 @@ class RedirectFeature
     {
         return array_key_exists('success', $this->redirects);
     }
-    
+
     public function hasErrorRedirect()
     {
         return array_key_exists('error', $this->redirects);
