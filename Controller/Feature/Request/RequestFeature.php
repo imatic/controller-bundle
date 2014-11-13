@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Request;
 
-use Imatic\Bundle\DataBundle\Request\Query\DisplayCriteriaFactory;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaFactory;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
