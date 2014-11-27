@@ -2,6 +2,11 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
+
+/**
+ * @property CommandFeature $command
+ */
 trait CommandFeatureTrait
 {
     public function allowedCommandNames(array $commandNames)
@@ -14,6 +19,13 @@ trait CommandFeatureTrait
     public function commandName($commandName)
     {
         $this->command->setCommandName($commandName);
+
+        return $this;
+    }
+
+    public function addCommandParameters(array $parameters)
+    {
+        $this->command->addCommandParameters($parameters);
 
         return $this;
     }
