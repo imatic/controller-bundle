@@ -63,7 +63,7 @@ class CommandApi extends Api
     public function getResponse()
     {
         $result = $this->getResult();
-        
+
         if ($result->hasException()) {
             throw $result->getException();
         }

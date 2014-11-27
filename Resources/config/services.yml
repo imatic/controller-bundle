@@ -142,6 +142,7 @@ services:
             - @imatic_controller.api.feature.response
             - @imatic_importexport.exporter
             - @imatic_controller.api.download
+            - @imatic_data.filter_factory
         scope: prototype
 
     imatic_controller.api.import:
