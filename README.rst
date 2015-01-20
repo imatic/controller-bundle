@@ -160,6 +160,38 @@ Použití
                 ->getResponse()
             ;
         }
+
+        /**
+         * @Config\Route("/export")
+         */
+        public function exportAction()
+        {
+            return $this->export()
+                ->export(new UserListQuery(), 'csv', 'users.csv')
+                ->getResponse()
+            ;
+        }
+
+        /**
+         * @Config\Route("/import", name="app_user_import")
+         */
+        public function importAction()
+        {
+            return $this->import()
+                ->import('imatic_importexport.file', [
+                    'dataDefinition' => [
+                        'name',
+                        'age',
+                        'active',
+                    ],
+                    'form' => 'app_imatic_controller_user',
+                    'command' => 'user.create',
+                ])
+                ->successRedirect('app_user_import_success')
+                ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
+                ->getResponse()
+            ;
+        }
     }
 
 autoCompleteAction
