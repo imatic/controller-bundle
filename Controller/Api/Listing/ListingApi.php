@@ -11,6 +11,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Reader\DisplayCriteriaReader;
 
 class ListingApi extends QueryApi
 {
@@ -24,13 +25,22 @@ class ListingApi extends QueryApi
 
     protected $displayCriteria;
 
+    protected $displayCriteriaReader;
+
     /** @var FilterFactory */
     protected $filterFactory;
 
-    public function __construct(RequestFeature $request, ResponseFeature $response, TemplateFeature $template, DataFeature $data, FilterFactory $filterFactory)
-    {
+    public function __construct(
+        RequestFeature $request,
+        ResponseFeature $response,
+        TemplateFeature $template,
+        DataFeature $data,
+        DisplayCriteriaReader $displayCriteriaReader,
+        FilterFactory $filterFactory
+    ) {
         parent::__construct($request, $response, $template, $data);
         $this->filterFactory = $filterFactory;
+        $this->displayCriteriaReader = $displayCriteriaReader;
     }
 
     public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
@@ -92,7 +102,11 @@ class ListingApi extends QueryApi
 
         $query = [];
         if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
-            $query = $this->request->getCurrentRequest()->query->all();
+            $filterKey = $this->displayCriteriaReader->attributeName(DisplayCriteriaReader::FILTER);
+            $filterValue = $this->displayCriteriaReader->readAttribute(DisplayCriteriaReader::FILTER);
+            $query = [
+                $filterKey => $filterValue,
+            ];
             $query['filter_type'] = $this->filter;
         }
 
