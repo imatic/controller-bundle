@@ -30,6 +30,9 @@ class ListingApi extends QueryApi
     /** @var FilterFactory */
     protected $filterFactory;
 
+    /** @var bool */
+    protected $dataCalculated = false;
+
     public function __construct(
         RequestFeature $request,
         ResponseFeature $response,
@@ -86,6 +89,10 @@ class ListingApi extends QueryApi
 
     private function calculateData()
     {
+        if ($this->dataCalculated) {
+            return;
+        }
+
         if (null === $this->displayCriteria) {
             $dcOptions = [];
             if ($this->filter) {
@@ -111,5 +118,6 @@ class ListingApi extends QueryApi
         }
 
         $this->data->set('query', json_encode($query));
+        $this->dataCalculated = true;
     }
 }
