@@ -106,6 +106,16 @@ class JsonResponseBuilder
         } elseif ($this->form && !$this->form->isValid()) {
             $this->status = 400;
             $this->data = $this->getErrorData('Form is not valid');
+
+            $errors = [];
+            foreach ($this->form->getErrors(true) as $error) {
+                $errors[] = $error->getMessage();
+            }
+
+            if ($errors) {
+                $this->data['messages'] = $errors;
+            }
+
         } elseif ($this->commandResult && !$this->commandResult->isSuccessful()) {
             if ($this->commandResult->hasException() && $this->debug) {
                 $message = $this->commandResult->getException()->getMessage();
