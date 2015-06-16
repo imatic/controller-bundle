@@ -47,6 +47,23 @@ class DataFeature
     }
 
     /**
+     * @param  string                   $resultName
+     * @param  string                   $countName
+     * @param  QueryObjectInterface     $queryObject
+     * @param  DisplayCriteriaInterface $displayCriteria
+     * @return array result, count
+     */
+    public function queryAndCount($resultName, $countName, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    {
+        list($result, $count) = $this->doQueryAndCount($queryObject, $displayCriteria);
+
+        $this->data[$resultName] = $result;
+        $this->data[$countName] = $count;
+
+        return [$result, $count];
+    }
+
+    /**
      * @return array
      */
     public function all()
@@ -76,5 +93,10 @@ class DataFeature
     protected function doCount(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->count($queryObject, $displayCriteria);
+    }
+
+    protected function doQueryAndCount(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    {
+        return $this->queryExecutor->executeAndCount($queryObject, $displayCriteria);
     }
 }
