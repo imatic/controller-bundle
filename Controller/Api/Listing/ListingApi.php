@@ -25,6 +25,8 @@ class ListingApi extends QueryApi
 
     protected $displayCriteria;
 
+    protected $enablePersistentDisplayCriteria = false;
+
     protected $displayCriteriaReader;
 
     /** @var FilterFactory */
@@ -65,6 +67,20 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    public function enablePersistentDisplayCriteria()
+    {
+        $this->enablePersistentDisplayCriteria = true;
+
+        return $this;
+    }
+
+    public function disablePersistentDisplayCriteria()
+    {
+        $this->enablePersistentDisplayCriteria = false;
+
+        return $this;
+    }
+
     public function getValue($name)
     {
         $this->calculateData();
@@ -94,7 +110,10 @@ class ListingApi extends QueryApi
             if ($this->sort) {
                 $dcOptions['sorter'] = $this->sort;
             }
-            $this->displayCriteria = $this->request->getDisplayCriteria($dcOptions);
+            $this->displayCriteria = $this
+                ->request
+                ->getDisplayCriteria($dcOptions, $this->enablePersistentDisplayCriteria)
+            ;
         }
 
         $this->data->query('items', $this->queryObject, $this->displayCriteria);
