@@ -119,6 +119,8 @@ class ListingApi extends QueryApi
     {
         $this->calculateData();
 
+        $this->template->addTemplateVariable('componentId', $this->componentId);
+
         $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
         $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
 
