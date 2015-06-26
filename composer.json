@@ -38,6 +38,7 @@
         }
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "target-dir": "Imatic/Bundle/ControllerBundle",
     "extra": {
         "branch-alias": {
