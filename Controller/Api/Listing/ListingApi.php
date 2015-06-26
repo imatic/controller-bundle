@@ -15,23 +15,24 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Reader\DisplayCriteriaRe
 
 class ListingApi extends QueryApi
 {
+    /** @var string|null */
     protected $filter;
-
+    /** @var array|null */
     protected $sort;
-
-    protected $defaultSorter;
-
+    /** @var array|null */
+    protected $pager;
+    /** @var string|null */
+    protected $componentId;
+    /** @var QueryObjectInterface */
     protected $queryObject;
-
+    /** @var DisplayCriteriaInterface|null */
     protected $displayCriteria;
-
-    protected $enablePersistentDisplayCriteria = false;
-
+    /** @var DisplayCriteriaReader */
     protected $displayCriteriaReader;
-
     /** @var FilterFactory */
     protected $filterFactory;
-
+    /** @var bool */
+    protected $enablePersistentDisplayCriteria = false;
     /** @var bool */
     protected $dataCalculated = false;
 
@@ -56,6 +57,10 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    /**
+     * @param string $filter
+     * @return static
+     */
     public function filter($filter)
     {
         $this->filter = $filter;
@@ -63,10 +68,25 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    /**
+     * @param array $sort
+     * @return static
+     */
     public function defaultSort(array $sort)
     {
         $this->sort = $sort;
 
+        return $this;
+    }
+    
+    /**
+     * @param int|null $limit
+     * @return static
+     */
+    public function defaultLimit($limit)
+    {
+        $this->pager[DisplayCriteriaReader::LIMIT] = $limit;
+        
         return $this;
     }
 
@@ -84,6 +104,17 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    /**
+     * @param string|null $componentId
+     * @return static
+     */
+    public function componentId($componentId)
+    {
+        $this->componentId = $componentId;
+
+        return $this;
+    }
+
     public function getValue($name)
     {
         $this->calculateData();
@@ -95,12 +126,31 @@ class ListingApi extends QueryApi
     {
         $this->calculateData();
 
+        $this->template->addTemplateVariable('componentId', $this->componentId ?: $this->getDefaultComponentId());
+
         $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
         $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
 
         $this->template->addTemplateVariables($this->data->all());
 
         return new Response($this->template->render());
+    }
+
+    /**
+     * @return string
+     */
+    private function getDefaultComponentId()
+    {
+        $route = $this->request->getCurrentRoute();
+        $routeParams = $this->request->getCurrentRouteParams();
+
+        $componentId = $route;
+
+        if (!empty($routeParams)) {
+            $componentId .= '?' . http_build_query($routeParams);
+        }
+
+        return $componentId;
     }
 
     private function calculateData()
@@ -117,14 +167,19 @@ class ListingApi extends QueryApi
             if ($this->sort) {
                 $dcOptions['sorter'] = $this->sort;
             }
-            $this->displayCriteria = $this
-                ->request
-                ->getDisplayCriteria($dcOptions, $this->enablePersistentDisplayCriteria)
-            ;
+            if ($this->pager) {
+                $dcOptions['pager'] = $this->pager;
+            }
+            if ($this->componentId) {
+                $dcOptions['componentId'] = $this->componentId ?: $this->getDefaultComponentId();
+            }
+            $this->displayCriteria = $this->request->getDisplayCriteria(
+                $dcOptions,
+                $this->enablePersistentDisplayCriteria
+            );
         }
 
-        $this->data->query('items', $this->queryObject, $this->displayCriteria);
-        $this->data->count('items_count', $this->queryObject, $this->displayCriteria);
+        $this->data->queryAndCount('items', 'items_count', $this->queryObject, $this->displayCriteria);
 
         $query = [];
         if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
