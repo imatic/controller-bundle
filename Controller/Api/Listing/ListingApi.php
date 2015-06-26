@@ -76,17 +76,6 @@ class ListingApi extends QueryApi
     }
 
     /**
-     * @param int|null $page
-     * @return static
-     */
-    public function defaultPage($page)
-    {
-        $this->pager[DisplayCriteriaReader::PAGE] = $page;
-
-        return $this;
-    }
-
-    /**
      * @param int|null $limit
      * @return static
      */
@@ -119,7 +108,7 @@ class ListingApi extends QueryApi
     {
         $this->calculateData();
 
-        $this->template->addTemplateVariable('componentId', $this->componentId);
+        $this->template->addTemplateVariable('componentId', $this->componentId ?: $this->getDefaultComponentId());
 
         $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
         $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
@@ -127,6 +116,23 @@ class ListingApi extends QueryApi
         $this->template->addTemplateVariables($this->data->all());
 
         return new Response($this->template->render());
+    }
+
+    /**
+     * @return string
+     */
+    private function getDefaultComponentId()
+    {
+        $route = $this->request->getCurrentRoute();
+        $routeParams = $this->request->getCurrentRouteParams();
+
+        $componentId = $route;
+
+        if (!empty($routeParams)) {
+            $componentId .= '?' . http_build_query($routeParams);
+        }
+
+        return $componentId;
     }
 
     private function calculateData()
