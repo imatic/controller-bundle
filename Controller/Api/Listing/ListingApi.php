@@ -170,9 +170,8 @@ class ListingApi extends QueryApi
             if ($this->pager) {
                 $dcOptions['pager'] = $this->pager;
             }
-            if ($this->componentId) {
-                $dcOptions['componentId'] = $this->componentId ?: $this->getDefaultComponentId();
-            }
+            $dcOptions['componentId'] = $this->componentId ?: $this->getDefaultComponentId();
+            
             $this->displayCriteria = $this->request->getDisplayCriteria(
                 $dcOptions,
                 $this->enablePersistentDisplayCriteria
