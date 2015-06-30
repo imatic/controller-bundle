@@ -147,7 +147,7 @@ class ListingApi extends QueryApi
         $componentId = $route;
 
         if (!empty($routeParams)) {
-            $componentId .= '?' . http_build_query($routeParams);
+            $componentId .= sprintf('_%x', crc32(http_build_query($routeParams)));
         }
 
         return $componentId;
