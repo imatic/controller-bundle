@@ -41,6 +41,14 @@ class RequestFeature
     }
 
     /**
+     * @return array
+     */
+    public function getCurrentRouteParams()
+    {
+        return $this->getCurrentRequest()->get('_route_params');
+    }
+
+    /**
      * @return string
      */
     public function getCurrentUri()
@@ -50,10 +58,11 @@ class RequestFeature
 
     /**
      * @param array $options
+     * @param bool  $persistent
      * @return DisplayCriteriaInterface
      */
-    public function getDisplayCriteria(array $options = [])
+    public function getDisplayCriteria(array $options = [], $persistent = false)
     {
-        return $this->displayCriteriaFactory->createCriteria($options);
+        return $this->displayCriteriaFactory->createCriteria($options, $persistent);
     }
 }

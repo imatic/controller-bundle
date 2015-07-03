@@ -23,6 +23,8 @@ services:
 
     imatic_controller.api.feature.response:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature
+        arguments:
+            - @request_stack
         scope: prototype
 
     imatic_controller.api.feature.request:

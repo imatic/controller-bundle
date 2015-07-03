@@ -17,4 +17,11 @@ trait TemplateFeatureTrait
 
         return $this;
     }
+
+    public function addTemplateVariables(array $templateVariables)
+    {
+        $this->template->addTemplateVariables($templateVariables);
+
+        return $this;
+    }
 }
