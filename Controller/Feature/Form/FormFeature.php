@@ -54,9 +54,20 @@ class FormFeature
         $this->options = $options;
     }
 
-    public function addOption($name, $value)
+    public function addOption($name, $value, $overrideExisting = true)
     {
-        $this->options[$name] = $value;
+        if (!isset($this->options[$name]) || $overrideExisting) {
+            $this->options[$name] = $value;
+        }
+    }
+
+    public function getOption($name, $default = null)
+    {
+        if (isset($this->options[$name])) {
+            return $this->options[$name];
+        }
+
+        return $default;
     }
 
     public function getName()
