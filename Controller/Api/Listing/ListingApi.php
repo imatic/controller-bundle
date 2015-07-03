@@ -126,7 +126,7 @@ class ListingApi extends QueryApi
     {
         $this->calculateData();
 
-        $this->template->addTemplateVariable('componentId', $this->componentId ?: $this->getDefaultComponentId());
+        $this->template->addTemplateVariable('component_id', $this->getComponentId());
 
         $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
         $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
@@ -134,6 +134,14 @@ class ListingApi extends QueryApi
         $this->template->addTemplateVariables($this->data->all());
 
         return new Response($this->template->render());
+    }
+
+    /**
+     * @return string
+     */
+    private function getComponentId()
+    {
+        return $this->componentId ?: $this->getDefaultComponentId();
     }
 
     /**
@@ -170,7 +178,7 @@ class ListingApi extends QueryApi
             if ($this->pager) {
                 $dcOptions['pager'] = $this->pager;
             }
-            $dcOptions['componentId'] = $this->componentId ?: $this->getDefaultComponentId();
+            $dcOptions['componentId'] = $this->getComponentId();
             
             $this->displayCriteria = $this->request->getDisplayCriteria(
                 $dcOptions,
