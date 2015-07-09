@@ -67,7 +67,6 @@ class FormApi extends CommandApi
         $this->form->setType($type);
         $this->form->setEmptyValue($emptyValue);
         $this->form->setOptions($options);
-        $this->form->addOption('method', 'POST', false);
 
         return $this;
     }

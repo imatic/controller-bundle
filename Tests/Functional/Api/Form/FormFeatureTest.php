@@ -10,7 +10,7 @@ class FormFeatureTest extends \PHPUnit_Framework_TestCase
     {
         /** @var FormFactoryInterface $formFactory */
         $formFactory = $this
-            ->getMockBuilder(FormFactoryInterface::class)
+            ->getMockBuilder('Symfony\Component\Form\FormFactoryInterface')
             ->getMock();
 
         $feature = new FormFeature($formFactory);

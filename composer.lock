@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "ee99c875537d0cc08514b8fb8dd99714",
@@ -709,12 +709,12 @@
         },
         {
             "name": "imatic/data-bundle",
-            "version": "2.6.0",
+            "version": "2.6.2",
             "target-dir": "Imatic/Bundle/DataBundle",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:imatic/imatic-databundle.git",
-                "reference": "18e9a08e2406b5c063fa43079628423ba85b08a2"
+                "reference": "8ebac8e6d02468c90004cef7e5f1c4315709fef9"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.2",
@@ -759,7 +759,7 @@
             ],
             "description": "Imatic Data Bundle",
             "homepage": "http://imatic.cz",
-            "time": "2015-05-26 13:22:44"
+            "time": "2015-06-26 12:58:34"
         },
         {
             "name": "imatic/import-bundle",

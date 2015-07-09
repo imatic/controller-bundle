@@ -34,6 +34,10 @@ class AutoCompleteApiTest extends WebTestCase
                 ]
             ]
         ]);
+        if ($client->getResponse()->getStatusCode() == 500) {
+            file_put_contents('error.html', (string) $client->getResponse());
+            die('STOP');
+        }
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $response = json_decode($client->getInternalResponse()->getContent());
 
