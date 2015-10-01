@@ -46,3 +46,9 @@ services:
             - @imatic_data.doctrine.object_manager
         tags:
             - { name: imatic_data.handler, alias: user.activate }
+
+    # Display Criteria
+    app_iamtic_controller.data.filter.user:
+        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter\UserFilter
+        tags:
+            - { name: imatic_data.filter, alias: app_imatic_controller_user }

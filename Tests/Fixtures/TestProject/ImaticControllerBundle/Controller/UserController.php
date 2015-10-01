@@ -49,6 +49,8 @@ class UserController extends Controller
     {
         return $this
             ->listing(new UserListQuery())
+            ->filter('app_imatic_controller_user')
+            ->defaultLimit(10)
             ->setTemplateName('AppImaticControllerBundle:Test:list.html.twig')
             ->getResponse();
     }

@@ -141,24 +141,7 @@ class ListingApi extends QueryApi
      */
     private function getComponentId()
     {
-        return $this->componentId ?: $this->getDefaultComponentId();
-    }
-
-    /**
-     * @return string
-     */
-    private function getDefaultComponentId()
-    {
-        $route = $this->request->getCurrentRoute();
-        $routeParams = $this->request->getCurrentRouteParams();
-
-        $componentId = $route;
-
-        if (!empty($routeParams)) {
-            $componentId .= sprintf('_%x', crc32(http_build_query($routeParams)));
-        }
-
-        return $componentId;
+        return $this->componentId;
     }
 
     private function calculateData()
