@@ -30,7 +30,11 @@
         "imatic/importexport-bundle": "~2.6"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~2.6"
+        "imatic/testing-bundle": "~2.6",
+        "imatic/importexport-bundle": "~2.6"
+    },
+    "suggest": {
+        "imatic/importexport-bundle": "Allows to use import and export apis"
     },
     "autoload": {
         "psr-0": {
