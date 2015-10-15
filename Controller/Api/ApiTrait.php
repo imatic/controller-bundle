@@ -11,6 +11,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
 use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
+use Imatic\Bundle\ControllerBundle\Exception\MissingVendorException;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 
@@ -97,6 +98,8 @@ trait ApiTrait
      */
     public function export()
     {
+        $this->checkVendor('imatic_controller.api.export', 'imatic/importexport-bundle');
+
         return $this->getApi('imatic_controller.api.export', 'export', func_get_args());
     }
 
@@ -105,6 +108,8 @@ trait ApiTrait
      */
     public function import()
     {
+        $this->checkVendor('imatic_controller.api.import', 'imatic/importexport-bundle');
+
         return $this->getApi('imatic_controller.api.import', 'import', func_get_args());
     }
 
@@ -131,5 +136,12 @@ trait ApiTrait
         }
 
         return $api;
+    }
+
+    private function checkVendor($name, $vendor)
+    {
+        if (!$this->container->has($name)) {
+            throw new MissingVendorException($name, $vendor);
+        }
     }
 }

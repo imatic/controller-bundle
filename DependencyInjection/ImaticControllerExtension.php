@@ -23,5 +23,8 @@ class ImaticControllerExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+        if (class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
+            $loader->load('import_export.yml');
+        }
     }
 }
