@@ -92,6 +92,10 @@ class ListingApi extends QueryApi
 
     public function enablePersistentDisplayCriteria()
     {
+        if (null === $this->componentId) {
+            $this->componentId = $this->generateComponentId();
+        }
+
         $this->enablePersistentDisplayCriteria = true;
 
         return $this;
@@ -183,5 +187,22 @@ class ListingApi extends QueryApi
 
         $this->data->set('query', json_encode($query));
         $this->dataCalculated = true;
+    }
+
+    /**
+     * @return string
+     */
+    private function generateComponentId()
+    {
+        $route = $this->request->getCurrentRoute();
+        $routeParams = $this->request->getCurrentRouteParams();
+
+        $componentId = $route;
+
+        if (!empty($routeParams)) {
+            $componentId .= sprintf('_%x', crc32(http_build_query($routeParams)));
+        }
+
+        return $componentId;
     }
 }

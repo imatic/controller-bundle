@@ -37,13 +37,12 @@
         "imatic/importexport-bundle": "Allows to use import and export apis"
     },
     "autoload": {
-        "psr-0": {
-            "Imatic\\Bundle\\ControllerBundle": ""
+        "psr-4": {
+            "Imatic\\Bundle\\ControllerBundle\\": ""
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "target-dir": "Imatic/Bundle/ControllerBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.6.x-dev"
