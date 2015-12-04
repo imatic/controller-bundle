@@ -26,12 +26,10 @@
         "symfony/framework-bundle": "~2.6",
         "sensio/framework-extra-bundle": "3.0.*",
         "imatic/data-bundle": "~2.6",
-        "genemu/form-bundle": "2.2.*",
-        "imatic/importexport-bundle": "~2.6"
+        "genemu/form-bundle": "2.2.*"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~2.6",
-        "imatic/importexport-bundle": "~2.6"
+        "imatic/testing-bundle": "~2.6"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
