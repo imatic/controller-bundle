@@ -2,13 +2,21 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Api\Export;
 
-use Imatic\Bundle\ImportExportBundle\Tests\Fixtures\TestProject\WebTestCase;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
  */
 class ExportApiTest extends WebTestCase
 {
+    protected function setUp()
+    {
+        parent::setUp();
+        if (!class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
+            $this->markTestSkipped('ImaticImportExportBundle is not installed.');
+        }
+    }
+
     public function testExportShouldExportUsers()
     {
         $client = static::createClient();
