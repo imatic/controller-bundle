@@ -23,13 +23,14 @@
     ],
     "require": {
         "php": ">=5.4",
-        "symfony/framework-bundle": "~2.6",
-        "sensio/framework-extra-bundle": "3.0.*",
-        "imatic/data-bundle": "~2.6",
-        "genemu/form-bundle": "2.2.*"
+        "symfony/framework-bundle": "~2.7|~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "imatic/data-bundle": "~2.7|~3.0",
+        "genemu/form-bundle": "~2.2"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~2.6"
+        "imatic/testing-bundle": "~2.7|~3.0",
+        "phpunit/phpunit": "~5.2"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
@@ -41,9 +42,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.6.x-dev"
-        }
+    "config": {
+        "secure-http": false
     }
 }
