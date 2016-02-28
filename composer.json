@@ -25,11 +25,11 @@
         "php": ">=5.4",
         "symfony/framework-bundle": "~2.7|~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "imatic/data-bundle": "~2.7|~3.0",
+        "imatic/data-bundle": "~3.0",
         "genemu/form-bundle": "~2.2"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~2.7|~3.0",
+        "imatic/testing-bundle": "~3.0",
         "phpunit/phpunit": "~5.2"
     },
     "suggest": {
