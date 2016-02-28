@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9014cf71e690bfe0522b4c61fa742b2a",
-    "content-hash": "f5bb013d33eb85b7bbf66a6fee3ae852",
+    "hash": "6deb98af8724c5509a1666a558b185b6",
+    "content-hash": "c45fa5bd8662a5d8336f805380394d81",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -761,6 +761,62 @@
             "description": "Imatic Data Bundle",
             "homepage": "http://imatic.cz",
             "time": "2016-02-27 22:47:00"
+        },
+        {
+            "name": "imatic/genemuform-bundle",
+            "version": "dev-master",
+            "target-dir": "Genemu/Bundle/FormBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Imatic/GenemuFormBundle.git",
+                "reference": "c42e1beaec5a7ab270b7ff279a49553111a43f71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Imatic/GenemuFormBundle/zipball/c42e1beaec5a7ab270b7ff279a49553111a43f71",
+                "reference": "c42e1beaec5a7ab270b7ff279a49553111a43f71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Genemu\\Bundle\\FormBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Chauvel",
+                    "email": "olivier@generation-multiple.com"
+                },
+                {
+                    "name": "Bilal Amarni",
+                    "email": "bilal.amarni@gmail.com"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/genemu/GenemuFormBundle/contributors"
+                }
+            ],
+            "description": "Extra form types for your Symfony2 projects",
+            "keywords": [
+                "extra form",
+                "form"
+            ],
+            "support": {
+                "source": "https://github.com/Imatic/GenemuFormBundle/tree/master"
+            },
+            "time": "2015-12-04 21:46:52"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -3066,7 +3122,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "imatic/genemuform-bundle": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
