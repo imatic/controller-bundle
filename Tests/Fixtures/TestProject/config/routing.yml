@@ -1,5 +1,5 @@
 _profiler:
-    resource: @WebProfilerBundle/Resources/config/routing/profiler.xml
+    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
     prefix:   /_profiler
 
 _wdt:
@@ -7,7 +7,7 @@ _wdt:
     prefix:   /_wdt
 
 app_imatic_controller:
-    resource: @AppImaticControllerBundle/Resources/config/routing.yml
+    resource: "@AppImaticControllerBundle/Resources/config/routing.yml"
     prefix: /test
 
 #imatic_controller:

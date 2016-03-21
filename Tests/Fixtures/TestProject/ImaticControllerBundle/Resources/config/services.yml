@@ -14,36 +14,36 @@ services:
     app_imatic_controller.data.handler.user_greet_batch:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler
         arguments:
-            - @imatic_data.doctrine.query_executor
+            - "@imatic_data.doctrine.query_executor"
         tags:
             - { name: imatic_data.handler, alias: user.greet.batch }
 
     app_imatic_controller.data.handler.user_edit:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler
         arguments:
-            - @imatic_data.doctrine.object_manager
+            - "@imatic_data.doctrine.object_manager"
         tags:
             - { name: imatic_data.handler, alias: user.edit }
 
     app_imatic_controller.data.handler.user_create:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler
         arguments:
-            - @imatic_data.doctrine.object_manager
+            - "@imatic_data.doctrine.object_manager"
         tags:
             - { name: imatic_data.handler, alias: user.create }
 
     app_imatic_controller.data.handler.user_delete:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler
         arguments:
-            - @imatic_data.doctrine.object_manager
-            - @imatic_data.query_executor
+            - "@imatic_data.doctrine.object_manager"
+            - "@imatic_data.query_executor"
         tags:
             - { name: imatic_data.handler, alias: user.delete }
 
     app_imatic_controller.data.handler.user_activate:
         class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler
         arguments:
-            - @imatic_data.doctrine.object_manager
+            - "@imatic_data.doctrine.object_manager"
         tags:
             - { name: imatic_data.handler, alias: user.activate }
 

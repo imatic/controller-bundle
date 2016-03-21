@@ -1,3 +1,3 @@
 app_imatic_controller_bundle:
-    resource:   @AppImaticControllerBundle/Controller
+    resource:   "@AppImaticControllerBundle/Controller"
     type:       annotation
