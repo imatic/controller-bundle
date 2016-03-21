@@ -178,7 +178,7 @@ class ListingApi extends QueryApi
         $query = [];
         if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
             $filterKey = $this->displayCriteriaReader->attributeName(DisplayCriteriaReader::FILTER);
-            $filterValue = $this->displayCriteriaReader->readAttribute(DisplayCriteriaReader::FILTER);
+            $filterValue = $this->displayCriteriaReader->readAttribute(DisplayCriteriaReader::FILTER, null, $this->getComponentId(), $this->enablePersistentDisplayCriteria);
             $query = [
                 $filterKey => $filterValue,
             ];
