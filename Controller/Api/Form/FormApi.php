@@ -99,12 +99,25 @@ class FormApi extends CommandApi
         $this->template->addTemplateVariables($this->data->all());
 
         if ($result && $result->isSuccessful()) {
+            // submitted and successful
             return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
                 'result' => $result,
                 'data' => $form->getData(),
             ]));
         } else {
-            return new Response($this->template->render(), ($form->isSubmitted() && !$form->isValid() ? 400 : 200));
+            // not submitted or not successful
+            if ($result && !$result->isSuccessful()) {
+                // command has failed
+                $statusCode = 500;
+            } elseif ($form->isSubmitted() && !$form->isValid()) {
+                // form is not valid
+                $statusCode = 400;
+            } else {
+                // form is not submitted
+                $statusCode = 200;
+            }
+
+            return new Response($this->template->render(), $statusCode);
         }
     }
 
