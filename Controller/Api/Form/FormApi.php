@@ -16,6 +16,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTr
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\Util\StringUtil;
 use Symfony\Component\HttpFoundation\Response;
 
 class FormApi extends CommandApi
@@ -47,8 +48,7 @@ class FormApi extends CommandApi
         FormFeature $form,
         DataFeature $data,
         TemplateFeature $template
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->form = $form;
@@ -58,7 +58,7 @@ class FormApi extends CommandApi
 
     public function form($type, $emptyValue = null, array $options = [])
     {
-        return $this->namedForm($type, $type, $emptyValue, $options);
+        return $this->namedForm(StringUtil::fqcnToBlockPrefix($type), $type, $emptyValue, $options);
     }
 
     public function namedForm($name, $type, $emptyValue = null, array $options = [])
