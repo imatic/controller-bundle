@@ -35,6 +35,8 @@ class ListingApi extends QueryApi
     protected $enablePersistentDisplayCriteria = false;
     /** @var bool */
     protected $dataCalculated = false;
+    /** @var bool */
+    protected $disableCountQuery = false;
 
     public function __construct(
         RequestFeature $request,
@@ -108,6 +110,20 @@ class ListingApi extends QueryApi
         return $this;
     }
 
+    public function disableCountQuery()
+    {
+        $this->disableCountQuery = true;
+
+        return $this;
+    }
+
+    public function enableCountQuery()
+    {
+        $this->disableCountQuery = false;
+
+        return $this;
+    }
+
     /**
      * @param string|null $componentId
      * @return static
@@ -132,7 +148,10 @@ class ListingApi extends QueryApi
 
         $this->template->addTemplateVariable('component_id', $this->getComponentId());
 
-        $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
+        if (!$this->disableCountQuery) {
+            $this->displayCriteria->getPager()->setTotal($this->data->get('items_count'));
+        }
+
         $this->template->addTemplateVariable('display_criteria', $this->displayCriteria);
 
         $this->template->addTemplateVariables($this->data->all());
@@ -173,7 +192,11 @@ class ListingApi extends QueryApi
             );
         }
 
-        $this->data->queryAndCount('items', 'items_count', $this->queryObject, $this->displayCriteria);
+        if ($this->disableCountQuery) {
+            $this->data->query('items', $this->queryObject, $this->displayCriteria);
+        } else {
+            $this->data->queryAndCount('items', 'items_count', $this->queryObject, $this->displayCriteria);
+        }
 
         $query = [];
         if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
