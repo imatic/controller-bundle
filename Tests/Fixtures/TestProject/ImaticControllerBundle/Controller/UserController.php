@@ -5,6 +5,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -62,7 +63,7 @@ class UserController extends Controller
     public function editAction($id)
     {
         return $this
-            ->form('app_imatic_controller_user')
+            ->form(UserType::class)
             ->commandName('user.edit')
             ->edit(new UserQuery($id))
             ->successRedirect('app_user_edit', ['id' => $id])
@@ -77,7 +78,7 @@ class UserController extends Controller
     public function createAction()
     {
         return $this
-            ->form('app_imatic_controller_user', new User())
+            ->form(UserType::class, new User())
             ->commandName('user.create')
             ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
@@ -170,7 +171,7 @@ class UserController extends Controller
                     'age',
                     'active',
                 ],
-                'form' => 'app_imatic_controller_user',
+                'form' => UserType::class,
                 'command' => 'user.create',
             ])
             ->successRedirect('app_user_import_success')

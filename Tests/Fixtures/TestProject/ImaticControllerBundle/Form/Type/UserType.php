@@ -4,6 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticContro
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
@@ -18,7 +19,7 @@ class UserType extends AbstractType
             ->add('name')
             ->add('age')
             ->add('active')
-            ->add('save', 'submit');
+            ->add('save', SubmitType::class);
     }
 
     /**
@@ -29,13 +30,5 @@ class UserType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User'
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'app_imatic_controller_user';
     }
 }

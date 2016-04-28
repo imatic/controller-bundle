@@ -18,9 +18,9 @@ class FormApiTest extends WebTestCase
         $crawler = $client->request('GET', '/test/user/create');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $form = $crawler->filter('form')->form([
-            'app_imatic_controller_user[name]' => 'new user',
-            'app_imatic_controller_user[age]' => 23,
-            'app_imatic_controller_user[active]' => true,
+            'user[name]' => 'new user',
+            'user[age]' => 23,
+            'user[active]' => true,
         ]);
         $client->submit($form);
         $client->followRedirect();
