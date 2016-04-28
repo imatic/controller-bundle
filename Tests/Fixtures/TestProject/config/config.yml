@@ -72,23 +72,8 @@ security:
             anonymous:          false
 
     access_control:
-        - { path: ^/admin, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
-
-#sonata_block:
-#    default_contexts:           [admin]
-#    blocks:
-#        sonata.admin.block.admin_list:
-#            contexts:           [admin]
-#
-#sonata_admin:
-#    extensions:
-#        imatic_custom_field.admin.custom_field_extension:
-#            implements:
-#                - Imatic\Bundle\CustomFieldBundle\Model\ORM\CustomFieldEntityInterface
+        - { path: ^/admin, role: [ROLE_ADMIN] }
 
 imatic_data:
     pager:
         default_limit: 20
-
-genemu_form:
-    select2: ~

@@ -1,7 +1,6 @@
 <?php
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
-use Genemu\Bundle\FormBundle\GenemuFormBundle;
 use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\AppImaticControllerBundle;
 use Imatic\Bundle\DataBundle\ImaticDataBundle;
@@ -19,7 +18,6 @@ class TestKernel extends BaseTestKernel
         $parentBundles = parent::registerBundles();
 
         $bundles = [
-            new GenemuFormBundle(),
             new WebProfilerBundle(),
             new ImaticDataBundle(),
             new SensioFrameworkExtraBundle(),
