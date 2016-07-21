@@ -35,7 +35,7 @@ class ResponseFeature
 
     public function throwNotFoundUnless($object = null, $message = null)
     {
-        if (!$object) {
+        if (null === $object) {
             $this->throwNotFound($message);
         }
     }
