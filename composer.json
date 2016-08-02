@@ -18,7 +18,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://composer.imatic.cz"
+            "url": "https://composer.imatic.cz"
         }
     ],
     "require": {
