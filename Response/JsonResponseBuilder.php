@@ -81,7 +81,7 @@ class JsonResponseBuilder
 
     public function setDebug($debug)
     {
-        $this->debug = (bool)$debug;
+        $this->debug = (bool) $debug;
 
         return $this;
     }
@@ -115,7 +115,6 @@ class JsonResponseBuilder
             if ($errors) {
                 $this->data['messages'] = $errors;
             }
-
         } elseif ($this->commandResult && !$this->commandResult->isSuccessful()) {
             if ($this->commandResult->hasException() && $this->debug) {
                 $message = $this->commandResult->getException()->getMessage();

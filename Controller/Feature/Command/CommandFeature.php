@@ -84,8 +84,10 @@ class CommandFeature
     }
 
     /**
-     * @param  array $parameters
+     * @param array $parameters
+     *
      * @throws InvalidCommandExecutionException
+     *
      * @return CommandResultInterface
      */
     public function execute(array $parameters = [])

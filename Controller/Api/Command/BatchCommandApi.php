@@ -6,6 +6,7 @@ class BatchCommandApi extends CommandApi
 {
     /**
      * @param array|string $allowedCommands
+     *
      * @return BatchCommandApi
      */
     public function batchCommand($allowedCommands)

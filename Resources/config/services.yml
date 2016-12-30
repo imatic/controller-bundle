@@ -4,53 +4,53 @@ services:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature
         arguments:
             - '@imatic_data.query_executor'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.template:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature
         arguments:
             - '@templating'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.form:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature
         arguments:
             - '@form.factory'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.response:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature
         arguments:
             - '@request_stack'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.request:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature
         arguments:
             - '@request_stack'
             - '@imatic_data.display_criteria_factory'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature
         arguments:
             - '@imatic_data.command_executor'
             - '@imatic_data.command_handler_repository'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.redirect:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature
         arguments:
             - '@router'
             - '@request_stack'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.feature.message:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature
         arguments:
             - '@session'
             - '@translator'
-        scope: prototype
+        shared: false
 
     # api - concrete
     imatic_controller.api.show:
@@ -60,7 +60,7 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.data'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.listing:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi
@@ -71,7 +71,7 @@ services:
             - '@imatic_controller.api.feature.data'
             - '@imatic_data.display_criteria_reader'
             - '@imatic_data.filter_factory'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.form:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi
@@ -84,7 +84,7 @@ services:
             - '@imatic_controller.api.feature.form'
             - '@imatic_controller.api.feature.data'
             - '@imatic_controller.api.feature.template'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.command:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi
@@ -94,7 +94,7 @@ services:
             - '@imatic_controller.api.feature.command'
             - '@imatic_controller.api.feature.redirect'
             - '@imatic_controller.api.feature.message'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.command.object:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi
@@ -105,7 +105,7 @@ services:
             - '@imatic_controller.api.feature.redirect'
             - '@imatic_controller.api.feature.message'
             - '@imatic_controller.api.feature.data'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.command.batch:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi
@@ -115,7 +115,7 @@ services:
             - '@imatic_controller.api.feature.command'
             - '@imatic_controller.api.feature.redirect'
             - '@imatic_controller.api.feature.message'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.download:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi
@@ -124,7 +124,7 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.data'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.autocomplete:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi
@@ -133,4 +133,4 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.data'
-        scope: prototype
+        shared: false

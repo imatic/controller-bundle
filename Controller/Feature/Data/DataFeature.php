@@ -19,9 +19,10 @@ class DataFeature
     }
 
     /**
-     * @param  string $name
-     * @param  QueryObjectInterface $queryObject
-     * @param  DisplayCriteriaInterface $displayCriteria
+     * @param string                   $name
+     * @param QueryObjectInterface     $queryObject
+     * @param DisplayCriteriaInterface $displayCriteria
+     *
      * @return mixed
      */
     public function query($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
@@ -33,9 +34,10 @@ class DataFeature
     }
 
     /**
-     * @param  string $name
-     * @param  QueryObjectInterface $queryObject
-     * @param  DisplayCriteriaInterface $displayCriteria
+     * @param string                   $name
+     * @param QueryObjectInterface     $queryObject
+     * @param DisplayCriteriaInterface $displayCriteria
+     *
      * @return int
      */
     public function count($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
@@ -47,10 +49,11 @@ class DataFeature
     }
 
     /**
-     * @param  string                   $resultName
-     * @param  string                   $countName
-     * @param  QueryObjectInterface     $queryObject
-     * @param  DisplayCriteriaInterface $displayCriteria
+     * @param string                   $resultName
+     * @param string                   $countName
+     * @param QueryObjectInterface     $queryObject
+     * @param DisplayCriteriaInterface $displayCriteria
+     *
      * @return array result, count
      */
     public function queryAndCount($resultName, $countName, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)

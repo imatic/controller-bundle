@@ -47,9 +47,9 @@ class MessageFeature
     }
 
     /**
-     * @param string $type (success|danger|warning|info)
-     * @param string $message command names or messages from handlers (user.create, user.delete, some message..)
-     * @param array $parameters translation message parameters ([name = John, ...])
+     * @param string $type              (success|danger|warning|info)
+     * @param string $message           command names or messages from handlers (user.create, user.delete, some message..)
+     * @param array  $parameters        translation message parameters ([name = John, ...])
      * @param string $translationDomain
      */
     public function add($type, $message, array $parameters, $translationDomain)

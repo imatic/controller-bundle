@@ -59,6 +59,7 @@ class ListingApi extends QueryApi
 
     /**
      * @param string $filter
+     *
      * @return static
      */
     public function filter($filter)
@@ -70,6 +71,7 @@ class ListingApi extends QueryApi
 
     /**
      * @param array $sort
+     *
      * @return static
      */
     public function defaultSort(array $sort)
@@ -78,15 +80,16 @@ class ListingApi extends QueryApi
 
         return $this;
     }
-    
+
     /**
      * @param int|null $limit
+     *
      * @return static
      */
     public function defaultLimit($limit)
     {
         $this->pager[DisplayCriteriaReader::LIMIT] = $limit;
-        
+
         return $this;
     }
 
@@ -110,6 +113,7 @@ class ListingApi extends QueryApi
 
     /**
      * @param string|null $componentId
+     *
      * @return static
      */
     public function componentId($componentId)
@@ -166,7 +170,7 @@ class ListingApi extends QueryApi
                 $dcOptions['pager'] = $this->pager;
             }
             $dcOptions['componentId'] = $this->getComponentId();
-            
+
             $this->displayCriteria = $this->request->getDisplayCriteria(
                 $dcOptions,
                 $this->enablePersistentDisplayCriteria

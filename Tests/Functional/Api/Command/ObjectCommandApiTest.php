@@ -16,7 +16,7 @@ class ObjectCommandApiTest extends WebTestCase
         $client->followRedirects();
 
         $activeUser = $this->getActiveUser();
-        
+
         $client->request('PATCH', sprintf('/test/user/activate/%s', $activeUser->getId()));
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 

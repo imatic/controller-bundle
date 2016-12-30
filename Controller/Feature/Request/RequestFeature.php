@@ -59,6 +59,7 @@ class RequestFeature
     /**
      * @param array $options
      * @param bool  $persistent
+     *
      * @return DisplayCriteriaInterface
      */
     public function getDisplayCriteria(array $options = [], $persistent = false)

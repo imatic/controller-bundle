@@ -27,14 +27,13 @@ class ObjectCommandApi extends CommandApi
         RedirectFeature $redirect,
         MessageFeature $message,
         DataFeature $data
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->data = $data;
     }
 
-    public function objectCommand($commandName, array $commandParameters = [], QueryObjectInterface $queryObject)
+    public function objectCommand($commandName, array $commandParameters, QueryObjectInterface $queryObject)
     {
         $this->command->setCommandName($commandName);
         $this->command->setCommandParameters($commandParameters);

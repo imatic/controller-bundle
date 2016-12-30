@@ -10,7 +10,7 @@ services:
             - '@imatic_importexport.exporter'
             - '@imatic_controller.api.download'
             - '@imatic_data.filter_factory'
-        scope: prototype
+        shared: false
 
     imatic_controller.api.import:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi
@@ -20,7 +20,7 @@ services:
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.redirect'
             - '@imatic_importexport.importer'
-        scope: prototype
+        shared: false
 
     imatic_controller.file_transformer:
         class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer

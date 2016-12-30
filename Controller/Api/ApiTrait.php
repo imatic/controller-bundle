@@ -17,7 +17,7 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 
 /**
  * ApiTrait
- * Use ApiTrait as controller shortcut for API access
+ * Use ApiTrait as controller shortcut for API access.
  */
 trait ApiTrait
 {
@@ -116,7 +116,8 @@ trait ApiTrait
     /**
      * @param string $id
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return Api
      */
     protected function getApi($id, $name, array $arguments = [])

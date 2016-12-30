@@ -92,6 +92,7 @@ class FormFeature
 
     /**
      * @param FormInterface $form
+     *
      * @return string|null
      */
     public function getSubmittedName(FormInterface $form)

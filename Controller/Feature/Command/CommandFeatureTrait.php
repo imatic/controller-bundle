@@ -2,8 +2,6 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
-
 /**
  * @property CommandFeature $command
  */

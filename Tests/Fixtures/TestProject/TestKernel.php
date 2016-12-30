@@ -1,4 +1,5 @@
 <?php
+
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
 use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;

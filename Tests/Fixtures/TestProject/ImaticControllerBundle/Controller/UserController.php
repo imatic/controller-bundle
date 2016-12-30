@@ -1,4 +1,5 @@
 <?php
+
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
@@ -143,7 +144,7 @@ class UserController extends Controller
     public function dataAction()
     {
         return $this->download()
-            ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
+            ->download(new \SplFileInfo(__DIR__.'/../../../userData'))
             ->getResponse()
         ;
     }
@@ -185,7 +186,7 @@ class UserController extends Controller
      */
     public function getFormFactory()
     {
-         return $this->container->get('form.factory');
+        return $this->container->get('form.factory');
     }
 
     /**
