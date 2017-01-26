@@ -123,7 +123,7 @@ trait ApiTrait
     protected function getApi($id, $name, array $arguments = [])
     {
         if (!isset($this->container)) {
-            throw new \RuntimeException('$container is not attribute of class "%s"', __CLASS__);
+            throw new \RuntimeException(sprintf('$container is not attribute of class "%s"', __CLASS__));
         }
 
         if (!$this->container->has($id)) {

@@ -130,7 +130,7 @@ class FormApi extends CommandApi
         $form->handleRequest($request);
         $result = null;
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $action = $this->form->getSubmittedName($form);
             $data = $form->getData();
             $result = $this->command->execute(['data' => $data, 'action' => $action]);

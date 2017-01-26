@@ -15,10 +15,9 @@ class DownloadApi extends QueryApi
 
     protected $fileInfoInterface = 'Imatic\Bundle\DocumentBundle\File\FileInfoInterface';
 
-    public function download($object, $forceDownload = true)
+    public function download($object, $forceDownload = true, $name = null)
     {
         $file = null;
-        $name = null;
 
         if ($object instanceof SplFileInfo) {
             $file = $object;
