@@ -83,7 +83,7 @@ class Configuration implements ConfigurationInterface
             ->ignoreExtraKeys(false)
                 ->children()
                     ->scalarNode('path')->end()
-                    ->arrayNode('method')
+                    ->arrayNode('methods')
                         ->prototype('enum')->values(['get', 'post', 'put', 'delete'])->end()
                     ->end()
                 ->end()

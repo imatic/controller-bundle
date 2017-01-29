@@ -1,12 +1,12 @@
 <?php
 
-namespace Imatic\Bundle\DirectoryBundle\Controller\Crud;
+namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Response;
 
 class AutocompleteController extends ResourceController
 {
-    public function listAction()
+    public function autocompleteAction()
     {
         return new Response(__CLASS__);
     }

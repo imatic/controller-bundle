@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Generator;
+namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 class ResourceConfiguration
 {

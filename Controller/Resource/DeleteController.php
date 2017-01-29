@@ -1,12 +1,12 @@
 <?php
 
-namespace Imatic\Bundle\DirectoryBundle\Controller\Crud;
+namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Response;
 
 class DeleteController extends ResourceController
 {
-    public function listAction()
+    public function deleteAction()
     {
         return new Response(__CLASS__);
     }

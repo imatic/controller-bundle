@@ -4,9 +4,9 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class EditController extends ResourceController
+class BatchController extends ResourceController
 {
-    public function editAction()
+    public function batchAction()
     {
         return new Response(__CLASS__);
     }

@@ -1,0 +1,3 @@
+imatic_controller_resource:
+    resource: .
+    type: imatic_resource

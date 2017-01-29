@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\DirectoryBundle\Controller\Crud;
+namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;

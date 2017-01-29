@@ -1,6 +1,6 @@
 <?php
 
-namespace Imatic\Bundle\DirectoryBundle\Controller\Crud;
+namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Response;
 
