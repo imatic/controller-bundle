@@ -1,6 +1,8 @@
 imports:
     - { resource: "@ImaticDataBundle/Resources/config/data_doctrine.yml" }
     - { resource: "@ImaticDataBundle/Resources/config/data_doctrine_orm.yml" }
+    - { resource: "@ImaticControllerBundle/Resources/config/config.yml" }
+    - { resource: "book.yml" }
 
 framework:
     secret:                     test

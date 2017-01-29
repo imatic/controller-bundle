@@ -1,0 +1,71 @@
+imatic_controller:
+    resources_config:
+        defaults:
+            list:
+                template: ImaticViewBundle:Crud:list.html.twig
+                type: list
+                collection: true
+                route: { method: [get], path: / }
+                controller: ~
+            autocomplete:
+                type: autocomoplete
+                collection: true
+                route: { method: [get], path: /autocomplete }
+                controller: ~
+            create:
+                template: ImaticViewBundle:Crud:edit.html.twig
+                type: create
+                collection: true
+                route: { method: [post], path: / }
+                controller: ~
+            show:
+                template: ImaticViewBundle:Crud:show.html.twig
+                type: show
+                collection: false
+                route: { method: [get], path: /:id }
+                controller: ~
+            delete:
+                type: delete
+                collection: false
+                route: { method: [delete], path: /:id }
+                controller: ~
+            edit:
+                template: ImaticViewBundle:Crud:edit.html.twig
+                type: edit
+                collection: false
+                route: { method: [put, get], path: /:id/edit }
+                controller: ~
+            batch:
+                type: batch
+                collection: true
+                route: { method: [put, get], path: /batch }
+                controller: ~
+        required:
+            all:
+                - entity
+                - type
+                - collection
+                - route
+                - query
+                - controller
+            list:
+                - template
+            autocomplete:
+            create:
+                - template
+                - form
+                - command
+                - redirect
+            show:
+                - template
+            delete:
+                - command
+                - redirect
+            edit:
+                - template
+                - form
+                - command
+                - redirect
+            batch:
+                - command
+                - redirect

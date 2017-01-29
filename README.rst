@@ -268,3 +268,47 @@ TODO
 - debug mode
 - todo in code
 - default templates and template names (listing, show, edit, create)
+
+
+CRUD
+----
+
+**WIP**
+
+* controller
+    * generuje se automaticky podle nastavení
+    * chová se podle nastavení
+    * generují se pouze definované controllery
+    * je možné definovat stejný typ (list) controlleru vícekrát
+* routes
+    * generuje se automaticky podle nastavení
+* security
+    * práva se řeší přes votery u metod, které pracují s objektem
+    * práva se řeší přes role u metod, které pracují s kolekcí objektů
+* templates
+    * výchozí šablony pro list, edit, create a show poskytuje ImaticViewBundle
+    * šablony lze v nastavení předefinovat
+* entities
+    * řeší se standardně, pouze se nastavuje pro definici data_class atp
+* forms
+    * řeší se standardně, pouze se nastavuje form type pro create a edit
+* query
+    * řeší se standardně, pouze se nastavuje form type pro list, create, edit a delete
+* handler
+    * výchozí handlery pro create, edit a delete poskytuje ImaticDataBundle
+    * handlery je možné v nastavení předefinovat
+* query
+    * řeší se standardně, pouze se nastavuje query object pro list, create, edit a delete (a autocomplete)
+* translations
+    * v nastavení se definuje slovník pro překlady v šablonách
+
+* kompilace kontejneru
+    * načte se konfigurace
+        * per resources
+        * per controller
+        * per action
+    * merge
+    * kontrola
+    * uložení do keše
+    * generování rout
+        * vygeneruje se také název controlleru a název resource a akce

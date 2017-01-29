@@ -1,0 +1,40 @@
+imatic_controller:
+    resources:
+        book:
+            config:
+                route: { path: /book }
+                query:
+                    collection: Imatic\BookListQuery
+                    item: Imatic\BookQuery
+    #                fields:
+    #                    - {name: name, format: text}
+    #                    - {name: sapNo, format: text}
+    #                    - {name: regId, format: text}
+    #                    - {name: vatId, format: text}
+            actions:
+                list: ~
+
+                autocomplete:
+                    query: Imatic\BookAutocompleteListQuery
+
+                show:
+                    template: AppBundle:Book:show.html.twig
+
+                show_details:
+                    route: { path: /show-details }
+                    type: show
+                    template: AppBundle:Book:show_details.html.twig
+
+                create:
+                    form: Imatic\BookType
+                    command: imatic_book.book.create
+                    redirect: imatic_book_show
+
+                edit:
+                    template: ImaticDirectoryBundle:Company:edit.html.twig
+                    form: Imatic\BookCreateType
+                    command: imatic_book.book.edit
+                    redirect: imatic_book_show
+
+                delete:
+                    redirect: imatic_book_list
