@@ -5,7 +5,10 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\AppImaticControllerBundle;
 use Imatic\Bundle\DataBundle\ImaticDataBundle;
+use Imatic\Bundle\FormBundle\ImaticFormBundle;
 use Imatic\Bundle\TestingBundle\Test\TestKernel as BaseTestKernel;
+use Imatic\Bundle\ViewBundle\ImaticViewBundle;
+use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
@@ -22,6 +25,9 @@ class TestKernel extends BaseTestKernel
             new WebProfilerBundle(),
             new ImaticDataBundle(),
             new SensioFrameworkExtraBundle(),
+            new ImaticFormBundle(),
+            new ImaticViewBundle(),
+            new KnpMenuBundle(),
             new ImaticControllerBundle(),
             new AppImaticControllerBundle(),
         ];

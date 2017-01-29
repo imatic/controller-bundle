@@ -120,6 +120,14 @@ class ResourceConfigurationProcessor
             $action['query'] = $config['query'][$queryKey];
         }
 
+        // Entity - copy entity class to action
+        $action['entity'] = $config['entity'];
+
+        // Fields - if action fields is not defined, use resource fields
+        if (empty($action['fields']) && !empty($config['fields'])) {
+            $action['fields'] = $config['fields'];
+        }
+
         return $action;
     }
 

@@ -7,13 +7,12 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
-use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
 use Imatic\Bundle\ControllerBundle\Exception\MissingVendorException;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 
 /**
  * ApiTrait
@@ -21,6 +20,8 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
  */
 trait ApiTrait
 {
+    use GetApiTrait;
+
     /**
      * @return AutocompleteApi
      */
@@ -111,32 +112,6 @@ trait ApiTrait
         $this->checkVendor('imatic_controller.api.import', 'imatic/importexport-bundle');
 
         return $this->getApi('imatic_controller.api.import', 'import', func_get_args());
-    }
-
-    /**
-     * @param string $id
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @return Api
-     */
-    protected function getApi($id, $name, array $arguments = [])
-    {
-        if (!isset($this->container)) {
-            throw new \RuntimeException(sprintf('$container is not attribute of class "%s"', __CLASS__));
-        }
-
-        if (!$this->container->has($id)) {
-            throw new ApiNotFoundException($name);
-        }
-
-        $api = $this->container->get($id);
-
-        if ($arguments) {
-            return call_user_func_array([$api, $name], $arguments);
-        }
-
-        return $api;
     }
 
     private function checkVendor($name, $vendor)

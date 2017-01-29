@@ -44,6 +44,8 @@ class Configuration implements ConfigurationInterface
                             ->arrayNode('config')
                                 ->children()
                                     ->append($this->getRouteConfiguration())
+                                    ->scalarNode('entity')->end()
+                                    ->variableNode('fields')->end()
                                     ->arrayNode('query')
                                         ->children()
                                             ->scalarNode('collection')->end()
