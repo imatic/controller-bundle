@@ -1,17 +1,3 @@
-<html>
-<body>
+{% extends 'ImaticViewBundle:Layout:base.html.twig' %}
 
-    <div id="messages">
-        {% for type, messages in app.session.flashbag.all %}
-            {% for message in messages %}
-                <p><strong>{{ type }}</strong> {{ message }}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-
-    <div id="action">
-        {% block action %}
-        {% endblock %}
-    </div>
-</body>
-</html>
+{% block application_name 'Imatic Controller Test' %}

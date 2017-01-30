@@ -2,7 +2,7 @@ imatic_controller:
     resources:
         imatic_controller_user:
             config:
-                route: { path: /resource/user }
+                route: { path: /test/resource/user }
                 entity: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User
                 query:
                     collection: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery
