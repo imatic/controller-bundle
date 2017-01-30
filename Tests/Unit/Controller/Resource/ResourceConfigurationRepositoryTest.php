@@ -93,4 +93,25 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
         $repository = new ResourceConfigurationRepository($config);
         $repository->getResource('book');
     }
+
+    public function testGetResourcesNames()
+    {
+        $config = [
+            'book' => [
+                'resource' => 'book',
+                'actions' => [
+                ],
+            ],
+            'user' => [
+                'resource' => 'user',
+                'actions' => [
+                ],
+            ],
+        ];
+
+        $repository = new ResourceConfigurationRepository($config);
+        $names = $repository->getResourceNames();
+
+        $this->assertEquals(['book', 'user'], $names);
+    }
 }

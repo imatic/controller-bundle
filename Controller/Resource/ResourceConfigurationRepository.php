@@ -52,4 +52,16 @@ class ResourceConfigurationRepository
             }, $reduced);
         }, []);
     }
+
+    /**
+     * @return array
+     */
+    public function getResourceNames()
+    {
+        return array_reduce($this->config, function (array $reduced, array $resource) {
+            $reduced[] = $resource['resource'];
+
+            return $reduced;
+        }, []);
+    }
 }

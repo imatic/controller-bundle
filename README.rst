@@ -317,6 +317,3 @@ Dořešit
     * rozdělení jako v šabloně, page, batch, row
     * pak dle resource
     * v šabloně se pak vypíší, všechny dostupné pro daný resource a typ mimo aktuální (edit nezobrazuje edit akci)
-
-Jako config používám jen config pro akce resource, jak dostanu config page atp akcí do nastavení, jsou per resource?
-Obecně, nastavení per resource bude více!
