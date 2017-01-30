@@ -16,13 +16,14 @@ class ListController extends ResourceController
 
     public function listAction()
     {
-        $config = $this->getConfig();
+        $action = $this->getActionConfig();
 
         return $this
-            ->listing(new $config['query']($config['entity']))
+            ->listing(new $action['query']($action['entity']))
 //            ->filter('imatic_directory_company_filter')
-            ->setTemplateName($config['template'])
-            ->addTemplateVariable('config', $config)
+            ->setTemplateName($action['template'])
+            ->addTemplateVariable('action', $action)
+            ->addTemplateVariable('resource', $this->getResourceConfig())
             ->getResponse();
     }
 }

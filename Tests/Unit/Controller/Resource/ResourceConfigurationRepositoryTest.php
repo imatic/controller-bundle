@@ -32,7 +32,7 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $all);
     }
 
-    public function testGet()
+    public function testGetAction()
     {
         $config = [
             'book' => [
@@ -42,7 +42,7 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         $repository = new ResourceConfigurationRepository($config);
-        $all = $repository->get('book', 'edit');
+        $all = $repository->getAction('book', 'edit');
 
         $this->assertEquals(['book-edit'], $all);
     }
@@ -51,11 +51,38 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Resource:action "book:edit" not found
      */
-    public function testInvalidGetThrows()
+    public function testInvalidGetActionThrows()
     {
         $config = [];
 
         $repository = new ResourceConfigurationRepository($config);
-        $repository->get('book', 'edit');
+        $repository->getAction('book', 'edit');
+    }
+
+    public function testGetResource()
+    {
+        $config = [
+            'book' => [
+                'list' => ['book-list'],
+                'edit' => ['book-edit'],
+            ],
+        ];
+
+        $repository = new ResourceConfigurationRepository($config);
+        $all = $repository->getResource('book');
+
+        $this->assertEquals($config['book'], $all);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Resource "book" not found
+     */
+    public function testInvalidGetResourceThrows()
+    {
+        $config = [];
+
+        $repository = new ResourceConfigurationRepository($config);
+        $repository->getResource('book');
     }
 }

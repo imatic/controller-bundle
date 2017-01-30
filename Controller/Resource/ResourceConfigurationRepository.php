@@ -14,7 +14,7 @@ class ResourceConfigurationRepository
     /**
      * @return array
      */
-    public function get($resource, $action)
+    public function getAction($resource, $action)
     {
         if (!isset($this->config[$resource][$action])) {
             throw new \InvalidArgumentException(
@@ -23,6 +23,20 @@ class ResourceConfigurationRepository
         }
 
         return $this->config[$resource][$action];
+    }
+
+    /**
+     * @return array
+     */
+    public function getResource($resource)
+    {
+        if (!isset($this->config[$resource])) {
+            throw new \InvalidArgumentException(
+                sprintf('Resource "%s" not found', $resource)
+            );
+        }
+
+        return $this->config[$resource];
     }
 
     /**

@@ -302,13 +302,21 @@ CRUD
 * translations
     * v nastavení se definuje slovník pro překlady v šablonách
 
-* kompilace kontejneru
-    * načte se konfigurace
-        * per resources
-        * per controller
-        * per action
-    * merge
-    * kontrola
-    * uložení do keše
-    * generování rout
-        * vygeneruje se také název controlleru a název resource a akce
+Dořešit
+```````
+* nastavení práv
+    * collection akce: role
+    * item akce: role nebo voter
+* názvy entit
+    * nazev entity, default trida entity?
+* nastavení překladových slovníků
+    * nazev slovniku, default dle resource podle konvence?
+* nastavení akcí (row, batch, page)
+    * výchozí akce v defaults
+    * nastavení jako mají ActionOptions, Configuration nevaliduje, byla by to duplicita
+    * rozdělení jako v šabloně, page, batch, row
+    * pak dle resource
+    * v šabloně se pak vypíší, všechny dostupné pro daný resource a typ mimo aktuální (edit nezobrazuje edit akci)
+
+Jako config používám jen config pro akce resource, jak dostanu config page atp akcí do nastavení, jsou per resource?
+Obecně, nastavení per resource bude více!

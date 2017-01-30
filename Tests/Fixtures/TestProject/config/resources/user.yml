@@ -12,7 +12,18 @@ imatic_controller:
                     - {name: name, format: text}
                     - {name: age, format: number}
                     - {name: active, format: boolean}
-
+                translation_domain: UserDomain
+                name: user
+                role: ROLE_USER_ADMIN
+                actions:
+                    page:
+                        list: ~
+                        autocomplete: ~
+                        create: ~
+                    row:
+                        show: ~
+                        edit: ~
+                        delete: ~
             actions:
                 list: ~
                 autocomplete:

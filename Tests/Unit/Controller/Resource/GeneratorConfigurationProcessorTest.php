@@ -184,7 +184,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'query' => [
                         'collection' => 'ListQuery',
                     ],
-                    'entity' => 'EntityClass'
+                    'entity' => 'EntityClass',
                 ],
                 'actions' => [
                     'list' => null,
@@ -197,25 +197,35 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'book' => [
-                'list' => [
-                    'template' => 'list_template.html.twig',
-                    'route' => ['path' => '/book', 'method' => ['get']],
-                    'query' => 'ListQuery',
-                    'resource' => 'book',
-                    'action' => 'list',
-                    'type' => 'list',
-                    'collection' => true,
+                'config' => [
+                    'query' => [
+                        'collection' => 'ListQuery',
+                    ],
                     'entity' => 'EntityClass',
+                    'route' => ['path' => '/book'],
                 ],
-                'edit' => [
-                    'template' => 'edit_template.html.twig',
-                    'route' => ['path' => '/book/:id/edit', 'method' => ['get', 'post']],
-                    'query' => 'ItemQuery',
-                    'resource' => 'book',
-                    'action' => 'edit',
-                    'type' => 'edit',
-                    'collection' => false,
-                    'entity' => 'EntityClass',
+                'resource' => 'book',
+                'actions' => [
+                    'list' => [
+                        'template' => 'list_template.html.twig',
+                        'route' => ['path' => '/book', 'method' => ['get'], 'name' => 'book_list'],
+                        'query' => 'ListQuery',
+                        'resource' => 'book',
+                        'action' => 'list',
+                        'type' => 'list',
+                        'collection' => true,
+                        'entity' => 'EntityClass',
+                    ],
+                    'edit' => [
+                        'template' => 'edit_template.html.twig',
+                        'route' => ['path' => '/book/:id/edit', 'method' => ['get', 'post'], 'name' => 'book_edit'],
+                        'query' => 'ItemQuery',
+                        'resource' => 'book',
+                        'action' => 'edit',
+                        'type' => 'edit',
+                        'collection' => false,
+                        'entity' => 'EntityClass',
+                    ],
                 ],
             ],
         ];

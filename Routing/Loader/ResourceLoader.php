@@ -55,7 +55,7 @@ class ResourceLoader extends Loader
 
             $route = new Route($path, $defaults, $requirements, $options, $host, $schemes, $methods);
 
-            $routeName = sprintf('%s_%s', $action['resource'], $action['action']);
+            $routeName = $action['route']['name'];
 
             $routes->add($routeName, $route);
         }

@@ -9,7 +9,6 @@ class ResourceConfigurationProcessor
         $resources = $this->preProcessResources($resources);
         $resources = $this->mergeActionConfiguration($resourcesConfig['defaults'], $resources);
         $resources = $this->finalizeActionsConfiguration($resources);
-        $resources = $this->extractResourceActions($resources);
 
         return $resources;
     }
@@ -113,6 +112,7 @@ class ResourceConfigurationProcessor
     {
         // Route - action route prepend with resource route
         $action['route']['path'] = $config['route']['path'] . ($action['route']['path'] === '/' ? '' : $action['route']['path']);
+        $action['route']['name'] = sprintf('%s_%s', $action['resource'], $action['action']);
 
         // Query - if action query is not defined, use resource query (item or collection by action type)
         $queryKey = $action['collection'] ? 'collection' : 'item';
@@ -129,12 +129,5 @@ class ResourceConfigurationProcessor
         }
 
         return $action;
-    }
-
-    public function extractResourceActions(array $resources)
-    {
-        return array_map(function (array $resources) {
-            return $resources['actions'];
-        }, $resources);
     }
 }
