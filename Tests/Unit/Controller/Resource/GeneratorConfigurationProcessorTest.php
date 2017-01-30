@@ -184,6 +184,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'query' => [
                         'collection' => 'ListQuery',
                     ],
+                    'entity' => 'EntityClass'
                 ],
                 'actions' => [
                     'list' => null,
@@ -204,6 +205,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'action' => 'list',
                     'type' => 'list',
                     'collection' => true,
+                    'entity' => 'EntityClass',
                 ],
                 'edit' => [
                     'template' => 'edit_template.html.twig',
@@ -213,6 +215,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'action' => 'edit',
                     'type' => 'edit',
                     'collection' => false,
+                    'entity' => 'EntityClass',
                 ],
             ],
         ];

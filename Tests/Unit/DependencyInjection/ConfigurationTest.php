@@ -25,7 +25,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testResourcesConfiguration()
     {
-        $config = Yaml::parse(file_get_contents(__DIR__ . '/../../Fixtures/TestProject/config/book.yml'));
+        $config = Yaml::parse(file_get_contents(__DIR__ . '/../../Fixtures/TestProject/config/resources/user.yml'));
 
         $configuration = new Configuration();
 
