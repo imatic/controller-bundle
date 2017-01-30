@@ -16,13 +16,13 @@ class ResourceConfigurationRepository
      */
     public function getAction($resource, $action)
     {
-        if (!isset($this->config[$resource][$action])) {
+        if (!isset($this->config[$resource]['actions'][$action])) {
             throw new \InvalidArgumentException(
                 sprintf('Resource:action "%s:%s" not found', $resource, $action)
             );
         }
 
-        return $this->config[$resource][$action];
+        return $this->config[$resource]['actions'][$action];
     }
 
     /**
@@ -44,9 +44,9 @@ class ResourceConfigurationRepository
      */
     public function getActions()
     {
-        return array_reduce($this->config, function (array $reduced, array $current) {
-            return array_reduce($current, function (array $reduced, array $current) {
-                $reduced[] = $current;
+        return array_reduce($this->config, function (array $reduced, array $resource) {
+            return array_reduce($resource['actions'], function (array $reduced, array $action) {
+                $reduced[] = $action;
 
                 return $reduced;
             }, $reduced);

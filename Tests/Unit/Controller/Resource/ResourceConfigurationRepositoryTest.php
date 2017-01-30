@@ -10,12 +10,16 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $config = [
             'book' => [
-                'list' => ['book-list'],
-                'edit' => ['book-edit'],
+                'actions' => [
+                    'list' => ['book-list'],
+                    'edit' => ['book-edit'],
+                ],
             ],
             'author' => [
-                'list' => ['author-list'],
-                'edit' => ['author-edit'],
+                'actions' => [
+                    'list' => ['author-list'],
+                    'edit' => ['author-edit'],
+                ],
             ],
         ];
 
@@ -36,8 +40,10 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $config = [
             'book' => [
-                'list' => ['book-list'],
-                'edit' => ['book-edit'],
+                'actions' => [
+                    'list' => ['book-list'],
+                    'edit' => ['book-edit'],
+                ],
             ],
         ];
 
@@ -63,8 +69,10 @@ class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $config = [
             'book' => [
-                'list' => ['book-list'],
-                'edit' => ['book-edit'],
+                'actions' => [
+                    'list' => ['book-list'],
+                    'edit' => ['book-edit'],
+                ],
             ],
         ];
 
