@@ -91,7 +91,12 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'book' => [
-                'config' => ['route' => ['path' => '/book']],
+                'config' => [
+                    'route' => ['path' => '/book'],
+                    'translation_domain' => 'Book',
+                    'name' => 'book',
+                    'role' => null,
+                ],
                 'resource' => 'book',
                 'actions' => [
                     'list' => ['resource' => 'book', 'action' => 'list', 'type' => 'list'],
@@ -133,7 +138,12 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'book' => [
-                'config' => ['route' => ['path' => '/book']],
+                'config' => [
+                    'route' => ['path' => '/book'],
+                    'translation_domain' => 'Book',
+                    'name' => 'book',
+                    'role' => null,
+                ],
                 'resource' => 'book',
                 'actions' => [
                     'list' => [
@@ -203,6 +213,9 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     ],
                     'entity' => 'EntityClass',
                     'route' => ['path' => '/book'],
+                    'translation_domain' => 'Book',
+                    'name' => 'book',
+                    'role' => null,
                 ],
                 'resource' => 'book',
                 'actions' => [
@@ -215,6 +228,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                         'type' => 'list',
                         'collection' => true,
                         'entity' => 'EntityClass',
+                        'role' => null,
                     ],
                     'edit' => [
                         'template' => 'edit_template.html.twig',
@@ -225,6 +239,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                         'type' => 'edit',
                         'collection' => false,
                         'entity' => 'EntityClass',
+                        'role' => null,
                     ],
                 ],
             ],

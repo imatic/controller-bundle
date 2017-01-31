@@ -79,6 +79,21 @@ class ResourceConfigurationProcessor
             $config['route']['path'] = '/' . str_replace(['_', '-', '.'], '/', $resourceName);
         }
 
+        // Translation domain
+        if (empty($config['translation_domain'])) {
+            $config['translation_domain'] = str_replace(['.', '_', '-'], '', ucwords($resourceName, '\.\_\-'));
+        }
+
+        // Resource name
+        if (empty($config['name'])) {
+            $config['name'] = $resourceName;
+        }
+
+        // Role name
+        if (empty($config['role'])) {
+            $config['role'] = null;
+        }
+
         return $config;
     }
 
@@ -126,6 +141,11 @@ class ResourceConfigurationProcessor
         // Fields - if action fields is not defined, use resource fields
         if (empty($action['fields']) && !empty($config['fields'])) {
             $action['fields'] = $config['fields'];
+        }
+
+        // Role
+        if (empty($action['role'])) {
+            $action['role'] = null;
         }
 
         return $action;
