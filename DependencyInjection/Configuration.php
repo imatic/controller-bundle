@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
+                        ->append($this->getConfigActionsConfiguration())
                         ->arrayNode('required')
                             ->prototype('array')
                                 ->prototype('scalar')->end()
@@ -48,13 +49,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('role')->end()
                                     ->scalarNode('translation_domain')->end()
                                     ->scalarNode('name')->end()
-                                    ->arrayNode('actions')
-                                        ->children()
-                                                ->variableNode('batch')->end()
-                                                ->variableNode('page')->end()
-                                                ->variableNode('row')->end()
-                                        ->end()
-                                    ->end()
+                                    ->append($this->getConfigActionsConfiguration())
                                     ->variableNode('fields')->end()
                                     ->arrayNode('query')
                                         ->children()
@@ -100,6 +95,21 @@ class Configuration implements ConfigurationInterface
                         ->prototype('enum')->values(['get', 'post', 'put', 'delete'])->end()
                     ->end()
                 ->end()
+            ->end();
+
+        return $node;
+    }
+
+    public function getConfigActionsConfiguration()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('actions', 'array');
+
+        $node
+            ->children()
+                ->variableNode('batch')->end()
+                ->variableNode('page')->end()
+                ->variableNode('row')->end()
             ->end();
 
         return $node;

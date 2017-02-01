@@ -9,6 +9,7 @@ class ResourceConfigurationProcessor
         $resources = $this->preProcessResources($resources);
         $resources = $this->mergeActionConfiguration($resourcesConfig['defaults'], $resources);
         $resources = $this->finalizeActionsConfiguration($resources);
+        $resources = $this->finalizeConfigActionsConfiguration($resources, $resourcesConfig['actions']);
 
         return $resources;
     }
@@ -149,5 +150,58 @@ class ResourceConfigurationProcessor
         }
 
         return $action;
+    }
+
+    public function finalizeConfigActionsConfiguration(array $resources, $defaultActions)
+    {
+        return array_map(function ($resource) use ($defaultActions, $resources) {
+            return $this->finalizeConfigActionConfiguration($resource, $resources, $defaultActions);
+        }, $resources);
+    }
+
+    public function finalizeConfigActionConfiguration(array $resource, array $resources, array $defaultActions)
+    {
+        $resourceActions = (array)(isset($resource['config']['actions']) ? $resource['config']['actions'] : []);
+        $resourceActions = array_replace_recursive($defaultActions, $resourceActions);
+
+        foreach ($resourceActions as $actionName => $action) {
+            if (false === $action) {
+                unset($resourceActions[$actionName]);
+                continue;
+            }
+
+            if (empty($action['route']) && !empty($resource['actions'][$actionName]['route']['name'])) {
+                $resourceActions[$actionName]['route'] = $resource['actions'][$actionName]['route']['name'];
+            }
+
+            if (empty($action['role'])) {
+                $resourceActions[$actionName]['role'] = null;
+            }
+
+            if (empty($action['label'])) {
+                $resourceActions[$actionName]['label'] = ucfirst($actionName);
+            }
+
+            if (empty($action['route']) && !empty($resources['actions'][$actionName]['route']['name'])) {
+                $resourceActions[$actionName]['route'] = $resources['actions'][$actionName]['route']['name'];
+            }
+        }
+
+        // Nested actions
+        foreach ($resourceActions as $actionName => $action) {
+            if (!empty($action['nested']) && array_key_exists($action['nested'], $resourceActions)) {
+                $parent = $action['nested'];
+                if (!isset($resourceActions[$parent]['nested'])) {
+                    $resourceActions[$parent]['nested'] = [];
+                }
+
+                unset($action['nested'], $resourceActions[$actionName]);
+                $resourceActions[$parent]['nested'][$actionName] = $action;
+            }
+        }
+
+        $resource['config']['actions'] = $resourceActions;
+
+        return $resource;
     }
 }

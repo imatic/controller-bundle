@@ -40,14 +40,27 @@ imatic_controller:
                 collection: true
                 route: { methods: [put, get], path: "/batch" }
                 controller: ImaticControllerBundle:Resource/Batch:batch
-#            actions:
-#                page:
-#                    list: ~
-#                    create: ~
-#                row:
-#                    show: ~
-#                    edit: ~
-#                    delete: ~
+        actions:
+            page:
+                list:
+                    label: 'List'
+                create:
+                    label: 'Create'
+            row:
+                show:
+                    label: 'Show'
+                    routeParams: [id: '#id']
+                edit:
+                    label: 'Edit'
+                    routeParams: [id: '#id']
+                    nested: 'show'
+                delete:
+                    label: 'Delete'
+                    routeParams: [id: '#id']
+                    nested: 'show'
+                    data:
+                        method: 'delete'
+                        confirm: 'Are you sure?'
         required:
             all:
                 - entity
