@@ -301,3 +301,14 @@ CRUD
     * řeší se standardně, pouze se nastavuje query object pro list, create, edit a delete (a autocomplete)
 * translations
     * v nastavení se definuje slovník pro překlady v šablonách
+
+TODO
+````
+
+* twig funkre pro konverzi z nastavení na to co potřebuje ActionOption (nemůže a nemělo by být kompatibilní)
+* default config actions a config action by měly být stejné (route array vs string)
+* redirect route, pokud je název shodný s akcí, název routy by se z ní převzal automaticky
+* práva v šablonách
+* aktuální page akce se nevypisuje
+* route defaults asi nemusí být s prefixem (rozdíl attribute a query)
+* refactoring konfigurace na typy

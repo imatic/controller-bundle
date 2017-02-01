@@ -16,24 +16,24 @@ imatic_controller:
                 template: ImaticViewBundle:Crud:edit.html.twig
                 type: create
                 collection: true
-                route: { methods: [post], path: "/" }
+                route: { methods: [post, get], path: "/create" }
                 controller: ImaticControllerBundle:Resource/Create:create
             show:
                 template: ImaticViewBundle:Crud:show.html.twig
                 type: show
                 collection: false
-                route: { methods: [get], path: "/{id}" }
+                route: { methods: [get], path: "/{id}", requirements: { id: '\d+' } }
                 controller: ImaticControllerBundle:Resource/Show:show
             delete:
                 type: delete
                 collection: false
-                route: { methods: [delete], path: "/{id}" }
+                route: { methods: [delete], path: "/{id}", requirements: { id: '\d+' } }
                 controller: ImaticControllerBundle:Resource/Delete:delete
             edit:
                 template: ImaticViewBundle:Crud:edit.html.twig
                 type: edit
                 collection: false
-                route: { methods: [put, get], path: "/{id}/edit" }
+                route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                 controller: ImaticControllerBundle:Resource/Edit:edit
             batch:
                 type: batch

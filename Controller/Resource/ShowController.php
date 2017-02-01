@@ -16,12 +16,13 @@ class ShowController extends ResourceController
 
     public function showAction($id)
     {
-        $config = $this->getConfig();
+        $config = $this->getActionConfig();
 
         return $this
             ->show(new $config['query']($id, $config['entity']))
             ->setTemplateName($config['template'])
-            ->addTemplateVariable('config', $config)
+            ->addTemplateVariable('action', $config)
+            ->addTemplateVariable('resource', $this->getResourceConfig())
             ->getResponse();
     }
 }

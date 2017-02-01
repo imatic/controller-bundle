@@ -2,12 +2,25 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
-use Symfony\Component\HttpFoundation\Response;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
 
 class DeleteController extends ResourceController
 {
-    public function deleteAction()
+    /**
+     * @return CommandApi
+     */
+    public function command()
     {
-        return new Response(__CLASS__);
+        return $this->getApi('imatic_controller.api.command', 'command', func_get_args());
+    }
+
+    public function deleteAction($id)
+    {
+        $config = $this->getActionConfig();
+
+        $this
+            ->command($config['command'], ['item' => $id, 'entity' => $config['entity']])
+            ->redirect($config['redirect'])
+            ->getResponse();
     }
 }

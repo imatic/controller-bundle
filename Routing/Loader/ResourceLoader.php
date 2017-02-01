@@ -47,7 +47,7 @@ class ResourceLoader extends Loader
                 '_imatic_controller_action' => $action['action'],
             ];
 
-            $requirements = [];
+            $requirements = !empty($action['route']['requirements']) ? $action['route']['requirements'] : [];
             $options = [];
             $host = null;
             $schemes = null;
