@@ -301,19 +301,3 @@ CRUD
     * řeší se standardně, pouze se nastavuje query object pro list, create, edit a delete (a autocomplete)
 * translations
     * v nastavení se definuje slovník pro překlady v šablonách
-
-Dořešit
-```````
-* nastavení práv
-    * collection akce: role
-    * item akce: role nebo voter
-* názvy entit
-    * nazev entity, default trida entity?
-* nastavení překladových slovníků
-    * nazev slovniku, default dle resource podle konvence?
-* nastavení akcí (row, batch, page)
-    * výchozí akce v defaults
-    * nastavení jako mají ActionOptions, Configuration nevaliduje, byla by to duplicita
-    * rozdělení jako v šabloně, page, batch, row
-    * pak dle resource
-    * v šabloně se pak vypíší, všechny dostupné pro daný resource a typ mimo aktuální (edit nezobrazuje edit akci)

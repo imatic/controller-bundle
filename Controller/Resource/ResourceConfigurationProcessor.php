@@ -154,53 +154,60 @@ class ResourceConfigurationProcessor
 
     public function finalizeConfigActionsConfiguration(array $resources, $defaultActions)
     {
-        return array_map(function ($resource) use ($defaultActions, $resources) {
-            return $this->finalizeConfigActionConfiguration($resource, $resources, $defaultActions);
+        return array_map(function ($resource) use ($defaultActions) {
+            return $this->finalizeConfigActionConfiguration($resource, $defaultActions);
         }, $resources);
     }
 
-    public function finalizeConfigActionConfiguration(array $resource, array $resources, array $defaultActions)
+    public function finalizeConfigActionConfiguration(array $resource, array $defaultActions)
     {
-        $resourceActions = (array)(isset($resource['config']['actions']) ? $resource['config']['actions'] : []);
-        $resourceActions = array_replace_recursive($defaultActions, $resourceActions);
+        $resourceActionsGroups = (array)(isset($resource['config']['actions']) ? $resource['config']['actions'] : []);
+        $resourceActionsGroups = array_replace_recursive($defaultActions, $resourceActionsGroups);
 
-        foreach ($resourceActions as $actionName => $action) {
-            if (false === $action) {
-                unset($resourceActions[$actionName]);
-                continue;
-            }
-
-            if (empty($action['route']) && !empty($resource['actions'][$actionName]['route']['name'])) {
-                $resourceActions[$actionName]['route'] = $resource['actions'][$actionName]['route']['name'];
-            }
-
-            if (empty($action['role'])) {
-                $resourceActions[$actionName]['role'] = null;
-            }
-
-            if (empty($action['label'])) {
-                $resourceActions[$actionName]['label'] = ucfirst($actionName);
-            }
-
-            if (empty($action['route']) && !empty($resources['actions'][$actionName]['route']['name'])) {
-                $resourceActions[$actionName]['route'] = $resources['actions'][$actionName]['route']['name'];
-            }
-        }
-
-        // Nested actions
-        foreach ($resourceActions as $actionName => $action) {
-            if (!empty($action['nested']) && array_key_exists($action['nested'], $resourceActions)) {
-                $parent = $action['nested'];
-                if (!isset($resourceActions[$parent]['nested'])) {
-                    $resourceActions[$parent]['nested'] = [];
+        foreach ($resourceActionsGroups as $resourceActionsGroupName => $resourceActions) {
+            foreach ($resourceActions as $actionName => $action) {
+                if (false === $action) {
+                    unset($resourceActions[$actionName]);
+                    continue;
                 }
 
-                unset($action['nested'], $resourceActions[$actionName]);
-                $resourceActions[$parent]['nested'][$actionName] = $action;
+                if (empty($action['route']) && !empty($resource['actions'][$actionName]['route']['name'])) {
+                    $resourceActions[$actionName]['route'] = $resource['actions'][$actionName]['route']['name'];
+                }
+
+                if (empty($action['role'])) {
+                    $resourceActions[$actionName]['role'] = null;
+                }
+
+                if (empty($action['label'])) {
+                    $resourceActions[$actionName]['label'] = ucfirst($actionName);
+                }
+
+                if (isset($resourceActions[$actionName]['route']) && is_array($resourceActions[$actionName]['route'])) {
+                    $resourceActions[$actionName]['route'] = $resourceActions[$actionName]['route']['name'];
+                }
+                if (empty($action['route']) && !empty($resource['actions'][$actionName]['route']['name'])) {
+                    $resourceActions[$actionName]['route'] = $resource['actions'][$actionName]['route']['name'];
+                }
             }
+
+            // Nested actions
+            foreach ($resourceActions as $actionName => $action) {
+                if (!empty($action['nested']) && array_key_exists($action['nested'], $resourceActions)) {
+                    $parent = $action['nested'];
+                    if (!isset($resourceActions[$parent]['nested'])) {
+                        $resourceActions[$parent]['nested'] = [];
+                    }
+
+                    unset($action['nested'], $resourceActions[$actionName]);
+                    $resourceActions[$parent]['nested'][$actionName] = $action;
+                }
+            }
+
+            $resourceActionsGroups[$resourceActionsGroupName] = $resourceActions;
         }
 
-        $resource['config']['actions'] = $resourceActions;
+        $resource['config']['actions'] = $resourceActionsGroups;
 
         return $resource;
     }

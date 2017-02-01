@@ -261,52 +261,42 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
             'Empty actions' => [
                 [],
                 [],
-                [],
                 ['config' => ['actions' => []]],
             ],
             'Empty actions with default actions' => [
-                ['list' => []],
+                ['page' => ['list' => []]],
                 [],
-                [],
-                ['config' => ['actions' => ['list' => ['role' => null, 'label' => 'List']]]],
+                ['config' => ['actions' => ['page' => ['list' => ['role' => null, 'label' => 'List']]]]],
             ],
             'Disabled action' => [
-                ['list' => []],
-                ['config' => ['actions' => ['list' => false]]],
-                [],
-                ['config' => ['actions' => []]],
+                ['page' => ['list' => []]],
+                ['config' => ['actions' => ['page' => ['list' => false]]]],
+                ['config' => ['actions' => ['page' => []]]],
             ],
             'Empty default with resource config' => [
-                ['list' => []],
-                ['config' => ['actions' => ['list' => ['label' => 'List Label', 'role' => 'LIST_ROLE', 'route' => 'list_route']]]],
-                [],
-                ['config' => ['actions' => ['list' => ['label' => 'List Label', 'role' => 'LIST_ROLE', 'route' => 'list_route']]]],
+                ['page' => ['list' => []]],
+                ['config' => ['actions' => ['page' => ['list' => ['label' => 'List Label', 'role' => 'LIST_ROLE', 'route' => 'list_route']]]]],
+                ['config' => ['actions' => ['page' => ['list' => ['label' => 'List Label', 'role' => 'LIST_ROLE', 'route' => 'list_route']]]]],
             ],
             'Default config with resource config' => [
-                ['list' => ['role' => 'LIST_DEFAULT_ROLE']],
-                ['config' => ['actions' => ['list' => ['label' => 'List Label', 'route' => 'list_route']]]],
-                [],
-                ['config' => ['actions' => ['list' => ['label' => 'List Label', 'role' => 'LIST_DEFAULT_ROLE', 'route' => 'list_route']]]],
+                ['page' => ['list' => ['role' => 'LIST_DEFAULT_ROLE']]],
+                ['config' => ['actions' => ['page' => ['list' => ['label' => 'List Label', 'route' => 'list_route']]]]],
+                ['config' => ['actions' => ['page' => ['list' => ['label' => 'List Label', 'role' => 'LIST_DEFAULT_ROLE', 'route' => 'list_route']]]]],
             ],
             'Nested role' => [
-                ['show' => [], 'edit' => ['nested' => 'show']],
+                ['page' => ['show' => [], 'edit' => ['nested' => 'show']]],
                 [],
-                [],
-                ['config' => ['actions' => ['show' => ['label' => 'Show', 'role' => null, 'nested' => ['edit' => ['label' => 'Edit', 'role' => null]]]]]],
+                ['config' => ['actions' => ['page' => ['show' => ['label' => 'Show', 'role' => null, 'nested' => ['edit' => ['label' => 'Edit', 'role' => null]]]]]]],
             ],
             'Route name from target action' => [
-                ['show' => [], 'list' => []],
-                ['actions' => ['list' => ['route' => ['name' => 'list_route']], 'show' => ['route' => ['name' => 'show_route']]]],
-                [],
+                ['page' => ['show' => [], 'list' => []]],
+                ['config' => ['actions' => ['page' => ['list' => ['route' => ['name' => 'list_route']], 'show' => ['route' => ['name' => 'show_route']]]]]],
                 [
-                    'config' => ['actions' => [
+                    'config' => ['actions' => ['page' => [
                         'show' => ['route' => 'show_route', 'role' => null, 'label' => 'Show'],
                         'list' => ['route' => 'list_route', 'role' => null, 'label' => 'List'],
-                    ]],
-                    'actions' => [
-                        'list' => ['route' => ['name' => 'list_route']],
-                        'show' => ['route' => ['name' => 'show_route']],
-                    ]],
+                    ]]],
+                ],
             ],
         ];
     }
@@ -314,10 +304,10 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider testFinalizeConfigActionConfigurationDataProvider
      */
-    public function testFinalizeConfigActionConfiguration(array $defaultActions, array $resource, array $resources, array $expected)
+    public function testFinalizeConfigActionConfiguration(array $defaultActions, array $resource, array $expected)
     {
         $resourceConfigurationProcessor = new ResourceConfigurationProcessor();
-        $resource = $resourceConfigurationProcessor->finalizeConfigActionConfiguration($resource, $resources, $defaultActions);
+        $resource = $resourceConfigurationProcessor->finalizeConfigActionConfiguration($resource, $defaultActions);
 
         $this->assertEquals($expected, $resource);
     }
