@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Routing\Loader;
 
-use Imatic\Bundle\ControllerBundle\Controller\Resource\ResourceConfigurationRepository;
+use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;

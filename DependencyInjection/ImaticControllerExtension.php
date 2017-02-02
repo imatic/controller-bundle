@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 
-use Imatic\Bundle\ControllerBundle\Controller\Resource\ResourceConfigurationProcessor;
+use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;

@@ -1,6 +1,5 @@
 <?php
-
-namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
+namespace Imatic\Bundle\ControllerBundle\Resource;
 
 /**
  * Experimental config class.
@@ -140,35 +139,36 @@ class Config implements \Serializable, \ArrayAccess, \IteratorAggregate
     }
 }
 
+
 // Resources base config
 
-class ResourcesConfig extends Config
+class ResourcesConfig extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
-class ResourcesDefault extends Config
+class ResourcesDefault extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
-class ResourcesActions extends Config
+class ResourcesActions extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
 // Resources
 
-class Resources extends Config
+class Resources extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
 
-class Resource extends Config
+class Resource extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
-class ResourceAction extends Config
+class ResourceAction extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }
 
-class ResourceConfig extends Config
+class ResourceConfig extends \Imatic\Bundle\ControllerBundle\Resource\Config
 {
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Imatic\Bundle\ControllerBundle\Tests\Controller\Resource;
+namespace Imatic\Bundle\ControllerBundle\Tests\Resource;
 
-use Imatic\Bundle\ControllerBundle\Controller\Resource\ResourceConfigurationRepository;
+use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository;
 
 class ResourceConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
 {

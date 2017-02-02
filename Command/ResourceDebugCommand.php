@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Command;
 
-use Imatic\Bundle\ControllerBundle\Controller\Resource\ResourceConfigurationRepository;
+use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

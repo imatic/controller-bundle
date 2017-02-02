@@ -144,6 +144,6 @@ services:
             - { name: routing.loader }
 
     imatic_controller.resource.config_repository:
-        class: Imatic\Bundle\ControllerBundle\Controller\Resource\ResourceConfigurationRepository
+        class: Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository
         arguments:
             - '%imatic_controller.resource.config%'

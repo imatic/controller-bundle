@@ -305,7 +305,7 @@ CRUD
 TODO
 ````
 
-* twig funkre pro konverzi z nastavení na to co potřebuje ActionOption (nemůže a nemělo by být kompatibilní)
+* twig funkce pro konverzi z nastavení na to co potřebuje ActionOption (nemůže a nemělo by být kompatibilní)
 * default config actions a config action by měly být stejné (route array vs string)
 * redirect route, pokud je název shodný s akcí, název routy by se z ní převzal automaticky
 * práva v šablonách
