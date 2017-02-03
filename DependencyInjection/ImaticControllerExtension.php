@@ -5,6 +5,7 @@ namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -36,7 +37,10 @@ class ImaticControllerExtension extends Extension
         $resourceConfigurationProcessor = new ResourceConfigurationProcessor();
         $config = $resourceConfigurationProcessor->process($resourcesConfig, $resources);
 
-        $container->setParameter('imatic_controller.resource.config', $config);
+        foreach ($config as $resourceName => $resource) {
+            $container->setParameter('imatic_controller.resource.config.' . $resourceName, serialize($resource));
+            //$definition = new Definition();
+        }
     }
 
     private function loadImportConfiguration(Loader\YamlFileLoader $loader)

@@ -12,27 +12,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('imatic_controller');
 
-        $actionTypes = ['list', 'autocomplete' ,'show', 'edit', 'create', 'delete', 'batch'];
-
         $rootNode
             ->children()
                 ->arrayNode('resources_config')
                     ->children()
-                        ->arrayNode('defaults')
-                            ->prototype('array')
-                                ->children()
-                                    ->scalarNode('template')->end()
-                                    ->scalarNode('type')->end()
-                                    ->booleanNode('collection')->end()
-                                    ->append($this->getRouteConfiguration())
-                                    ->scalarNode('controller')->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->append($this->getConfigActionsConfiguration())
-                        ->arrayNode('required')
-                            ->prototype('array')
-                                ->prototype('scalar')->end()
+                        ->arrayNode('prototype')
+                            ->children()
+                                ->append($this->getResourceConfigSection())
+                                ->append($this->getResourceActionsSection())
                             ->end()
                         ->end()
                     ->end()
@@ -42,38 +29,8 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('resources')
                     ->prototype('array')
                         ->children()
-                            ->arrayNode('config')
-                                ->children()
-                                    ->append($this->getRouteConfiguration())
-                                    ->scalarNode('entity')->end()
-                                    ->scalarNode('role')->end()
-                                    ->scalarNode('translation_domain')->end()
-                                    ->scalarNode('name')->end()
-                                    ->append($this->getConfigActionsConfiguration())
-                                    ->variableNode('fields')->end()
-                                    ->arrayNode('query')
-                                        ->children()
-                                            ->scalarNode('collection')->end()
-                                            ->scalarNode('item')->end()
-                                        ->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                            ->arrayNode('actions')
-                                ->prototype('array')
-                                    ->children()
-                                        ->append($this->getRouteConfiguration())
-                                        ->enumNode('type')->values($actionTypes)->end()
-                                        ->scalarNode('query')->end()
-                                        ->scalarNode('template')->end()
-                                        ->scalarNode('form')->end()
-                                        ->scalarNode('command')->end()
-                                        ->scalarNode('redirect')->end()
-                                        ->scalarNode('controller')->end()
-                                        ->scalarNode('role')->end()
-                                    ->end()
-                                ->end()
-                            ->end()
+                            ->append($this->getResourceConfigSection())
+                            ->append($this->getResourceActionsSection())
                         ->end()
                     ->end()
                 ->end()
@@ -82,17 +39,52 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    public function getRouteConfiguration()
+    public function getResourceActionsSection()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('route', 'array');
+        $node = $builder->root('actions', 'array');
+
+        $actionGroups = ['page', 'object', 'batch', 'api'];
+        $actionTypes = ['list', 'autocomplete' ,'show', 'edit', 'create', 'delete', 'batch'];
 
         $node
-            ->ignoreExtraKeys(false)
+            ->prototype('array')
                 ->children()
-                    ->scalarNode('path')->end()
-                    ->arrayNode('methods')
-                        ->prototype('enum')->values(['get', 'post', 'put', 'delete'])->end()
+                    ->append($this->getRouteSection())
+                    ->scalarNode('query')->end()
+                    ->scalarNode('template')->end()
+                    ->enumNode('type')->values($actionTypes)->end()
+                    ->enumNode('group')->values($actionGroups)->end()
+                    ->booleanNode('collection')->end()
+                    ->scalarNode('controller')->end()
+                    ->scalarNode('form')->end()
+                    ->scalarNode('command')->end()
+                    ->scalarNode('redirect')->end()
+                    ->scalarNode('role')->end()
+                ->end()
+            ->end();
+
+        return $node;
+    }
+
+
+    public function getResourceConfigSection()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('config', 'array');
+
+        $node
+            ->children()
+                ->append($this->getRouteSection())
+                ->scalarNode('entity')->end()
+                ->scalarNode('role')->end()
+                ->scalarNode('translation_domain')->end()
+                ->scalarNode('name')->end()
+                ->variableNode('fields')->end()
+                ->arrayNode('query')
+                    ->children()
+                        ->scalarNode('collection')->end()
+                        ->scalarNode('item')->end()
                     ->end()
                 ->end()
             ->end();
@@ -100,16 +92,22 @@ class Configuration implements ConfigurationInterface
         return $node;
     }
 
-    public function getConfigActionsConfiguration()
+    public function getRouteSection()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('actions', 'array');
+        $node = $builder->root('route', 'array');
+
+        $methods = ['get', 'post', 'put', 'delete'];
 
         $node
-            ->children()
-                ->variableNode('batch')->end()
-                ->variableNode('page')->end()
-                ->variableNode('row')->end()
+            ->ignoreExtraKeys(false)
+                ->children()
+                    ->scalarNode('name')->end()
+                    ->scalarNode('path')->end()
+                    ->arrayNode('methods')
+                        ->prototype('enum')->values($methods)->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $node;

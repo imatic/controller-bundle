@@ -15,15 +15,6 @@ imatic_controller:
                 translation_domain: UserDomain
                 name: user
                 role: ROLE_USER_ADMIN
-                actions:
-                    page:
-                        list: ~
-                        autocomplete: ~
-                        create: ~
-                    row:
-                        show: ~
-                        edit: ~
-                        delete: ~
             actions:
                 list: ~
                 autocomplete:
