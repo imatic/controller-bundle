@@ -6,17 +6,23 @@ class Resource extends Config
     /**
      * @var ResourceAction[]
      */
-    private $actions;
+    protected $actions;
 
     /**
      * @var ResourceConfig
      */
-    private $config;
+    protected $config;
 
-    public function __construct(array $actions, ResourceConfig $config)
+    /**
+     * @var string
+     */
+    protected $name;
+
+    public function __construct(array $actions, ResourceConfig $config, $name)
     {
         $this->actions = $actions;
         $this->config = $config;
+        $this->name = $name;
     }
 
     /**
@@ -41,5 +47,13 @@ class Resource extends Config
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

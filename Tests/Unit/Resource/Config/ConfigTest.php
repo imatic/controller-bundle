@@ -4,12 +4,13 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\AccessTrait;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Config as BaseConfig;
+use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     public function testSerializable()
     {
-        $a = [1, true, new Config(['x'], false, 'y')];
+        $a = [1, true, new ResourceConfig(['x', false, 'y'])];
         $b = 123;
         $c = 'Hello';
 
@@ -23,9 +24,9 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         // Deep copy test
         $this->assertNotSame($copy, $config);
+        $this->assertInstanceOf(ResourceConfig::class, $copy->a[2]);
         $this->assertEquals($copy->a[2], $config->a[2]);
         $this->assertNotSame($copy->a[2], $config->a[2]);
-        $this->assertInstanceOf(Config::class, $copy->a[2]);
     }
 
     public function testAccessTrait()

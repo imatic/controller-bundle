@@ -8,7 +8,7 @@ class ResourceAction extends Config implements \ArrayAccess
     /**
      * @var array
      */
-    private $config;
+    protected $config;
 
     public function __construct(array $config)
     {

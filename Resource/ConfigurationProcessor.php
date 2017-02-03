@@ -5,8 +5,9 @@ namespace Imatic\Bundle\ControllerBundle\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
+use Symfony\Component\VarDumper\VarDumper;
 
-class ResourceConfigurationProcessor
+class ConfigurationProcessor
 {
     public function process(array $resourcesConfig, array $resources)
     {
@@ -37,7 +38,7 @@ class ResourceConfigurationProcessor
             return new ResourceAction($action);
         }, $resource['actions']);
 
-        return new Resource($resource['actions'], new ResourceConfig($resource['config']));
+        return new Resource($resource['actions'], new ResourceConfig($resource['config']), $resource['name']);
     }
 
     private function configureResourceConfig(array $config, $resourceName)

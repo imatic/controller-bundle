@@ -5,9 +5,9 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
-use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationProcessor;
+use Imatic\Bundle\ControllerBundle\Resource\ConfigurationProcessor;
 
-class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
+class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcessResources()
     {
@@ -46,7 +46,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $processor = new ResourceConfigurationProcessor();
+        $processor = new ConfigurationProcessor();
         $processed = $processor->processResources($resources, $prototype);
 
         $this->assertInternalType('array', $processed);
@@ -60,7 +60,7 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessResource($prototype, $resource, Resource $expected)
     {
-        $processor = new ResourceConfigurationProcessor();
+        $processor = new ConfigurationProcessor();
         $processed = $processor->processResource($resource, $prototype);
 
         $this->assertEquals($expected, $processed);
@@ -90,7 +90,8 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                         'route' => ['path' => '/app/book'],
                         'translation_domain' => 'AppBook',
                         'role' => null,
-                    ])
+                    ]),
+                    'app_book'
                 ),
             ],
             // --------------------------------------------
@@ -132,7 +133,8 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                         'route' => ['path' => '/app/book'],
                         'translation_domain' => 'AppBook',
                         'role' => null,
-                    ])
+                    ]),
+                    'app_book'
                 ),
             ],
             // --------------------------------------------
@@ -175,7 +177,8 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                         'route' => ['path' => '/app/book'],
                         'translation_domain' => 'AppBook',
                         'role' => null,
-                    ])
+                    ]),
+                    'app_book'
                 ),
             ],
             // --------------------------------------------
@@ -190,6 +193,6 @@ class ResourceConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
         };
         $expected = ['a' => '1a', 'b' => '2b'];
 
-        $this->assertEquals($expected, ResourceConfigurationProcessor::arrayMap($fn, $array));
+        $this->assertEquals($expected, ConfigurationProcessor::arrayMap($fn, $array));
     }
 }

@@ -19,12 +19,13 @@ class ResourceController implements ContainerAwareInterface
         $container = $this->container;
         $request = $container->get('request_stack')->getCurrentRequest();
 
-        $resource = $request->attributes->get('_imatic_controller_resource');
-        $action = $request->attributes->get('_imatic_controller_action');
+        $resource = $request->attributes->get('resource');
+        $action = $request->attributes->get('action');
 
         return $container
-            ->get('imatic_controller.resource.config_repository')
-            ->getAction($resource, $action);
+            ->get('imatic_controller.resource.repository')
+            ->getResource($resource)
+            ->getAction($action);
     }
 
     /**
@@ -35,10 +36,10 @@ class ResourceController implements ContainerAwareInterface
         $container = $this->container;
         $request = $container->get('request_stack')->getCurrentRequest();
 
-        $resource = $request->attributes->get('_imatic_controller_resource');
+        $resource = $request->attributes->get('resource');
 
         return $container
-            ->get('imatic_controller.resource.config_repository')
+            ->get('imatic_controller.resource.repository')
             ->getResource($resource);
     }
 }

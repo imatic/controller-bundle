@@ -135,15 +135,10 @@ services:
             - '@imatic_controller.api.feature.data'
         shared: false
 
-    # Resource
-#    imatic_controller.resource.rouging.loader:
-#        class: Imatic\Bundle\ControllerBundle\Routing\Loader\ResourceLoader
-#        arguments:
-#            - '@imatic_controller.resource.config_repository'
-#        tags:
-#            - { name: routing.loader }
-#
-#    imatic_controller.resource.config_repository:
-#        class: Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository
-#        arguments:
-#            - '%imatic_controller.resource.config%'
+    # Resources
+    imatic_controller.resource.rouging.loader:
+        class: Imatic\Bundle\ControllerBundle\Resource\RouteLoader
+        arguments:
+            - '@imatic_controller.resource.repository'
+        tags:
+            - { name: routing.loader }
