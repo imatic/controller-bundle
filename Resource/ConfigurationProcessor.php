@@ -5,7 +5,6 @@ namespace Imatic\Bundle\ControllerBundle\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
-use Symfony\Component\VarDumper\VarDumper;
 
 class ConfigurationProcessor
 {

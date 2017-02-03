@@ -5,7 +5,6 @@ namespace Imatic\Bundle\ControllerBundle\Resource;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\VarDumper\VarDumper;
 
 class RouteLoader extends Loader
 {
