@@ -139,6 +139,6 @@ services:
     imatic_controller.resource.rouging.loader:
         class: Imatic\Bundle\ControllerBundle\Resource\RouteLoader
         arguments:
-            - '@imatic_controller.resource.repository'
+            - '@imatic_controller.resources.resource_repository'
         tags:
             - { name: routing.loader }

@@ -19,11 +19,11 @@ class RouteLoader extends Loader
     private $loaded;
 
     /**
-     * @var ConfigurationRepositoryInterface
+     * @var ConfigurationRepository
      */
     private $repository;
 
-    public function __construct(ConfigurationRepositoryInterface $configurationRepository)
+    public function __construct(ConfigurationRepository $configurationRepository)
     {
         $this->name = 'imatic_resource';
         $this->loaded = false;

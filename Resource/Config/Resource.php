@@ -18,7 +18,7 @@ class Resource extends Config
      */
     protected $name;
 
-    public function __construct(array $actions, ResourceConfig $config, $name)
+    public function __construct(array $actions = [], ResourceConfig $config = null, $name = null)
     {
         $this->actions = $actions;
         $this->config = $config;

@@ -23,8 +23,7 @@ class ResourceController implements ContainerAwareInterface
         $action = $request->attributes->get('action');
 
         return $container
-            ->get('imatic_controller.resource.repository')
-            ->getResource($resource)
+            ->get('imatic_controller.resource.' . $resource)
             ->getAction($action);
     }
 
@@ -39,7 +38,6 @@ class ResourceController implements ContainerAwareInterface
         $resource = $request->attributes->get('resource');
 
         return $container
-            ->get('imatic_controller.resource.repository')
-            ->getResource($resource);
+            ->get('imatic_controller.resource.' . $resource);
     }
 }

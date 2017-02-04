@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Command;
 
-use Imatic\Bundle\ControllerBundle\Resource\ResourceConfigurationRepository;
+use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,7 +24,8 @@ class ResourceDebugCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $resource = $input->getArgument('resource');
-        $repository = $this->getContainer()->get('imatic_controller.resource.config_repository');
+        /** @var ConfigurationRepository $repository */
+        $repository = $this->getContainer()->get('imatic_controller.resources.resource_repository');
 
         $io = new SymfonyStyle($input, $output);
 
@@ -37,22 +38,22 @@ class ResourceDebugCommand extends ContainerAwareCommand
         }
     }
 
-    private function executeResource(StyleInterface $io, ResourceConfigurationRepository $repository, $resourceName)
+    private function executeResource(StyleInterface $io, ConfigurationRepository $repository, $resourceName)
     {
         $resource = $repository->getResource($resourceName);
 
         $io->section('Config');
-        VarDumper::dump($resource['config']);
+        VarDumper::dump($resource->getConfig());
 
         $io->section('Actions');
-        foreach ($resource['actions'] as $action) {
-            $io->text($action['action']);
+        foreach ($resource->getActions() as $action) {
+            $io->text($action['name']);
 
             VarDumper::dump($action);
         }
     }
 
-    private function executeResources(StyleInterface $io, ResourceConfigurationRepository $repository)
+    private function executeResources(StyleInterface $io, ConfigurationRepository $repository)
     {
         $io->listing($repository->getResourceNames());
     }

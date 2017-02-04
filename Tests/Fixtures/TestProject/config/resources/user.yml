@@ -13,6 +13,7 @@ imatic_controller:
                     - {name: age, format: number}
                     - {name: active, format: boolean}
                 translation_domain: UserDomain
+                name: user
                 role: ROLE_USER_ADMIN
             actions:
                 list: ~

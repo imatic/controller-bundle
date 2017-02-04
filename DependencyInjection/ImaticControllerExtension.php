@@ -2,13 +2,13 @@
 
 namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 
+use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationProcessor;
-use Imatic\Bundle\ControllerBundle\Resource\ContainerConfigurationRepository;
+use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class ImaticControllerExtension extends Extension
@@ -39,17 +39,16 @@ class ImaticControllerExtension extends Extension
         $resourceConfigurationProcessor = new ConfigurationProcessor();
         $config = $resourceConfigurationProcessor->process($resourcesConfig, $resources);
 
-        $resourceNames = [];
+        $definition = new Definition(ConfigurationRepository::class);
         foreach ($config as $resourceName => $resource) {
-            $resourceNames[] = $resourceName;
-            $container->setParameter(
-                ContainerConfigurationRepository::formatParameterName($resourceName),
-                serialize($resource)
-            );
+            $resourceDefinition = new Definition(Resource::class);
+            $resourceDefinition->addMethodCall('unserialize', [serialize($resource)]);
+            $container->setDefinition('imatic_controller.resource.' . $resourceName, $resourceDefinition);
+
+            $definition->addMethodCall('addResource', [$resourceName, $resourceDefinition]);
         }
 
-        $definition = new Definition(ContainerConfigurationRepository::class, [new Reference('service_container'), $resourceNames]);
-        $container->setDefinition('imatic_controller.resource.repository', $definition);
+        $container->setDefinition('imatic_controller.resources.resource_repository', $definition);
     }
 
     private function loadImportConfiguration(Loader\YamlFileLoader $loader)

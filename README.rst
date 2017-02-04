@@ -311,3 +311,4 @@ TODO
 * aktuální page akce se nevypisuje
 * route defaults asi nemusí být s prefixem (rozdíl attribute a query)
 * refactoring služeb dle konfigurací
+* name vs label, dořešit definitivně co je name, jak se tvoří atp
