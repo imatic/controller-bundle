@@ -76,10 +76,10 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->append($this->getRouteSection())
-                ->scalarNode('entity')->end()
+                ->scalarNode('entity')->isRequired()->end()
                 ->scalarNode('role')->end()
                 ->scalarNode('translation_domain')->end()
-                ->scalarNode('name')->end()
+                ->scalarNode('name')->isRequired()->end()
                 ->variableNode('fields')->end()
                 ->arrayNode('query')
                     ->children()

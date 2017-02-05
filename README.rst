@@ -309,6 +309,4 @@ TODO
 * redirect route, pokud je název shodný s akcí, název routy by se z ní převzal automaticky
 * práva v šablonách
 * aktuální page akce se nevypisuje
-* route defaults asi nemusí být s prefixem (rozdíl attribute a query)
-* refactoring služeb dle konfigurací
-* name vs label, dořešit definitivně co je name, jak se tvoří atp
+* automatické testy pro resources
