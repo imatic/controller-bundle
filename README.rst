@@ -305,23 +305,8 @@ CRUD
 TODO
 ````
 
-* prototype místo type...?!
-* twig funkce pro konverzi z nastavení na to co potřebuje ActionOption (nemůže a nemělo by být kompatibilní)
-* AKCE: logika pro výpis page a row akcí, není to jednoznačné, na nějaké stránce může být page akce jako na jiné row atp.
 * redirect route, pokud je název shodný s akcí, název routy by se z ní převzal automaticky
 * práva v šablonách
-* aktuální page akce se nevypisuje
+* Votery - pozor, to asi přes SecurityFeature
 * automatické testy pro resources
 * kontrola vyplnění všech povinných údajů v konfiguraci
-* Votery - pozor, to asi přes SecurityFeature
-
-AKCE
-- row: vždy action.collection:false
-- page: currentAction.collection === true ? action.collection = true : all
-
-currentAction.collection = true
-page: null
-row: #id
-currentAction.collection = false
-page: item.id
-row: #id

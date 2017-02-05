@@ -24,6 +24,7 @@ class EditController extends ResourceController
             ->edit(new $config['query']($id, $config['entity']))
             ->successRedirect($config['redirect'], ['id' => $id])
             ->setTemplateName($config['template'])
+            ->addTemplateVariable('action', $config)
             ->addTemplateVariable('resource', $this->getResourceConfig())
             ->getResponse();
     }

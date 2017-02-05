@@ -31,13 +31,16 @@ imatic_controller:
                     route: { methods: [delete], path: "/{id}", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Delete:delete
                     extra:
-                        button_data: {method: delete}
+                        button_data: {method: delete, confirm: 'Are you sure?'}
+                        button_parent: show
                 edit:
                     template: ImaticViewBundle:Crud:edit.html.twig
                     type: edit
                     group: item
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Edit:edit
+                    extra:
+                        button_parent: show
                 batch:
                     type: batch
                     group: batch

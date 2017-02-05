@@ -26,6 +26,7 @@ class CreateController extends ResourceController
                 return ['id' => $item->getId()];
             })
             ->setTemplateName($config['template'])
+            ->addTemplateVariable('action', $config)
             ->addTemplateVariable('resource', $this->getResourceConfig())
             ->getResponse();
     }

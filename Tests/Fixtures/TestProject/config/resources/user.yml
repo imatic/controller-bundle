@@ -18,11 +18,11 @@ imatic_controller:
             actions:
                 list: ~
                 autocomplete:
-                show: ~
                 create:
                     form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
                     command: user.create
                     redirect: imatic_controller_user_show
+                show: ~
                 edit:
                     form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
                     command: user.edit
