@@ -80,6 +80,7 @@ class Configuration implements ConfigurationInterface
                 ->append($this->getRouteSection())
                 ->scalarNode('entity')->isRequired()->end()
                 ->scalarNode('role')->end()
+                ->scalarNode('form')->end()
                 ->scalarNode('translation_domain')->end()
                 ->scalarNode('name')->isRequired()->end()
                 ->variableNode('fields')->end()

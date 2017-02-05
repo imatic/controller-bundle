@@ -21,6 +21,7 @@ class EditController extends ResourceController
         return $this
             ->form($config['form'], null, ['data_class' => $config['entity']])
             ->commandName($config['command'])
+            ->commandParameters(['class' => $config['entity']])
             ->edit(new $config['query']($id, $config['entity']))
             ->successRedirect($config['redirect'], ['id' => $id])
             ->setTemplateName($config['template'])

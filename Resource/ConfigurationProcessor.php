@@ -118,6 +118,11 @@ class ConfigurationProcessor
                 $action['fields'] = $config['fields'];
             }
 
+            // Form - if action form is not defined, use resource form
+            if (empty($action['form']) && !empty($config['form']) && in_array($action['type'], ['create', 'edit'], true)) {
+                $action['form'] = $config['form'];
+            }
+
             // Role
             if (empty($action['role'])) {
                 $action['role'] = null;

@@ -22,6 +22,7 @@ class CreateController extends ResourceController
         return $this
             ->form($config['form'], null, ['data_class' => $config['entity']])
             ->commandName($config['command'])
+            ->commandParameters(['class' => $config['entity']])
             ->successRedirect($config['redirect'], function (CommandResultInterface $result, $item) {
                 return ['id' => $item->getId()];
             })

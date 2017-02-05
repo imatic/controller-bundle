@@ -17,9 +17,14 @@ class DeleteController extends ResourceController
     public function deleteAction($id)
     {
         $config = $this->getActionConfig();
+        $commandParameters = [
+            'item' => $id,
+            'class' => $config['entity'],
+            'query_object' => new $config['query']($id, $config['entity']),
+        ];
 
-        $this
-            ->command($config['command'], ['item' => $id, 'entity' => $config['entity']])
+        return $this
+            ->command($config['command'], $commandParameters)
             ->redirect($config['redirect'])
             ->getResponse();
     }
