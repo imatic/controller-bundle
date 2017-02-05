@@ -5,46 +5,41 @@ imatic_controller:
                 list:
                     template: ImaticViewBundle:Crud:list.html.twig
                     type: list
-                    group: page
-                    collection: true
+                    group: list
                     route: { methods: [get], path: "/" }
                     controller: ImaticControllerBundle:Resource/List:list
                 autocomplete:
                     type: autocomplete
                     group: api
-                    collection: true
                     route: { methods: [get], path: "/autocomplete" }
                     controller: ImaticControllerBundle:Resource/Autocomplete:autocomplete
                 create:
                     template: ImaticViewBundle:Crud:edit.html.twig
                     type: create
-                    group: page
-                    collection: true
+                    group: list
                     route: { methods: [post, get], path: "/create" }
                     controller: ImaticControllerBundle:Resource/Create:create
                 show:
                     template: ImaticViewBundle:Crud:show.html.twig
                     type: show
-                    group: object
-                    collection: false
+                    group: item
                     route: { methods: [get], path: "/{id}", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Show:show
                 delete:
                     type: delete
-                    group: object
-                    collection: false
+                    group: item
                     route: { methods: [delete], path: "/{id}", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Delete:delete
+                    extra:
+                        button_data: {method: delete}
                 edit:
                     template: ImaticViewBundle:Crud:edit.html.twig
                     type: edit
-                    group: object
-                    collection: false
+                    group: item
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Edit:edit
                 batch:
                     type: batch
                     group: batch
-                    collection: true
                     route: { methods: [put, get], path: "/batch" }
                     controller: ImaticControllerBundle:Resource/Batch:batch

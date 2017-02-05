@@ -17,11 +17,11 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
             'actions' => [
                 'list' => [
                     'route' => ['path' => '/'],
-                    'collection' => true,
+                    'group' => 'list',
                 ],
                 'show' => [
                     'route' => ['path' => '/{id}'],
-                    'collection' => false,
+                    'group' => 'item',
                 ],
             ],
         ];
@@ -102,11 +102,11 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'actions' => [
                         'list' => [
                             'route' => ['path' => '/'],
-                            'collection' => true,
+                            'group' => 'list',
                         ],
                         'show' => [
                             'route' => ['path' => '/{id}'],
-                            'collection' => false,
+                            'group' => 'item',
                         ],
                     ],
                 ],
@@ -122,7 +122,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                 new Resource(
                     ['list' => new ResourceAction([
                         'route' => ['path' => '/app/book', 'name' => 'app_book_list'],
-                        'collection' => true,
+                        'group' => 'list',
                         'type' => 'list',
                         'name' => 'list',
                         'entity' => 'BookEntity',
@@ -145,11 +145,11 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                     'actions' => [
                         'list' => [
                             'route' => ['path' => '/'],
-                            'collection' => true,
+                            'group' => 'list',
                         ],
                         'show' => [
                             'route' => ['path' => '/{id}'],
-                            'collection' => false,
+                            'group' => 'item',
                         ],
                     ],
                 ],
@@ -166,7 +166,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                 new Resource(
                     ['list' => new ResourceAction([
                         'route' => ['path' => '/app/book', 'name' => 'app_book_list'],
-                        'collection' => true,
+                        'group' => 'list',
                         'type' => 'list',
                         'name' => 'list',
                         'entity' => 'BookEntity',

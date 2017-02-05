@@ -105,10 +105,9 @@ class ConfigurationProcessor
             $action['route']['path'] = $config['route']['path'] . ($action['route']['path'] === '/' ? '' : $action['route']['path']);
             $action['route']['name'] = sprintf('%s_%s', $resourceName, $action['name']);
 
-            // Query - if action query is not defined, use resource query (item or collection by action type)
-            $queryKey = $action['collection'] ? 'collection' : 'item';
-            if (empty($action['query']) && !empty($config['query'][$queryKey])) {
-                $action['query'] = $config['query'][$queryKey];
+            // Query - if action query is not defined, use resource query (by action group)
+            if (empty($action['query']) && !empty($config['query'][$action['group']])) {
+                $action['query'] = $config['query'][$action['group']];
             }
 
             // Entity - copy entity class to action

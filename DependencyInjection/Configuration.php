@@ -44,7 +44,7 @@ class Configuration implements ConfigurationInterface
         $builder = new TreeBuilder();
         $node = $builder->root('actions', 'array');
 
-        $actionGroups = ['page', 'object', 'batch', 'api'];
+        $actionGroups = ['list', 'item', 'batch', 'api'];
         $actionTypes = ['list', 'autocomplete' ,'show', 'edit', 'create', 'delete', 'batch'];
 
         $node
@@ -55,12 +55,14 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('template')->end()
                     ->enumNode('type')->values($actionTypes)->end()
                     ->enumNode('group')->values($actionGroups)->end()
-                    ->booleanNode('collection')->end()
                     ->scalarNode('controller')->end()
                     ->scalarNode('form')->end()
                     ->scalarNode('command')->end()
                     ->scalarNode('redirect')->end()
                     ->scalarNode('role')->end()
+                    ->arrayNode('extra')
+                        ->prototype('variable')
+                    ->end()
                 ->end()
             ->end();
 
@@ -83,7 +85,7 @@ class Configuration implements ConfigurationInterface
                 ->variableNode('fields')->end()
                 ->arrayNode('query')
                     ->children()
-                        ->scalarNode('collection')->end()
+                        ->scalarNode('list')->end()
                         ->scalarNode('item')->end()
                     ->end()
                 ->end()
