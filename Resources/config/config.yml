@@ -20,6 +20,7 @@ imatic_controller:
                     route: { methods: [post, get], path: "/create" }
                     controller: ImaticControllerBundle:Resource/Create:create
                     command: imatic_data.generic_create
+                    redirect: show
                 show:
                     template: ImaticViewBundle:Crud:show.html.twig
                     type: show
@@ -32,6 +33,7 @@ imatic_controller:
                     route: { methods: [delete], path: "/{id}", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Delete:delete
                     command: imatic_data.generic_delete
+                    redirect: list
                     extra:
                         button_data: {method: delete, confirm: 'Are you sure?'}
                         button_parent: show
@@ -42,6 +44,7 @@ imatic_controller:
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Edit:edit
                     command: imatic_data.generic_edit
+                    redirect: show
                     extra:
                         button_parent: show
                 batch:

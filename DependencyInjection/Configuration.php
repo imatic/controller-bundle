@@ -90,6 +90,9 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('item')->end()
                     ->end()
                 ->end()
+                ->arrayNode('extra')
+                    ->prototype('variable')
+                ->end()
             ->end();
 
         return $node;

@@ -100,7 +100,7 @@ class ConfigurationProcessor
 
     private function finalizeResourceActions(array $actions, array $config, $resourceName)
     {
-        return static::arrayMap(function (array $action) use ($config, $resourceName) {
+        $actions = static::arrayMap(function (array $action) use ($config, $resourceName) {
             // Route - action route prepend with resource route
             $action['route']['path'] = $config['route']['path'] . ($action['route']['path'] === '/' ? '' : $action['route']['path']);
             $action['route']['name'] = sprintf('%s_%s', $resourceName, $action['name']);
@@ -130,6 +130,18 @@ class ConfigurationProcessor
 
             return $action;
         }, $actions);
+
+        // Step 2 - fill based on previously filled values
+        $actions = static::arrayMap(function (array $action) use ($actions) {
+            // Redirect
+            if (!empty($action['redirect']) && !empty($actions[$action['redirect']]['route']['name'])) {
+                $action['redirect'] = $actions[$action['redirect']]['route']['name'];
+            }
+
+            return $action;
+        }, $actions);
+
+        return $actions;
     }
 
     /**

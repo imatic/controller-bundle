@@ -305,7 +305,6 @@ CRUD
 TODO
 ````
 
-* redirect route, pokud je název shodný s akcí, název routy by se z ní převzal automaticky
 * práva v šablonách
 * Votery - pozor, to asi přes SecurityFeature
 * automatické testy pro resources
