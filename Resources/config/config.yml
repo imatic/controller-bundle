@@ -21,16 +21,21 @@ imatic_controller:
                     controller: ImaticControllerBundle:Resource/Create:create
                     command: imatic_data.generic_create
                     redirect: show
+                    extra:
+                        button_data: {ajaxify: false}
                 show:
                     template: ImaticViewBundle:Crud:show.html.twig
                     type: show
                     group: item
                     route: { methods: [get], path: "/{id}", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Show:show
+                    extra:
+                        button_data: {target: modal, modal-size: large, modal-on-close: '@current'}
                 delete:
+                    template: ImaticViewBundle:Crud:delete.html.twig
                     type: delete
                     group: item
-                    route: { methods: [delete], path: "/{id}", requirements: { id: '\d+' } }
+                    route: { methods: [delete, get], path: "/{id}/delete", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Delete:delete
                     command: imatic_data.generic_delete
                     redirect: list
@@ -44,8 +49,9 @@ imatic_controller:
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Edit:edit
                     command: imatic_data.generic_edit
-                    redirect: show
+                    redirect: list
                     extra:
+                        button_data: {target: modal, modal-size: large, data-modal-close-on-form-success: 'true'}
                         button_parent: show
                 batch:
                     type: batch
