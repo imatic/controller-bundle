@@ -3,6 +3,8 @@
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\GetApiTrait;
+use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
+use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -10,6 +12,7 @@ class ResourceController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
     use GetApiTrait;
+    use SecurityTrait;
 
     /**
      * @return array
@@ -19,12 +22,15 @@ class ResourceController implements ContainerAwareInterface
         $container = $this->container;
         $request = $container->get('request_stack')->getCurrentRequest();
 
-        $resource = $request->attributes->get('resource');
-        $action = $request->attributes->get('action');
+        $resourceName = $request->attributes->get('resource');
+        $actionName = $request->attributes->get('action');
 
-        return $container
-            ->get('imatic_controller.resource.' . $resource)
-            ->getAction($action);
+        $resource = $container->get('imatic_controller.resource.' . $resourceName);
+        $action = $resource->getAction($actionName);
+
+        $this->checkAuthorization($resource, $action);
+
+        return $action;
     }
 
     /**
@@ -35,9 +41,19 @@ class ResourceController implements ContainerAwareInterface
         $container = $this->container;
         $request = $container->get('request_stack')->getCurrentRequest();
 
-        $resource = $request->attributes->get('resource');
+        $resourceName = $request->attributes->get('resource');
 
-        return $container
-            ->get('imatic_controller.resource.' . $resource);
+        return $container->get('imatic_controller.resource.' . $resourceName);
+    }
+
+    protected function checkAuthorization(Resource $resource, ResourceAction $action)
+    {
+        if (isset($resource->getConfig()['role'])) {
+            $this->denyAccessUnlessGranted($resource->getConfig()['role']);
+        }
+
+        if (isset($action['role'])) {
+            $this->denyAccessUnlessGranted($action['role']);
+        }
     }
 }
