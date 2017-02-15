@@ -13,27 +13,16 @@ class BatchCommandApi extends CommandApi
     {
         $request = $this->request->getCurrentRequest();
 
-        $command = null;
         if (is_array($allowedCommands)) {
             $this->command->setAllowedCommands($allowedCommands);
-
-            foreach ($request->request->all() as $commandCandidateName => $commandCandidateLabel) {
-                if (array_key_exists($commandCandidateName, $allowedCommands)) {
-                    $command = $allowedCommands[$commandCandidateName];
-                }
-            }
-
-            if (!$command) {
-                $this->response->throwAccessDenied(sprintf('Calling a denied command "%s"', $command));
-            }
+            $this->command->setCommandNames(array_keys($request->request->all()));
         }
 
-        if (!$command) {
-            $command = $allowedCommands;
+        if (!$this->command->getCommandName()) {
+            $this->command->setCommandName($allowedCommands);
         }
 
-        $this->command->setCommandName($command);
-        $this->command->setCommandParameters([
+        $this->command->addCommandParameters([
             'selected' => $request->request->get('selected', []),
             'selectedAll' => $request->request->get('selectedAll', false),
             'query' => $request->get('query', []),

@@ -68,19 +68,30 @@ class CommandFeature
         $this->commandName = $commandName;
     }
 
+    public function setCommandNames(array $names)
+    {
+        $allowedCommandsNames = array_map(function ($command) {
+            return is_array($command) ? $command['command'] : $command;
+        }, $this->allowedCommands);
+
+        foreach ($names as $name) {
+            if (array_key_exists($name, $allowedCommandsNames)) {
+                $this->setCommandName($allowedCommandsNames[$name]);
+
+                if (isset($this->allowedCommands[$name]['command_parameters'])) {
+                    $this->addCommandParameters($this->allowedCommands[$name]['command_parameters']);
+                }
+            }
+        }
+    }
+
     public function isValid()
     {
-        $valid = true;
-
         if (!$this->commandName) {
-            $valid = false;
+            return false;
         }
 
-        if (!empty($this->allowedCommands) && !in_array($this->commandName, $this->allowedCommands)) {
-            $valid = false;
-        }
-
-        return $valid;
+        return true;
     }
 
     /**
