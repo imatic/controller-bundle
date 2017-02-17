@@ -61,6 +61,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('redirect')->end()
                     ->scalarNode('role')->end()
                     ->scalarNode('target')->end()
+                    ->scalarNode('filter')->end()
                     ->variableNode('fields')->end()
                     ->arrayNode('extra')
                         ->prototype('variable')

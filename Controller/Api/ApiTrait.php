@@ -25,7 +25,7 @@ trait ApiTrait
     /**
      * @return AutocompleteApi
      */
-    public function autocomplete()
+    protected function autocomplete()
     {
         return $this->getApi('imatic_controller.api.autocomplete', 'autocomplete', func_get_args());
     }
@@ -33,7 +33,7 @@ trait ApiTrait
     /**
      * @return BatchCommandApi
      */
-    public function batchCommand()
+    protected function batchCommand()
     {
         return $this->getApi('imatic_controller.api.command.batch', 'batchCommand', func_get_args());
     }
@@ -41,7 +41,7 @@ trait ApiTrait
     /**
      * @return CommandApi
      */
-    public function command()
+    protected function command()
     {
         return $this->getApi('imatic_controller.api.command', 'command', func_get_args());
     }
@@ -49,7 +49,7 @@ trait ApiTrait
     /**
      * @return ObjectCommandApi
      */
-    public function objectCommand()
+    protected function objectCommand()
     {
         return $this->getApi('imatic_controller.api.command.object', 'objectCommand', func_get_args());
     }
@@ -57,7 +57,7 @@ trait ApiTrait
     /**
      * @return DownloadApi
      */
-    public function download()
+    protected function download()
     {
         return $this->getApi('imatic_controller.api.download', 'download', func_get_args());
     }
@@ -65,7 +65,7 @@ trait ApiTrait
     /**
      * @return FormApi
      */
-    public function form()
+    protected function form()
     {
         return $this->getApi('imatic_controller.api.form', 'form', func_get_args());
     }
@@ -73,7 +73,7 @@ trait ApiTrait
     /**
      * @return FormApi
      */
-    public function namedForm()
+    protected function namedForm()
     {
         return $this->getApi('imatic_controller.api.form', 'namedForm', func_get_args());
     }
@@ -81,7 +81,7 @@ trait ApiTrait
     /**
      * @return ListingApi
      */
-    public function listing()
+    protected function listing()
     {
         return $this->getApi('imatic_controller.api.listing', 'listing', func_get_args());
     }
@@ -89,7 +89,7 @@ trait ApiTrait
     /**
      * @return ShowApi
      */
-    public function show()
+    protected function show()
     {
         return $this->getApi('imatic_controller.api.show', 'show', func_get_args());
     }
@@ -97,7 +97,7 @@ trait ApiTrait
     /**
      * @return ExportApi
      */
-    public function export()
+    protected function export()
     {
         $this->checkVendor('imatic_controller.api.export', 'imatic/importexport-bundle');
 
@@ -107,7 +107,7 @@ trait ApiTrait
     /**
      * @return ImportApi
      */
-    public function import()
+    protected function import()
     {
         $this->checkVendor('imatic_controller.api.import', 'imatic/importexport-bundle');
 

@@ -15,7 +15,7 @@ class ResourceController implements ContainerAwareInterface
     use SecurityTrait;
 
     /**
-     * @return array
+     * @return ResourceAction
      */
     protected function getActionConfig()
     {
@@ -34,7 +34,7 @@ class ResourceController implements ContainerAwareInterface
     }
 
     /**
-     * @return array
+     * @return \Imatic\Bundle\ControllerBundle\Resource\Config\Resource
      */
     protected function getResourceConfig()
     {
