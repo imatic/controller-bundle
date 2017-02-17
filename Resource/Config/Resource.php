@@ -33,12 +33,25 @@ class Resource extends Config
         return $this->actions;
     }
 
+    public function setActions(array $actions)
+    {
+        return $this->actions = $actions;
+    }
+
     /**
      * @return ResourceAction
      */
     public function getAction($name)
     {
         return $this->actions[$name];
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAction($name)
+    {
+        return isset($this->actions[$name]);
     }
 
     /**

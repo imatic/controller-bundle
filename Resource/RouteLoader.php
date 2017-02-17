@@ -41,12 +41,18 @@ class RouteLoader extends Loader
         /** @var Resource $resourceItem */
         foreach ($this->repository->getResources() as $resourceItem) {
             foreach ($resourceItem->getActions() as $action) {
+                if (!empty($action['target'])) {
+                    continue;
+                }
+
                 $path = $action['route']['path'];
-                $defaults = [
-                    '_controller' => $action['controller'],
-                    'resource' => $resourceItem->getName(),
-                    'action' => $action['name'],
-                ];
+                $defaults = array_replace(
+                    !empty($action['route']['defaults']) ? $action['route']['defaults'] : [],
+                    [
+                        '_controller' => $action['controller'],
+                        'resource' => $resourceItem->getName(),
+                        'action' => $action['name'],
+                    ]);
 
                 $requirements = !empty($action['route']['requirements']) ? $action['route']['requirements'] : [];
                 $options = [];

@@ -33,6 +33,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                 ],
                 'actions' => [
                     'list' => [],
+                    'linked' => ['target' => 'app_user:show'],
                 ],
             ],
             'app_user' => [
@@ -41,7 +42,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
                 ],
                 'actions' => [
                     'list' => null,
-                    'show' => [],
+                    'show' => ['role' => 'SOME_ROLE'],
                 ],
             ],
         ];
@@ -53,6 +54,11 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $processed);
         $this->assertInstanceOf(Resource::class, $processed['app_book']);
         $this->assertInstanceOf(Resource::class, $processed['app_user']);
+
+        // Linked action
+        $linkedAction = $processed['app_book']->getAction('linked');
+        $this->assertEquals('SOME_ROLE', $linkedAction['role']);
+        $this->assertEquals($processed['app_user']->getAction('show'), $linkedAction['target']);
     }
 
     /**

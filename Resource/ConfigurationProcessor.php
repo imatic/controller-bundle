@@ -15,9 +15,13 @@ class ConfigurationProcessor
 
     public function processResources(array $resources, array $prototype)
     {
-        return static::arrayMap(function (array $resource, $resourceName) use ($prototype) {
+        $resources = static::arrayMap(function (array $resource, $resourceName) use ($prototype) {
             return $this->processResource(array_merge($resource, ['name' => $resourceName]), $prototype);
         }, $resources);
+
+        $resources = $this->configureActionLinks($resources);
+
+        return $resources;
     }
 
     public function processResource(array $resource, array $prototype)
@@ -72,6 +76,11 @@ class ConfigurationProcessor
         return self::arrayMap(function ($action, $actionName) {
             $action = (array)$action;
 
+            // Target action (config is provided by remote action)
+            if (!empty($action['target'])) {
+                return $action;
+            }
+
             // Actions type
             if (empty($action['type'])) {
                 $action['type'] = $actionName;
@@ -89,6 +98,11 @@ class ConfigurationProcessor
     private function mergeResource(array $resource, $prototype)
     {
         $resource['actions'] = static::arrayMap(function (array $action) use ($prototype) {
+            // Target action (config is provided by remote action)
+            if (!empty($action['target'])) {
+                return $action;
+            }
+
             $type = $action['type'];
             $defaultResourceConfig = isset($prototype['actions'][$type]) ? $prototype['actions'][$type] : [];
 
@@ -101,6 +115,11 @@ class ConfigurationProcessor
     private function finalizeResourceActions(array $actions, array $config, $resourceName)
     {
         $actions = static::arrayMap(function (array $action) use ($config, $resourceName) {
+            // Target action (config is provided by remote action)
+            if (!empty($action['target'])) {
+                return $action;
+            }
+
             // Route - action route prepend with resource route
             $action['route']['path'] = $config['route']['path'] . ($action['route']['path'] === '/' ? '' : $action['route']['path']);
             $action['route']['name'] = sprintf('%s_%s', $resourceName, $action['name']);
@@ -142,6 +161,34 @@ class ConfigurationProcessor
         }, $actions);
 
         return $actions;
+    }
+
+    private function configureActionLinks(array $resources)
+    {
+        return static::arrayMap(function (Resource $resource, $resourceName) use ($resources) {
+            $actions = static::arrayMap(function (ResourceAction $action, $actionName) use ($resources, $resourceName) {
+
+                if (!empty($action['target'])) {
+                    list($targetResourceName, $targetActionName) = explode(':', $action['target']);
+
+                    if (empty($resources[$targetResourceName]) || !$resources[$targetResourceName]->hasAction($targetActionName)) {
+                        throw new \RuntimeException(sprintf(
+                            'Cannot link action "%s:%s to "%s:%s", target action not found',
+                            $resourceName, $actionName, $targetResourceName, $targetActionName
+                        ));
+                    }
+
+                    $action = $resources[$targetResourceName]->getAction($targetActionName)->link();
+                }
+
+                return $action;
+
+            }, $resource->getActions());
+
+            $resource->setActions($actions);
+
+            return $resource;
+        }, $resources);
     }
 
     /**
