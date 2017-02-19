@@ -56,5 +56,6 @@ imatic_controller:
                 batch:
                     type: batch
                     group: batch
-                    route: { methods: [put, get], path: "/batch" }
+                    route: { methods: [put], path: "/batch" }
+                    redirect: list
                     controller: ImaticControllerBundle:Resource/Batch:batch

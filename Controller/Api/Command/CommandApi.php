@@ -49,6 +49,13 @@ class CommandApi extends Api
         return $this;
     }
 
+    public function commandParameters(array $commandParameters = [])
+    {
+        $this->command->addCommandParameters($commandParameters);
+
+        return $this;
+    }
+
     /**
      * @return CommandResultInterface
      */

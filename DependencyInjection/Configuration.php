@@ -58,16 +58,18 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('controller')->end()
                     ->scalarNode('form')->end()
                     ->scalarNode('command')->end()
+                    ->arrayNode('command_parameters')
+                        ->prototype('variable')->end()
+                    ->end()
                     ->scalarNode('redirect')->end()
                     ->scalarNode('role')->end()
                     ->scalarNode('target')->end()
                     ->scalarNode('filter')->end()
                     ->variableNode('fields')->end()
                     ->arrayNode('extra')
-                        ->prototype('variable')
+                        ->prototype('variable')->end()
                     ->end()
-                ->end()
-            ->end();
+                ->end();
 
         return $node;
     }
