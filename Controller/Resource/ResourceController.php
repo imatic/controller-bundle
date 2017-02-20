@@ -2,7 +2,7 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
-use Imatic\Bundle\ControllerBundle\Controller\Api\GetApiTrait;
+use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 class ResourceController implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-    use GetApiTrait;
+    use ApiTrait;
     use SecurityTrait;
 
     /**

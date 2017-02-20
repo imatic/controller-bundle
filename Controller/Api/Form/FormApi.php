@@ -11,6 +11,8 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
@@ -23,6 +25,7 @@ class FormApi extends CommandApi
 {
     use DataFeatureTrait;
     use TemplateFeatureTrait;
+    use SecurityFeatureTrait;
 
     /**
      * @var TemplateFeature
@@ -39,6 +42,11 @@ class FormApi extends CommandApi
      */
     private $form;
 
+    /**
+     * @var SecurityFeature
+     */
+    private $security;
+
     public function __construct(
         RequestFeature $request,
         ResponseFeature $response,
@@ -47,13 +55,16 @@ class FormApi extends CommandApi
         MessageFeature $message,
         FormFeature $form,
         DataFeature $data,
-        TemplateFeature $template
-    ) {
+        TemplateFeature $template,
+        SecurityFeature $security
+    )
+    {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->form = $form;
         $this->data = $data;
         $this->template = $template;
+        $this->security = $security;
     }
 
     public function form($type, $emptyValue = null, array $options = [])
@@ -89,6 +100,8 @@ class FormApi extends CommandApi
 
     public function getResponse()
     {
+        $this->security->checkDataAuthorization($this->data->all());
+
         $handle = $this->handleForm();
         /** @var FormInterface $form */
         $form = $handle['form'];

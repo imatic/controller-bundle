@@ -147,6 +147,11 @@ class ConfigurationProcessor
                 $action['role'] = null;
             }
 
+            // Data authorization
+            if (!isset($action['data_authorization']) && isset($config['data_authorization'])) {
+                $action['data_authorization'] = $config['data_authorization'];
+            }
+
             return $action;
         }, $actions);
 

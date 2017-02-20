@@ -52,6 +52,12 @@ services:
             - '@translator'
         shared: false
 
+    imatic_controller.api.feature.security:
+        class: Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature
+        arguments:
+            - '@security.authorization_checker'
+        shared: false
+
     # api - concrete
     imatic_controller.api.show:
         class: Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi
@@ -60,6 +66,7 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.data'
+            - '@imatic_controller.api.feature.security'
         shared: false
 
     imatic_controller.api.listing:
@@ -84,6 +91,7 @@ services:
             - '@imatic_controller.api.feature.form'
             - '@imatic_controller.api.feature.data'
             - '@imatic_controller.api.feature.template'
+            - '@imatic_controller.api.feature.security'
         shared: false
 
     imatic_controller.api.command:
@@ -105,6 +113,7 @@ services:
             - '@imatic_controller.api.feature.redirect'
             - '@imatic_controller.api.feature.message'
             - '@imatic_controller.api.feature.data'
+            - '@imatic_controller.api.feature.security'
         shared: false
 
     imatic_controller.api.command.batch:
@@ -124,6 +133,7 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_controller.api.feature.template'
             - '@imatic_controller.api.feature.data'
+            - '@imatic_controller.api.feature.security'
         shared: false
 
     imatic_controller.api.autocomplete:

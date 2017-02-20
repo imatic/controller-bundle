@@ -2,6 +2,8 @@
 
 namespace Imatic\Bundle\ControllerBundle\Command;
 
+use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
+use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,39 +20,47 @@ class ResourceDebugCommand extends ContainerAwareCommand
         $this
             ->setName('imatic:controller:resource-debug')
             ->setDescription('Debug controller resources')
-            ->addArgument('resource', InputArgument::OPTIONAL, 'Resource to debug');
+            ->addArgument('resource', InputArgument::OPTIONAL, 'Resource to debug')
+            ->addArgument('action', InputArgument::OPTIONAL, 'Action to debug');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $resource = $input->getArgument('resource');
+        $resourceName = $input->getArgument('resource');
         /** @var ConfigurationRepository $repository */
         $repository = $this->getContainer()->get('imatic_controller.resources.resource_repository');
 
         $io = new SymfonyStyle($input, $output);
 
-        if ($resource) {
-            $io->title(sprintf('Controller resource %s', $resource));
-            $this->executeResource($io, $repository, $resource);
+        if ($resourceName) {
+            $resource = $repository->getResource($resourceName);
+
+            if ($actionName = $input->getArgument('action')) {
+                $io->title(sprintf('Controller resource action %s:%s', $resourceName, $actionName));
+                $action = $resource->getAction($actionName);
+                $this->executeAction($io, $action);
+            } else {
+                $io->title(sprintf('Controller resource %s', $resourceName));
+                $this->executeResource($io, $resource);
+            }
         } else {
             $io->title('Controller resources');
             $this->executeResources($io, $repository);
         }
     }
 
-    private function executeResource(StyleInterface $io, ConfigurationRepository $repository, $resourceName)
+    private function executeAction(StyleInterface $io, ResourceAction $action)
     {
-        $resource = $repository->getResource($resourceName);
+        VarDumper::dump($action);
+    }
 
+    private function executeResource(StyleInterface $io, Resource $resource)
+    {
         $io->section('Config');
         VarDumper::dump($resource->getConfig());
 
         $io->section('Actions');
-        foreach ($resource->getActions() as $action) {
-            $io->text($action['name']);
-
-            VarDumper::dump($action);
-        }
+        $io->listing(array_keys($resource->getActions()));
     }
 
     private function executeResources(StyleInterface $io, ConfigurationRepository $repository)

@@ -2,14 +2,14 @@
 
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Download;
 
-use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Query\ItemQueryApi;
 use Imatic\Bundle\DataBundle\Data\Query\SingleResultQueryObjectInterface;
 use SplFileInfo;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
-class DownloadApi extends QueryApi
+class DownloadApi extends ItemQueryApi
 {
     protected $fileObjectInterface = 'Imatic\Bundle\DocumentBundle\File\FileObjectInterface';
 
@@ -55,6 +55,8 @@ class DownloadApi extends QueryApi
 
     public function getResponse()
     {
+        $this->security->checkDataAuthorization($this->data->all());
+
         $response = new BinaryFileResponse($this->data->get('file'), 200, [], false, 'inline');
         $response->setContentDisposition(
             $this->data->get('forceDownload') ? ResponseHeaderBag::DISPOSITION_ATTACHMENT : ResponseHeaderBag::DISPOSITION_INLINE,
