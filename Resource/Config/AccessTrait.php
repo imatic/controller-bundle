@@ -43,4 +43,9 @@ trait AccessTrait
     {
         $this->offsetUnset($name);
     }
+
+    public function toArray()
+    {
+        return $this->config;
+    }
 }

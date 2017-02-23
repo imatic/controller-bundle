@@ -302,6 +302,18 @@ CRUD
 * translations
     * v nastavení se definuje slovník pro překlady v šablonách
 
+Security
+controller
+    controller - role z konfigurace (role)
+    controller:akce - role z konfigurace (role)
+    controller:akce:resource - voter z konfigurace (data_authorization)
+=>
+    zapíná se pomocí role v konfiguraci controller nebo action (role is granted)
+    pokud chci kontrolu na úrovni objektu tak přes data_authorization=true (object:akce is granted)
+šablona
+    zobrazení odkazu v šabloně je přes roli
+    a pokud je data_authorization, tak se provede i stejná kontrola podle voter jako v controller
+
 TODO
 ````
 
