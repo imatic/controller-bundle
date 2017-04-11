@@ -22,10 +22,12 @@ class DownloadApi extends ItemQueryApi
         if ($object instanceof SplFileInfo) {
             $file = $object;
 
-            if ($object instanceof UploadedFile) {
-                $name = $object->getClientOriginalName();
-            } else {
-                $name = $object->getFilename();
+            if (!$name) {
+                if ($object instanceof UploadedFile) {
+                    $name = $object->getClientOriginalName();
+                } else {
+                    $name = $object->getFilename();
+                }
             }
         } else {
             if ($object instanceof SingleResultQueryObjectInterface) {
@@ -34,13 +36,16 @@ class DownloadApi extends ItemQueryApi
 
             if (interface_exists($this->fileObjectInterface) && $object instanceof $this->fileObjectInterface) {
                 $file = $object->getFile();
-                $name = $file->getFilename();
 
-                if (
-                    $object instanceof $this->fileInfoInterface ||
-                    is_callable([$object, 'getFileName'])
-                ) {
-                    $name = $object->getFilename();
+                if (!$name) {
+                    if (
+                        $object instanceof $this->fileInfoInterface ||
+                        is_callable([$object, 'getFileName'])
+                    ) {
+                        $name = $object->getFilename();
+                    } else {
+                        $name = $file->getFilename();
+                    }
                 }
             }
         }
