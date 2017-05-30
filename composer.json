@@ -1,10 +1,10 @@
 {
     "name": "imatic/controller-bundle",
     "type": "symfony-bundle",
-    "description": "Imatic Controller Bundle",
-    "keywords": [],
-    "homepage": "http://imatic.cz",
-    "license": "proprietary",
+    "description": "Bundle to write simple controllers",
+    "keywords": ["controller", "symfony"],
+    "homepage": "https://www.imatic.cz",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stepan Koci",
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.0",
         "symfony/framework-bundle": "~3.1",
         "sensio/framework-extra-bundle": "~3.0",
         "imatic/data-bundle": "~3.0"
