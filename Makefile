@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .PHONY: test
-test: phpunit phpmd phpcs
+test: phpunit phpmd phpcs phpda
 
 .PHONY: phpcs
 phpcs:
@@ -29,4 +29,8 @@ update-test:
 .PHONY: configure-pipelines
 configure-pipelines: /usr/local/bin/composer
 	apt-get update
-	apt-get install --yes git
+	apt-get install --yes git graphviz
+
+.PHONY: phpda
+phpda:
+	./vendor/bin/phpda analyze phpda.yml

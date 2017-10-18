@@ -20,7 +20,7 @@ class ImportApi extends Api
     use TemplateFeatureTrait;
     use RedirectFeatureTrait;
 
-    /** @var TemplateFeature; */
+    /** @var TemplateFeature */
     protected $template;
 
     /** @var RedirectFeature */

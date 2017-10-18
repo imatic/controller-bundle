@@ -1,6 +1,7 @@
 /vendor/
 /composer.phar
 /.php_cs.cache
+/phpda.svg
 
 # ide directories
 /.idea
