@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Resource\Config;
 
 trait AccessTrait

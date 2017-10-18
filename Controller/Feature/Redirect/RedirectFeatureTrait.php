@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect;
 
 trait RedirectFeatureTrait

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
 use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;
@@ -32,12 +31,12 @@ class TestKernel extends BaseTestKernel
             new AppImaticControllerBundle(),
         ];
 
-        if (class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
+        if (\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
             $bundles[] = new Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle();
             $bundles[] = new JMS\SerializerBundle\JMSSerializerBundle();
             $bundles[] = new Imatic\Bundle\ImportBundle\ImaticImportBundle();
         }
 
-        return array_merge($parentBundles, $bundles);
+        return \array_merge($parentBundles, $bundles);
     }
 }

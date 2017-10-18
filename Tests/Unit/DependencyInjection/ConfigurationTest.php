@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Imatic\Bundle\ControllerBundle\Tests\DependencyInjection;
 
 use Imatic\Bundle\ControllerBundle\DependencyInjection\Configuration;
@@ -11,7 +9,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     public function testResourcesConfigConfiguration()
     {
-        $config = Yaml::parse(file_get_contents(__DIR__ . '/../../../Resources/config/config.yml'));
+        $config = Yaml::parse(\file_get_contents(__DIR__ . '/../../../Resources/config/config.yml'));
 
         $configuration = new Configuration();
 
@@ -23,7 +21,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testResourcesConfiguration()
     {
-        $config = Yaml::parse(file_get_contents(__DIR__ . '/../../Fixtures/TestProject/config/resources/user.yml'));
+        $config = Yaml::parse(\file_get_contents(__DIR__ . '/../../Fixtures/TestProject/config/resources/user.yml'));
 
         $configuration = new Configuration();
 

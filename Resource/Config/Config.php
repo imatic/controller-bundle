@@ -5,12 +5,12 @@ class Config implements \Serializable
 {
     public function serialize()
     {
-        return serialize(get_object_vars($this));
+        return \serialize(\get_object_vars($this));
     }
 
     public function unserialize($serialized)
     {
-        $unserialized = unserialize($serialized, ['allowed_classes' => true]);
+        $unserialized = \unserialize($serialized, ['allowed_classes' => true]);
 
         foreach ($unserialized as $name => $value) {
             $this->{$name} = $value;
@@ -19,6 +19,6 @@ class Config implements \Serializable
 
     public function copy()
     {
-        return unserialize(serialize($this));
+        return \unserialize(\serialize($this));
     }
 }

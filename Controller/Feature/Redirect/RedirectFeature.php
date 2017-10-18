@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect;
 
 use Imatic\Bundle\ControllerBundle\Exception\InvalidRedirectException;
@@ -53,29 +52,29 @@ class RedirectFeature
 
     public function hasSuccessRedirect()
     {
-        return array_key_exists('success', $this->redirects);
+        return \array_key_exists('success', $this->redirects);
     }
 
     public function hasErrorRedirect()
     {
-        return array_key_exists('error', $this->redirects);
+        return \array_key_exists('error', $this->redirects);
     }
 
     public function hasRedirect($name)
     {
-        return array_key_exists($name, $this->redirects);
+        return \array_key_exists($name, $this->redirects);
     }
 
     public function getRedirectUrl($name, $parameters = [])
     {
-        if (!array_key_exists($name, $this->redirects)) {
+        if (!\array_key_exists($name, $this->redirects)) {
             throw new InvalidRedirectException($name);
         }
 
         if ($this->redirects[$name]['parameters'] instanceof \Closure) {
-            $parameters = call_user_func_array($this->redirects[$name]['parameters'], $parameters);
+            $parameters = \call_user_func_array($this->redirects[$name]['parameters'], $parameters);
         } else {
-            $parameters = array_merge($this->redirects[$name]['parameters'], $parameters);
+            $parameters = \array_merge($this->redirects[$name]['parameters'], $parameters);
         }
 
         if ('@current' === $this->redirects[$name]['route']) {
@@ -90,7 +89,7 @@ class RedirectFeature
     protected function setRedirect($name, $routeName, $parameters = null)
     {
         $parameters = (null === $parameters ? [] : $parameters);
-        if (!is_array($parameters) && !($parameters instanceof \Closure)) {
+        if (!\is_array($parameters) && !($parameters instanceof \Closure)) {
             throw new InvalidRedirectParameterException($parameters);
         }
         $this->redirects[$name] = ['route' => $routeName, 'parameters' => $parameters];

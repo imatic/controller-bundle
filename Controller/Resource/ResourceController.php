@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;

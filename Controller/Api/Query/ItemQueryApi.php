@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Query;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;

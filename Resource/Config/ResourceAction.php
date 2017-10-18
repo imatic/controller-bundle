@@ -17,12 +17,12 @@ class ResourceAction extends Config implements \ArrayAccess
 
     public function link(array $newConfig = [])
     {
-        $config = array_replace_recursive(
+        $config = \array_replace_recursive(
             $this->config,
             $newConfig,
             ['target' => $this]
         );
 
-        return new ResourceAction($config);
+        return new self($config);
     }
 }

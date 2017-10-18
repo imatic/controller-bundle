@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
 class BatchCommandApi extends CommandApi
@@ -13,9 +12,9 @@ class BatchCommandApi extends CommandApi
     {
         $request = $this->request->getCurrentRequest();
 
-        if (is_array($allowedCommands)) {
+        if (\is_array($allowedCommands)) {
             $this->command->setAllowedCommands($allowedCommands);
-            $this->command->setCommandNames(array_keys($request->request->all()));
+            $this->command->setCommandNames(\array_keys($request->request->all()));
         }
 
         if (!$this->command->getCommandName()) {

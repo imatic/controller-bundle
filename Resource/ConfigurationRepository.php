@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -7,7 +6,7 @@ use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 class ConfigurationRepository
 {
     /**
-     * @var Resource[]
+     * @var resource[]
      */
     private $resources;
 
@@ -22,7 +21,7 @@ class ConfigurationRepository
     }
 
     /**
-     * @return Resource[]
+     * @return resource[]
      */
     public function getResources()
     {
@@ -31,13 +30,14 @@ class ConfigurationRepository
 
     /**
      * @param string $resourceName
-     * @return Resource
+     *
+     * @return resource
      */
     public function getResource($resourceName)
     {
         if (!isset($this->resources[$resourceName])) {
             throw new \InvalidArgumentException(
-                sprintf('Resource "%s" not found', $resourceName)
+                \sprintf('Resource "%s" not found', $resourceName)
             );
         }
 
@@ -49,6 +49,6 @@ class ConfigurationRepository
      */
     public function getResourceNames()
     {
-        return array_keys($this->resources);
+        return \array_keys($this->resources);
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -18,17 +17,16 @@ class DeleteController extends ResourceController
                     new $config['query']($id, $config['entity'])
                 )
                 ->redirect($config['redirect'])
-                ->addDataAuthorizationCheck(strtoupper($config['name']), 'object')
+                ->addDataAuthorizationCheck(\strtoupper($config['name']), 'object')
                 ->enableDataAuthorization($config['data_authorization'])
                 ->getResponse();
-        } else {
-            return $this->show(new $config['query']($id, $config['entity']))
-                ->addDataAuthorizationCheck(strtoupper($config['name']), 'item')
+        }
+        return $this->show(new $config['query']($id, $config['entity']))
+                ->addDataAuthorizationCheck(\strtoupper($config['name']), 'item')
                 ->enableDataAuthorization($config['data_authorization'])
                 ->setTemplateName($config['template'])
                 ->addTemplateVariable('action', $config)
                 ->addTemplateVariable('resource', $this->getResourceConfig())
                 ->getResponse();
-        }
     }
 }

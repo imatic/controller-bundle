@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -16,7 +15,7 @@ class ConfigurationProcessor
     public function processResources(array $resources, array $prototype)
     {
         $resources = static::arrayMap(function (array $resource, $resourceName) use ($prototype) {
-            return $this->processResource(array_merge($resource, ['name' => $resourceName]), $prototype);
+            return $this->processResource(\array_merge($resource, ['name' => $resourceName]), $prototype);
         }, $resources);
 
         $resources = $this->configureActionLinks($resources);
@@ -51,12 +50,12 @@ class ConfigurationProcessor
             $config['route'] = [];
         }
         if (empty($config['route']['path'])) {
-            $config['route']['path'] = '/' . str_replace(['_', '-', '.'], '/', $resourceName);
+            $config['route']['path'] = '/' . \str_replace(['_', '-', '.'], '/', $resourceName);
         }
 
         // Translation domain
         if (empty($config['translation_domain'])) {
-            $config['translation_domain'] = str_replace(['.', '_', '-'], '', ucwords($resourceName, '\.\_\-'));
+            $config['translation_domain'] = \str_replace(['.', '_', '-'], '', \ucwords($resourceName, '\.\_\-'));
         }
 
         // Role name
@@ -69,12 +68,12 @@ class ConfigurationProcessor
 
     private function configureResourceActions(array $actions)
     {
-        $actions = array_filter($actions, function ($action) {
+        $actions = \array_filter($actions, function ($action) {
             return false !== $action;
         });
 
         return self::arrayMap(function ($action, $actionName) {
-            $action = (array)$action;
+            $action = (array) $action;
 
             // Target action (config is provided by remote action)
             if (!empty($action['target'])) {
@@ -106,7 +105,7 @@ class ConfigurationProcessor
             $type = $action['type'];
             $defaultResourceConfig = isset($prototype['actions'][$type]) ? $prototype['actions'][$type] : [];
 
-            return array_replace_recursive($defaultResourceConfig, $action);
+            return \array_replace_recursive($defaultResourceConfig, $action);
         }, $resource['actions']);
 
         return $resource;
@@ -122,7 +121,7 @@ class ConfigurationProcessor
 
             // Route - action route prepend with resource route
             $action['route']['path'] = $config['route']['path'] . ($action['route']['path'] === '/' ? '' : $action['route']['path']);
-            $action['route']['name'] = sprintf('%s_%s', $resourceName, $action['name']);
+            $action['route']['name'] = \sprintf('%s_%s', $resourceName, $action['name']);
 
             // Query - if action query is not defined, use resource query (by action group)
             if (empty($action['query']) && !empty($config['query'][$action['group']])) {
@@ -138,7 +137,7 @@ class ConfigurationProcessor
             }
 
             // Form - if action form is not defined, use resource form
-            if (empty($action['form']) && !empty($config['form']) && in_array($action['type'], ['create', 'edit'], true)) {
+            if (empty($action['form']) && !empty($config['form']) && \in_array($action['type'], ['create', 'edit'], true)) {
                 $action['form'] = $config['form'];
             }
 
@@ -173,10 +172,10 @@ class ConfigurationProcessor
         return static::arrayMap(function (Resource $resource, $resourceName) use ($resources) {
             $actions = static::arrayMap(function (ResourceAction $action, $actionName) use ($resources, $resourceName) {
                 if (!empty($action['target'])) {
-                    list($targetResourceName, $targetActionName) = explode(':', $action['target']);
+                    list($targetResourceName, $targetActionName) = \explode(':', $action['target']);
 
                     if (empty($resources[$targetResourceName]) || !$resources[$targetResourceName]->hasAction($targetActionName)) {
-                        throw new \RuntimeException(sprintf(
+                        throw new \RuntimeException(\sprintf(
                             'Cannot link action "%s:%s to "%s:%s", target action not found',
                             $resourceName,
                             $actionName,
@@ -204,7 +203,7 @@ class ConfigurationProcessor
     public static function arrayMap(callable $callback, array $array)
     {
         foreach ($array as $key => $value) {
-            $array[$key] = call_user_func($callback, $value, $key);
+            $array[$key] = \call_user_func($callback, $value, $key);
         }
 
         return $array;

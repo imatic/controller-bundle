@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler;
 
 use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
@@ -13,7 +12,7 @@ class UserGreetHandler implements HandlerInterface
 {
     public function handle(CommandInterface $command)
     {
-        $message = sprintf('Hello %s!', $command->getParameter('username'));
+        $message = \sprintf('Hello %s!', $command->getParameter('username'));
 
         return CommandResult::success($message);
     }

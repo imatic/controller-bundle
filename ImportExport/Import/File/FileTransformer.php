@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\ImportExport\Import\File;
 
 use Exception;

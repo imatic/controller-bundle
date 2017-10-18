@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Ajax;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
@@ -48,12 +47,12 @@ class AutocompleteApi extends QueryApi
         $displayCriteria = $this->request->getDisplayCriteria(['filter' => new AutocompleteFilter()]);
 
         $items = $this->data->query('items', $this->queryObject, $displayCriteria);
-        $result = array();
+        $result = [];
         foreach ($items as $item) {
-            $result[] = array(
-                'id' => call_user_func($this->identifierFunction, $item),
-                'text' => call_user_func($this->labelFunction, $item),
-            );
+            $result[] = [
+                'id' => \call_user_func($this->identifierFunction, $item),
+                'text' => \call_user_func($this->labelFunction, $item),
+            ];
         }
 
         return new JsonResponse($result);

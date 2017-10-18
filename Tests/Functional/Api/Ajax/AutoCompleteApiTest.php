@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Api\Ajax;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
@@ -20,7 +19,7 @@ class AutoCompleteApiTest extends WebTestCase
             ],
         ]);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $response = json_decode($client->getInternalResponse()->getContent());
+        $response = \json_decode($client->getInternalResponse()->getContent());
 
         $this->assertEmpty($response);
     }
@@ -36,7 +35,7 @@ class AutoCompleteApiTest extends WebTestCase
             ],
         ]);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $response = json_decode($client->getInternalResponse()->getContent());
+        $response = \json_decode($client->getInternalResponse()->getContent());
 
         $this->assertCount(12, $response);
     }

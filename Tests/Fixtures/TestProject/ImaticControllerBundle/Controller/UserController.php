@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
@@ -27,8 +26,7 @@ class UserController extends Controller
     {
         return $this->autocomplete()
             ->autocomplete(new UserListQuery())
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
@@ -124,8 +122,7 @@ class UserController extends Controller
                 'username' => $username,
             ])
             ->redirect('app_user_list')
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
@@ -145,9 +142,8 @@ class UserController extends Controller
     public function dataAction()
     {
         return $this->download()
-            ->download(new \SplFileInfo(__DIR__.'/../../../userData'))
-            ->getResponse()
-        ;
+            ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
+            ->getResponse();
     }
 
     /**
@@ -157,8 +153,7 @@ class UserController extends Controller
     {
         return $this->export()
             ->export(new UserListQuery(), 'csv', 'users.csv')
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
@@ -178,8 +173,7 @@ class UserController extends Controller
             ])
             ->successRedirect('app_user_import_success')
             ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**

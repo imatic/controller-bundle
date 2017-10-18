@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -58,15 +57,17 @@ class ViewTypeSelector
 
     /**
      * @param array $types
+     *
      * @return bool
      */
     public function isTypesAllowed(array $types)
     {
-        return count(array_intersect($types, $this->getAllowedTypes())) > 0;
+        return \count(\array_intersect($types, $this->getAllowedTypes())) > 0;
     }
 
     /**
      * @param string $type
+     *
      * @return bool
      */
     public function isTypeAllowed($type)
@@ -76,12 +77,13 @@ class ViewTypeSelector
 
     /**
      * @param string $type
+     *
      * @throws AccessDeniedException
      */
     public function ensureTypeAllowed($type)
     {
         if (!$this->isTypeAllowed($type)) {
-            throw new AccessDeniedException(sprintf('Access to "%s"  is not allowed', $type));
+            throw new AccessDeniedException(\sprintf('Access to "%s"  is not allowed', $type));
         }
     }
 
@@ -91,15 +93,15 @@ class ViewTypeSelector
     public function getDefaultType()
     {
         $sessionType = $this->getSessionType();
-        if (in_array($sessionType, $this->allowedTypes, true)) {
+        if (\in_array($sessionType, $this->allowedTypes, true)) {
             return $sessionType;
-        } else {
-            return reset($this->allowedTypes);
         }
+        return \reset($this->allowedTypes);
     }
 
     /**
      * @return string
+     *
      * @throws NotFoundHttpException
      */
     public function getDefaultTypeOrThrow()
@@ -129,6 +131,6 @@ class ViewTypeSelector
 
     protected function getTypeSessionKey()
     {
-        return sprintf('imatic_controller_%s_type', $this->sessionKey);
+        return \sprintf('imatic_controller_%s_type', $this->sessionKey);
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Download;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\ItemQueryApi;
@@ -34,13 +33,13 @@ class DownloadApi extends ItemQueryApi
                 $object = $this->data->query('object', $object);
             }
 
-            if (interface_exists($this->fileObjectInterface) && $object instanceof $this->fileObjectInterface) {
+            if (\interface_exists($this->fileObjectInterface) && $object instanceof $this->fileObjectInterface) {
                 $file = $object->getFile();
 
                 if (!$name) {
                     if (
                         $object instanceof $this->fileInfoInterface ||
-                        is_callable([$object, 'getFileName'])
+                        \is_callable([$object, 'getFileName'])
                     ) {
                         $name = $object->getFilename();
                     } else {
@@ -66,7 +65,7 @@ class DownloadApi extends ItemQueryApi
         $response->setContentDisposition(
             $this->data->get('forceDownload') ? ResponseHeaderBag::DISPOSITION_ATTACHMENT : ResponseHeaderBag::DISPOSITION_INLINE,
             $this->data->get('name'),
-            iconv('UTF-8', 'ASCII//TRANSLIT', $this->data->get('name'))
+            \iconv('UTF-8', 'ASCII//TRANSLIT', $this->data->get('name'))
         );
 
         return $response;

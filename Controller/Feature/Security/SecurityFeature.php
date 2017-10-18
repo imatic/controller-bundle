@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Security;
 
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -55,19 +54,19 @@ class SecurityFeature
             $dataKey = $check['dataKey'];
 
             if (!isset($data[$dataKey])) {
-                throw new \InvalidArgumentException(sprintf('Invalid data key "%s"', $dataKey));
+                throw new \InvalidArgumentException(\sprintf('Invalid data key "%s"', $dataKey));
             }
 
             $dataItem = $data[$dataKey];
 
             if ($check['callback']) {
-                $dataItem = call_user_func($check['callback'], $dataItem);
+                $dataItem = \call_user_func($check['callback'], $dataItem);
             }
 
-            $message = sprintf(
+            $message = \sprintf(
                 'Access denied for data with key "%s" (attributes: "%s")',
                 $dataKey,
-                var_export($check['attributes'], true)
+                \var_export($check['attributes'], true)
             );
             $this->checkAuthorization($check['attributes'], $dataItem, $message);
         }
