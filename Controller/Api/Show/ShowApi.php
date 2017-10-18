@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Show;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\ItemQueryApi;

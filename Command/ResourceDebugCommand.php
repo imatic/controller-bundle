@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Command;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -36,11 +35,11 @@ class ResourceDebugCommand extends ContainerAwareCommand
             $resource = $repository->getResource($resourceName);
 
             if ($actionName = $input->getArgument('action')) {
-                $io->title(sprintf('Controller resource action %s:%s', $resourceName, $actionName));
+                $io->title(\sprintf('Controller resource action %s:%s', $resourceName, $actionName));
                 $action = $resource->getAction($actionName);
                 $this->executeAction($io, $action);
             } else {
-                $io->title(sprintf('Controller resource %s', $resourceName));
+                $io->title(\sprintf('Controller resource %s', $resourceName));
                 $this->executeResource($io, $resource);
             }
         } else {
@@ -60,7 +59,7 @@ class ResourceDebugCommand extends ContainerAwareCommand
         VarDumper::dump($resource->getConfig());
 
         $io->section('Actions');
-        $io->listing(array_keys($resource->getActions()));
+        $io->listing(\array_keys($resource->getActions()));
     }
 
     private function executeResources(StyleInterface $io, ConfigurationRepository $repository)

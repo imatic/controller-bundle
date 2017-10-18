@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Resource;
 
 use Symfony\Component\Config\Loader\Loader;
@@ -14,7 +13,7 @@ class RouteLoader extends Loader
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $loaded;
 
@@ -38,7 +37,7 @@ class RouteLoader extends Loader
 
         $routes = new RouteCollection();
 
-        /** @var Resource $resourceItem */
+        /** @var resource $resourceItem */
         foreach ($this->repository->getResources() as $resourceItem) {
             foreach ($resourceItem->getActions() as $action) {
                 if (!empty($action['target'])) {
@@ -46,13 +45,14 @@ class RouteLoader extends Loader
                 }
 
                 $path = $action['route']['path'];
-                $defaults = array_replace(
+                $defaults = \array_replace(
                     !empty($action['route']['defaults']) ? $action['route']['defaults'] : [],
                     [
                         '_controller' => $action['controller'],
                         'resource' => $resourceItem->getName(),
                         'action' => $action['name'],
-                    ]);
+                    ]
+                );
 
                 $requirements = !empty($action['route']['requirements']) ? $action['route']['requirements'] : [];
                 $options = [];

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature;
@@ -36,8 +35,7 @@ class ObjectCommandApi extends CommandApi
         MessageFeature $message,
         DataFeature $data,
         SecurityFeature $security
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->data = $data;

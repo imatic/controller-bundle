@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Security;
 
 /**
@@ -29,6 +28,7 @@ trait SecurityFeatureTrait
 
     /**
      * @param bool $enable
+     *
      * @return $this
      */
     public function enableDataAuthorization($enable = true)

@@ -1,10 +1,9 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Form\Type\Filter;
 
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Filter;
-use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterOperatorMap;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Filter\TextRule;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterOperatorMap;
 
 class AutocompleteFilter extends Filter
 {

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 class ShowController extends ResourceController
@@ -10,7 +9,7 @@ class ShowController extends ResourceController
 
         return $this
             ->show(new $config['query']($id, $config['entity']))
-            ->addDataAuthorizationCheck(strtoupper($config['name']), 'item')
+            ->addDataAuthorizationCheck(\strtoupper($config['name']), 'item')
             ->enableDataAuthorization($config['data_authorization'])
             ->setTemplateName($config['template'])
             ->addTemplateVariable('action', $config)

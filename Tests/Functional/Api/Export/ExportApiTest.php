@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Api\Export;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
@@ -12,7 +11,7 @@ class ExportApiTest extends WebTestCase
     protected function setUp()
     {
         parent::setUp();
-        if (!class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
+        if (!\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
             $this->markTestSkipped('ImaticImportExportBundle is not installed.');
         }
     }

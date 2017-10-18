@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;

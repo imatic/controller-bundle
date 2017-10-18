@@ -31,7 +31,11 @@
         "imatic/testing-bundle": "~3.0",
         "phpunit/phpunit": "~5.2",
         "imatic/view-bundle": "~3.0",
-        "imatic/form-bundle": "~3.0"
+        "imatic/form-bundle": "~3.0",
+        "friendsofphp/php-cs-fixer": "^2.7",
+        "phpmd/phpmd": "^2.6",
+        "mamuz/php-dependency-analysis": "^1.3",
+        "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"

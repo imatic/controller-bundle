@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Listing;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
@@ -18,8 +17,8 @@ class ListingApiTest extends WebTestCase
 
         $records = $crawler->filter('#action table tr');
         $this->assertEquals(10, $records->count());
-        $this->assertEquals('User 1 (Inactive)', trim($records->first()->filter('td')->first()->text()));
-        $this->assertEquals('User 10 (Active)', trim($records->last()->filter('td')->first()->text()));
+        $this->assertEquals('User 1 (Inactive)', \trim($records->first()->filter('td')->first()->text()));
+        $this->assertEquals('User 10 (Active)', \trim($records->last()->filter('td')->first()->text()));
     }
 
     /** @test */
@@ -41,14 +40,14 @@ class ListingApiTest extends WebTestCase
             ],
         ];
 
-        $crawler = $client->request('GET', '/test/user?'.http_build_query($displayCriteria));
+        $crawler = $client->request('GET', '/test/user?' . \http_build_query($displayCriteria));
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $records = $crawler->filter('#action table tr');
 
         $this->assertEquals(10, $records->count());
-        $this->assertEquals('User 1 (Inactive)', trim($records->first()->filter('td')->first()->text()));
-        $this->assertEquals('User 18 (Active)', trim($records->last()->filter('td')->first()->text()));
+        $this->assertEquals('User 1 (Inactive)', \trim($records->first()->filter('td')->first()->text()));
+        $this->assertEquals('User 18 (Active)', \trim($records->last()->filter('td')->first()->text()));
     }
 
     /** @test */
@@ -60,7 +59,7 @@ class ListingApiTest extends WebTestCase
 
         $records = $crawler->filter('#action table tr');
         $this->assertEquals(10, $records->count());
-        $this->assertEquals('User 11 (Inactive)', trim($records->first()->filter('td')->first()->text()));
-        $this->assertEquals('User 20 (Active)', trim($records->last()->filter('td')->first()->text()));
+        $this->assertEquals('User 11 (Inactive)', \trim($records->first()->filter('td')->first()->text()));
+        $this->assertEquals('User 20 (Active)', \trim($records->last()->filter('td')->first()->text()));
     }
 }

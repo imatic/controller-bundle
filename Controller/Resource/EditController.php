@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 class EditController extends ResourceController
@@ -9,7 +8,7 @@ class EditController extends ResourceController
         $config = $this->getActionConfig();
 
         return $this
-            ->form($config['form'], null, array_merge(['data_class' => $config['entity']], $config['form_options']))
+            ->form($config['form'], null, \array_merge(['data_class' => $config['entity']], $config['form_options']))
             ->commandName($config['command'])
             ->commandParameters(['class' => $config['entity']])
             ->edit(new $config['query']($id, $config['entity']))
@@ -17,7 +16,7 @@ class EditController extends ResourceController
             ->setTemplateName($config['template'])
             ->addTemplateVariable('action', $config)
             ->addTemplateVariable('resource', $this->getResourceConfig())
-            ->addDataAuthorizationCheck(strtoupper($config['name']), 'item')
+            ->addDataAuthorizationCheck(\strtoupper($config['name']), 'item')
             ->enableDataAuthorization($config['data_authorization'])
             ->getResponse();
     }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -45,7 +44,7 @@ class Configuration implements ConfigurationInterface
         $node = $builder->root('actions', 'array');
 
         $actionGroups = ['list', 'item', 'batch', 'api'];
-        $actionTypes = ['list', 'autocomplete' ,'show', 'edit', 'create', 'delete', 'batch'];
+        $actionTypes = ['list', 'autocomplete', 'show', 'edit', 'create', 'delete', 'batch'];
 
         $node
             ->prototype('array')
@@ -77,7 +76,6 @@ class Configuration implements ConfigurationInterface
 
         return $node;
     }
-
 
     public function getResourceConfigSection()
     {

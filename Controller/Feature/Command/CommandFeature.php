@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Command;
 
 use Imatic\Bundle\ControllerBundle\Exception\InvalidCommandExecutionException;
@@ -31,8 +30,8 @@ class CommandFeature
 
     public function __construct(
         CommandExecutorInterface $commandExecutor,
-        HandlerRepositoryInterface $handlerRepository)
-    {
+        HandlerRepositoryInterface $handlerRepository
+    ) {
         $this->commandExecutor = $commandExecutor;
         $this->handlerRepository = $handlerRepository;
         $this->commandParameters = [];
@@ -50,7 +49,7 @@ class CommandFeature
 
     public function addCommandParameters(array $commandParameters)
     {
-        $this->commandParameters = array_merge($this->commandParameters, $commandParameters);
+        $this->commandParameters = \array_merge($this->commandParameters, $commandParameters);
     }
 
     public function addCommandParameter($name, $object)
@@ -70,12 +69,12 @@ class CommandFeature
 
     public function setCommandNames(array $names)
     {
-        $allowedCommandsNames = array_map(function ($command) {
-            return is_array($command) ? $command['command'] : $command;
+        $allowedCommandsNames = \array_map(function ($command) {
+            return \is_array($command) ? $command['command'] : $command;
         }, $this->allowedCommands);
 
         foreach ($names as $name) {
-            if (array_key_exists($name, $allowedCommandsNames)) {
+            if (\array_key_exists($name, $allowedCommandsNames)) {
                 $this->setCommandName($allowedCommandsNames[$name]);
 
                 if (isset($this->allowedCommands[$name]['command_parameters'])) {
@@ -107,7 +106,7 @@ class CommandFeature
             throw new InvalidCommandExecutionException($this->commandName);
         }
 
-        $parameters = array_merge($this->commandParameters, $parameters);
+        $parameters = \array_merge($this->commandParameters, $parameters);
         $command = new CommandToExecute($this->commandName, $parameters);
 
         return $this->commandExecutor->execute($command);

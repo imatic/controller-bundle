@@ -1,10 +1,9 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
+use Doctrine\ORM\EntityManager;
 use Imatic\Bundle\TestingBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\ORM\EntityManager;
 
 class WebTestCase extends BaseWebTestCase
 {

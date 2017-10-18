@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;

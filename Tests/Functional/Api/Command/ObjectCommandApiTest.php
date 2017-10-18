@@ -1,9 +1,8 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Command;
 
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
@@ -17,7 +16,7 @@ class ObjectCommandApiTest extends WebTestCase
 
         $activeUser = $this->getActiveUser();
 
-        $client->request('PATCH', sprintf('/test/user/activate/%s', $activeUser->getId()));
+        $client->request('PATCH', \sprintf('/test/user/activate/%s', $activeUser->getId()));
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->getEntityManager()->refresh($activeUser);

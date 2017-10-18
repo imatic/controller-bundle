@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
@@ -57,8 +56,7 @@ class FormApi extends CommandApi
         DataFeature $data,
         TemplateFeature $template,
         SecurityFeature $security
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->form = $form;
@@ -117,21 +115,20 @@ class FormApi extends CommandApi
                 'result' => $result,
                 'data' => $form->getData(),
             ]));
-        } else {
-            // not submitted or not successful
-            if ($result && !$result->isSuccessful()) {
-                // command has failed
-                $statusCode = 500;
-            } elseif ($form->isSubmitted() && !$form->isValid()) {
-                // form is not valid
-                $statusCode = 400;
-            } else {
-                // form is not submitted
-                $statusCode = 200;
-            }
-
-            return new Response($this->template->render(), $statusCode);
         }
+        // not submitted or not successful
+        if ($result && !$result->isSuccessful()) {
+            // command has failed
+            $statusCode = 500;
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            // form is not valid
+            $statusCode = 400;
+        } else {
+            // form is not submitted
+            $statusCode = 200;
+        }
+
+        return new Response($this->template->render(), $statusCode);
     }
 
     public function handleForm()

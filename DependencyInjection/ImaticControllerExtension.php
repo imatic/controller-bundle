@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -18,7 +17,7 @@ class ImaticControllerExtension extends Extension
         // Merge configuration files
         $config = [];
         foreach ($configs as $subConfig) {
-            $config = array_replace_recursive($config, $subConfig);
+            $config = \array_replace_recursive($config, $subConfig);
         }
 
         // Process and validate configuration
@@ -42,7 +41,7 @@ class ImaticControllerExtension extends Extension
         $definition = new Definition(ConfigurationRepository::class);
         foreach ($config as $resourceName => $resource) {
             $resourceDefinition = new Definition(Resource::class);
-            $resourceDefinition->addMethodCall('unserialize', [serialize($resource)]);
+            $resourceDefinition->addMethodCall('unserialize', [\serialize($resource)]);
             $container->setDefinition('imatic_controller.resource.' . $resourceName, $resourceDefinition);
 
             $definition->addMethodCall('addResource', [$resourceName, $resourceDefinition]);
@@ -53,7 +52,7 @@ class ImaticControllerExtension extends Extension
 
     private function loadImportConfiguration(Loader\YamlFileLoader $loader)
     {
-        if (class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
+        if (\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
             $loader->load('import_export.yml');
         }
     }

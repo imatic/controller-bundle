@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Query;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature;
@@ -24,8 +23,7 @@ abstract class ItemQueryApi extends QueryApi
         TemplateFeature $template,
         DataFeature $data,
         SecurityFeature $security
-    )
-    {
+    ) {
         parent::__construct($request, $response, $template, $data);
         $this->security = $security;
     }

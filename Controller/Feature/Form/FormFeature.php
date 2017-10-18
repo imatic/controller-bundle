@@ -1,5 +1,4 @@
 <?php
-
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Form;
 
 use Symfony\Component\Form\ClickableInterface;
