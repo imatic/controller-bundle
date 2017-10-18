@@ -31,8 +31,8 @@ class CommandFeature
 
     public function __construct(
         CommandExecutorInterface $commandExecutor,
-        HandlerRepositoryInterface $handlerRepository)
-    {
+        HandlerRepositoryInterface $handlerRepository
+    ) {
         $this->commandExecutor = $commandExecutor;
         $this->handlerRepository = $handlerRepository;
         $this->commandParameters = [];

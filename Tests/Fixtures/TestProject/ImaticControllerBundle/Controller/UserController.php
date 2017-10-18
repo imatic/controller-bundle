@@ -75,6 +75,7 @@ class UserController extends Controller
     /**
      * @Config\Route("/create", name="app_user_create")
      * @Config\Method({"GET", "POST"})
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function createAction()
     {

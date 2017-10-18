@@ -34,8 +34,7 @@ class ViewTypeSelector
         SessionInterface $session,
         array $types,
         $sessionKey
-    )
-    {
+    ) {
         $this->authorizationChecker = $authorizationChecker;
         $this->session = $session;
         $this->types = $types;

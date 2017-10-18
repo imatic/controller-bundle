@@ -52,7 +52,8 @@ class RouteLoader extends Loader
                         '_controller' => $action['controller'],
                         'resource' => $resourceItem->getName(),
                         'action' => $action['name'],
-                    ]);
+                    ]
+                );
 
                 $requirements = !empty($action['route']['requirements']) ? $action['route']['requirements'] : [];
                 $options = [];

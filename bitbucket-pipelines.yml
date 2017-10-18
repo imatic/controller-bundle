@@ -6,9 +6,6 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update
-          - apt-get install --yes git
-          - curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-          - composer install
-
-          - ./vendor/bin/phpunit
+          - make configure-pipelines
+          - make update-test
+          - make test

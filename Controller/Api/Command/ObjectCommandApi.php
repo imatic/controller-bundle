@@ -36,8 +36,7 @@ class ObjectCommandApi extends CommandApi
         MessageFeature $message,
         DataFeature $data,
         SecurityFeature $security
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->data = $data;

@@ -29,7 +29,8 @@ class RouteLoaderTest extends \PHPUnit_Framework_TestCase
                     'route' => ['path' => '/list', 'name' => 'user_list', 'methods' => ['get']],
                     'controller' => 'UserController',
                     'name' => 'list',
-                ])],
+                ]
+            )],
             new ResourceConfig([]),
             'app_user'
         ));

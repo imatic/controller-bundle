@@ -57,8 +57,7 @@ class FormApi extends CommandApi
         DataFeature $data,
         TemplateFeature $template,
         SecurityFeature $security
-    )
-    {
+    ) {
         parent::__construct($request, $response, $command, $redirect, $message);
 
         $this->form = $form;

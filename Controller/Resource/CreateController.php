@@ -6,6 +6,9 @@ use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 
 class CreateController extends ResourceController
 {
+    /**
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
     public function createAction()
     {
         $config = $this->getActionConfig();

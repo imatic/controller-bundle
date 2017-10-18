@@ -172,14 +172,16 @@ class ConfigurationProcessor
     {
         return static::arrayMap(function (Resource $resource, $resourceName) use ($resources) {
             $actions = static::arrayMap(function (ResourceAction $action, $actionName) use ($resources, $resourceName) {
-
                 if (!empty($action['target'])) {
                     list($targetResourceName, $targetActionName) = explode(':', $action['target']);
 
                     if (empty($resources[$targetResourceName]) || !$resources[$targetResourceName]->hasAction($targetActionName)) {
                         throw new \RuntimeException(sprintf(
                             'Cannot link action "%s:%s to "%s:%s", target action not found',
-                            $resourceName, $actionName, $targetResourceName, $targetActionName
+                            $resourceName,
+                            $actionName,
+                            $targetResourceName,
+                            $targetActionName
                         ));
                     }
 
@@ -187,7 +189,6 @@ class ConfigurationProcessor
                 }
 
                 return $action;
-
             }, $resource->getActions());
 
             $resource->setActions($actions);

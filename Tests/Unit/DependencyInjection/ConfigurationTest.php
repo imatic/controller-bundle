@@ -3,11 +3,9 @@
 
 namespace Imatic\Bundle\ControllerBundle\Tests\DependencyInjection;
 
-
 use Imatic\Bundle\ControllerBundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
-
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
