@@ -1,5 +1,5 @@
 /vendor/
-/composer.phar
+/composer
 /.php_cs.cache
 /phpda.svg
 
