@@ -1,3 +1,6 @@
+[![Build Status](https://secure.travis-ci.org/imatic/controller-bundle.png?branch=master)](http://travis-ci.org/imatic/controller-bundle)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 # ImaticControllerBundle
 
 This bundle makes it easy to write simple controllers for all kinds of actions. It heavilly uses [ImaticDataBundle](https://github.com/imatic/data-bundle). So you you should read it's documentation first if you didn't yet.

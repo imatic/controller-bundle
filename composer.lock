@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4dd5a709f4ff9491e10d293985bf3bb",
+    "content-hash": "298712687941852b423c700922164de0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -641,11 +641,11 @@
         },
         {
             "name": "imatic/data-bundle",
-            "version": "3.0.5",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
-                "url": "git@bitbucket.org:imatic/imatic-databundle.git",
-                "reference": "595a183abd3e1a5806c922153fce895a4c14ff78"
+                "url": "https://github.com/imatic/data-bundle.git",
+                "reference": "b58ec7750fdb57f742983fb7730a58a69b2663ae"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.2",
@@ -657,7 +657,7 @@
                 "imatic/form-bundle": "~3.0",
                 "imatic/testing-bundle": "~3.0",
                 "mikey179/vfsstream": "~1.4",
-                "phpunit/phpunit": "~5.2"
+                "symfony/phpunit-bridge": "~3.0"
             },
             "suggest": {
                 "doctrine/dbal": "*",
@@ -670,7 +670,7 @@
                 }
             },
             "license": [
-                "proprietary"
+                "MIT"
             ],
             "authors": [
                 {
@@ -682,9 +682,13 @@
                     "homepage": "http://imatic.cz/"
                 }
             ],
-            "description": "Imatic Data Bundle",
-            "homepage": "http://imatic.cz",
-            "time": "2016-04-28T16:23:19+00:00"
+            "description": "Bundle to work with data",
+            "homepage": "https://www.imatic.cz",
+            "keywords": [
+                "data",
+                "symfony"
+            ],
+            "time": "2017-06-05T13:03:57+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2029,11 +2033,17 @@
         },
         {
             "name": "imatic/form-bundle",
-            "version": "v3.0.10",
+            "version": "v3.0.12",
             "source": {
                 "type": "git",
-                "url": "git@bitbucket.org:imatic/imatic-formbundle.git",
-                "reference": "2711f6ea7b5f1e107beada0679a7b076a7485365"
+                "url": "https://github.com/imatic/form-bundle.git",
+                "reference": "9c2bcf28fafd1cc0179033f4b7541974ce300992"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imatic/form-bundle/zipball/9c2bcf28fafd1cc0179033f4b7541974ce300992",
+                "reference": "9c2bcf28fafd1cc0179033f4b7541974ce300992",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.2",
@@ -2052,28 +2062,29 @@
                     "Imatic\\Bundle\\FormBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
             "authors": [
                 {
-                    "name": "Viliam Husár",
-                    "email": "viliam.husar@imatic.cz"
-                },
-                {
                     "name": "Imatic Software s.r.o.",
                     "homepage": "http://imatic.cz/"
+                },
+                {
+                    "name": "Viliam Husár",
+                    "email": "viliam.husar@imatic.cz"
                 }
             ],
             "description": "Imatic Form Bundle",
-            "time": "2017-03-03T10:56:47+00:00"
+            "time": "2017-06-26T13:06:14+00:00"
         },
         {
-            "name": "imatic/testing-bundle",
+            "name": "imatic/testing",
             "version": "3.0",
             "source": {
                 "type": "git",
-                "url": "git@bitbucket.org:imatic/imatic-testingbundle.git",
+                "url": "https://github.com/imatic/testing.git",
                 "reference": "07cbdf5fc0384bde2c1b65e10b7a72ac7d882fe3"
             },
             "require": {
@@ -2112,7 +2123,7 @@
             "version": "3.0.6",
             "source": {
                 "type": "git",
-                "url": "git@bitbucket.org:imatic/imatic-viewbundle",
+                "url": "https://github.com/imatic/view-bundle.git",
                 "reference": "96fb811657e687e2dbdce30a28d306e2b18ebf93"
             },
             "require": {
@@ -3934,9 +3945,9 @@
     "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
-    "prefer-lowest": true,
+    "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

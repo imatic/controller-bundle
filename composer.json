@@ -15,12 +15,6 @@
             "homepage": "http://imatic.cz/"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://composer.imatic.cz"
-        }
-    ],
     "require": {
         "php": ">=7.0",
         "symfony/framework-bundle": "~3.1",
@@ -28,7 +22,7 @@
         "imatic/data-bundle": "~3.0"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~3.0",
+        "imatic/testing": "^3.0",
         "phpunit/phpunit": "~5.2",
         "imatic/view-bundle": "~3.0",
         "imatic/form-bundle": "^3.0.10",
