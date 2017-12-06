@@ -1,6 +1,6 @@
 # ImaticControllerBundle
 
-This bundle makes it easy to write simple controllers for all kinds of actions. It heavilly uses (ImaticDataBundle)[https://bitbucket.org/imatic/imatic-databundle]. So you you should read it's documentation first if you didn't yet.
+This bundle makes it easy to write simple controllers for all kinds of actions. It heavilly uses [ImaticDataBundle](https://github.com/imatic/data-bundle). So you you should read it's documentation first if you didn't yet.
 
 The bundle allows you to write simple actions in 2 forms
 
@@ -55,5 +55,5 @@ imatic_controller:
 Further reading
 ---------------
 
-- Visit our (documentation)[Resources/doc/README.md] to learn about all features of this bundle.
+- Visit our [documentation](Resources/doc/README.md) to learn about all features of this bundle.
 
