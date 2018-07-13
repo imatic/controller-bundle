@@ -1,4 +1,7 @@
 services:
+    _defaults:
+        public: true
+
     # api - features
     imatic_controller.api.feature.data:
         class: Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature
