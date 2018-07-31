@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef2a80f4a734d134091bc0a6b9f2f6d6",
+    "content-hash": "cd9d90dec415a0d96be43be99620ea17",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -717,12 +717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imatic/data-bundle.git",
-                "reference": "74a7b83b49dcfb7a640996de6cce22d4219a3664"
+                "reference": "35c0f2905e4bb11a7738f6d8c6aeec8243cdf785"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/74a7b83b49dcfb7a640996de6cce22d4219a3664",
-                "reference": "74a7b83b49dcfb7a640996de6cce22d4219a3664",
+                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/35c0f2905e4bb11a7738f6d8c6aeec8243cdf785",
+                "reference": "35c0f2905e4bb11a7738f6d8c6aeec8243cdf785",
                 "shasum": ""
             },
             "require": {
@@ -771,7 +771,7 @@
                 "data",
                 "symfony"
             ],
-            "time": "2018-06-19T10:16:03+00:00"
+            "time": "2018-07-13T12:26:32+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -4429,7 +4429,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0"
+        "php": "^7.1"
     },
     "platform-dev": []
 }

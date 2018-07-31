@@ -96,7 +96,7 @@ class FormApi extends CommandApi
         return $this;
     }
 
-    public function getResponse()
+    public function getResponse(?string $successRedirectUrl = null): Response
     {
         $this->security->checkDataAuthorization($this->data->all());
 
@@ -111,10 +111,12 @@ class FormApi extends CommandApi
 
         if ($result && $result->isSuccessful()) {
             // submitted and successful
-            return $this->response->createRedirect($this->redirect->getSuccessRedirectUrl([
+            $successRedirectUrl = $successRedirectUrl ?? $this->redirect->getSuccessRedirectUrl([
                 'result' => $result,
                 'data' => $form->getData(),
-            ]));
+            ]);
+
+            return $this->response->createRedirect($successRedirectUrl);
         }
         // not submitted or not successful
         if ($result && !$result->isSuccessful()) {
