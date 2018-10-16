@@ -8,7 +8,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterableQueryObjectInt
 
 class UserListQuery implements QueryObjectInterface, FilterableQueryObjectInterface
 {
-    public function build(EntityManager $em)
+    public function build(EntityManager $em): QueryBuilder
     {
         return (new QueryBuilder($em))
             ->from('AppImaticControllerBundle:User', 'u')

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd9d90dec415a0d96be43be99620ea17",
+    "content-hash": "2a8976158054a718866bb095ec1d3f71",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -717,12 +717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imatic/data-bundle.git",
-                "reference": "35c0f2905e4bb11a7738f6d8c6aeec8243cdf785"
+                "reference": "468b0d9ea8b60ead74ad4bb553b3369ee70bedb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/35c0f2905e4bb11a7738f6d8c6aeec8243cdf785",
-                "reference": "35c0f2905e4bb11a7738f6d8c6aeec8243cdf785",
+                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/468b0d9ea8b60ead74ad4bb553b3369ee70bedb5",
+                "reference": "468b0d9ea8b60ead74ad4bb553b3369ee70bedb5",
                 "shasum": ""
             },
             "require": {
@@ -771,7 +771,7 @@
                 "data",
                 "symfony"
             ],
-            "time": "2018-07-13T12:26:32+00:00"
+            "time": "2018-10-15T15:28:29+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1577,16 +1577,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.11",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8eb567d8398ce31a402ea8db3e6b5b1faf121cbc"
+                "reference": "de239d25e0bb3be451a17b627705a5970c6c59e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8eb567d8398ce31a402ea8db3e6b5b1faf121cbc",
-                "reference": "8eb567d8398ce31a402ea8db3e6b5b1faf121cbc",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/de239d25e0bb3be451a17b627705a5970c6c59e6",
+                "reference": "de239d25e0bb3be451a17b627705a5970c6c59e6",
                 "shasum": ""
             },
             "require": {
@@ -1609,7 +1609,7 @@
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0||>=3.2.0,<3.2.2",
-                "phpdocumentor/type-resolver": "<0.2.1",
+                "phpdocumentor/type-resolver": "<0.3.0",
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
             },
             "provide": {
@@ -1728,7 +1728,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-05-25T13:16:49+00:00"
+            "time": "2018-10-03T12:03:55+00:00"
         },
         {
             "name": "twig/twig",
@@ -2004,6 +2004,123 @@
                 "performance"
             ],
             "time": "2018-04-11T15:42:36+00:00"
+        },
+        {
+            "name": "doctrine/data-fixtures",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a",
+                "reference": "3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": "^7.1"
+            },
+            "conflict": {
+                "doctrine/phpcr-odm": "<1.3.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.5.4",
+                "doctrine/orm": "^2.5.4",
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "For using MongoDB ODM with PHP 7",
+                "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+                "doctrine/orm": "For loading ORM fixtures",
+                "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\DataFixtures\\": "lib/Doctrine/Common/DataFixtures"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
+            ],
+            "time": "2018-03-20T09:06:36+00:00"
+        },
+        {
+            "name": "doctrine/doctrine-fixtures-bundle",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/74b8cc70a4a25b774628ee59f4cdf3623a146273",
+                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/data-fixtures": "~1.0",
+                "doctrine/doctrine-bundle": "~1.0",
+                "php": ">=5.3.2",
+                "symfony/doctrine-bridge": "~2.7|~3.0|~4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Bundle\\FixturesBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Doctrine Project",
+                    "homepage": "http://www.doctrine-project.org"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony DoctrineFixturesBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "Fixture",
+                "persistence"
+            ],
+            "time": "2017-10-30T19:26:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2379,58 +2496,49 @@
         },
         {
             "name": "imatic/testing",
-            "version": "dev-parklane",
+            "version": "3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imatic/testing.git",
-                "reference": "9da546d06cacff4a75479b58b6beda7445c65623"
+                "reference": "e1fa6cb1ac6abec0173639816b5ea7e39636bd4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imatic/testing/zipball/9da546d06cacff4a75479b58b6beda7445c65623",
-                "reference": "9da546d06cacff4a75479b58b6beda7445c65623",
+                "url": "https://api.github.com/repos/imatic/testing/zipball/e1fa6cb1ac6abec0173639816b5ea7e39636bd4e",
+                "reference": "e1fa6cb1ac6abec0173639816b5ea7e39636bd4e",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/doctrine-fixtures-bundle": "~2.2",
+                "doctrine/orm": "~2.3",
                 "php": ">=5.4",
                 "phpunit/phpunit": "~5.1",
                 "symfony/monolog-bundle": "~2.7|~3.0",
-                "symfony/symfony": "~2.7|~3.0|~4.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.7",
-                "mamuz/php-dependency-analysis": "^1.3",
-                "pds/skeleton": "~1.0",
-                "phpdocumentor/reflection-docblock": "4.1.1 as 3.1.1",
-                "phpmd/phpmd": "^2.6"
+                "symfony/symfony": "~2.7|~3.0"
             },
             "bin": [
-                "bin/testingbundle-init"
+                "init-testingbundle"
             ],
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Imatic\\Testing\\": "src/"
+                    "Imatic\\Bundle\\TestingBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "Imatic"
             ],
             "authors": [
                 {
-                    "name": "Imatic Software s.r.o.",
-                    "homepage": "http://imatic.cz/"
+                    "name": "Stepan Koci",
+                    "email": "stepan.koci@imatic.cz"
                 }
             ],
-            "description": "Library to make testing of Symfony bundles easier",
-            "homepage": "https://www.imatic.cz",
-            "keywords": [
-                "symfony",
-                "testing"
-            ],
-            "time": "2018-06-19T08:49:05+00:00"
+            "description": "Imatic Testing Bundle",
+            "homepage": "http://imatic.cz",
+            "time": "2016-02-27T20:17:54+00:00"
         },
         {
             "name": "imatic/view-bundle",
@@ -4422,7 +4530,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "imatic/data-bundle": 20,
-        "imatic/testing": 20,
         "imatic/view-bundle": 20,
         "imatic/form-bundle": 20
     },

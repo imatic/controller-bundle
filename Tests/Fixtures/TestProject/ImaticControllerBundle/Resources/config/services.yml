@@ -6,49 +6,42 @@ services:
             - { name: form.type }
 
     # handlers
-    app_imatic_controller.data.handler.user_greet:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler:
         tags:
-            - { name: imatic_data.handler, alias: user.greet }
+            - { name: imatic_data.handler }
 
-    app_imatic_controller.data.handler.user_greet_batch:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler:
         arguments:
-            - "@imatic_data.doctrine.query_executor"
+            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\QueryExecutor'
         tags:
-            - { name: imatic_data.handler, alias: user.greet.batch }
+            - { name: imatic_data.handler }
 
-    app_imatic_controller.data.handler.user_edit:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler:
         arguments:
-            - "@imatic_data.doctrine.object_manager"
+            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
         tags:
-            - { name: imatic_data.handler, alias: user.edit }
+            - { name: imatic_data.handler }
 
-    app_imatic_controller.data.handler.user_create:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler:
         arguments:
-            - "@imatic_data.doctrine.object_manager"
+            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
         tags:
-            - { name: imatic_data.handler, alias: user.create }
+            - { name: imatic_data.handler }
 
-    app_imatic_controller.data.handler.user_delete:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler:
         arguments:
-            - "@imatic_data.doctrine.object_manager"
-            - "@imatic_data.query_executor"
+            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
+            - '@Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface'
         tags:
-            - { name: imatic_data.handler, alias: user.delete }
+            - { name: imatic_data.handler }
 
-    app_imatic_controller.data.handler.user_activate:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler:
         arguments:
-            - "@imatic_data.doctrine.object_manager"
+            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
         tags:
-            - { name: imatic_data.handler, alias: user.activate }
+            - { name: imatic_data.handler }
 
     # Display Criteria
-    app_iamtic_controller.data.filter.user:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter\UserFilter
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter\UserFilter:
         tags:
             - { name: imatic_data.filter, alias: app_imatic_controller_user }

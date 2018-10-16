@@ -2,6 +2,12 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
@@ -63,7 +69,7 @@ class UserController extends Controller
     {
         return $this
             ->form(UserType::class)
-            ->commandName('user.edit')
+            ->commandName(UserEditHandler::class)
             ->edit(new UserQuery($id))
             ->successRedirect('app_user_edit', ['id' => $id])
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
@@ -79,7 +85,7 @@ class UserController extends Controller
     {
         return $this
             ->form(UserType::class, new User())
-            ->commandName('user.create')
+            ->commandName(UserCreateHandler::class)
             ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
             })
@@ -94,7 +100,7 @@ class UserController extends Controller
     public function deleteAction($id)
     {
         return $this
-            ->command('user.delete', ['user' => $id])
+            ->command(UserDeleteHandler::class, ['user' => $id])
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -106,7 +112,7 @@ class UserController extends Controller
     public function activateAction($id)
     {
         return $this
-            ->objectCommand('user.activate', [], new UserQuery($id))
+            ->objectCommand(UserActivateHandler::class, [], new UserQuery($id))
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -118,7 +124,7 @@ class UserController extends Controller
     public function greetAction($username)
     {
         return $this->command()
-            ->command('user.greet', [
+            ->command(UserGreetHandler::class, [
                 'username' => $username,
             ])
             ->redirect('app_user_list')
@@ -131,7 +137,7 @@ class UserController extends Controller
     public function greetBatchAction()
     {
         return $this
-            ->batchCommand('user.greet.batch')
+            ->batchCommand(UserGreetBatchHandler::class)
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -169,7 +175,7 @@ class UserController extends Controller
                     'active',
                 ],
                 'form' => UserType::class,
-                'command' => 'user.create',
+                'command' => UserCreateHandler::class,
             ])
             ->successRedirect('app_user_import_success')
             ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')

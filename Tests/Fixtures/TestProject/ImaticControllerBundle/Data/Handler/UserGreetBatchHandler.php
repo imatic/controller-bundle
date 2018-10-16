@@ -23,7 +23,7 @@ class UserGreetBatchHandler extends AbstractBatchHandler implements HandlerInter
 
     protected function handleOne($id)
     {
-        return $this->commandExecutor->execute(new Command('user.greet', ['username' => $id]));
+        return $this->commandExecutor->execute(new Command(UserGreetHandler::class, ['username' => $id]));
     }
 
     protected function handleAll(DisplayCriteriaInterface $displayCriteria)

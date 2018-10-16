@@ -19,7 +19,7 @@ imatic_controller:
                     group: list
                     route: { methods: [post, get], path: "/create" }
                     controller: ImaticControllerBundle:Resource/Create:create
-                    command: imatic_data.generic_create
+                    command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\CreateHandler
                     redirect: show
                     extra:
                         button_data: {ajaxify: false}
@@ -37,7 +37,7 @@ imatic_controller:
                     group: item
                     route: { methods: [delete, get], path: "/{id}/delete", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Delete:delete
-                    command: imatic_data.generic_delete
+                    command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\DeleteHandler
                     redirect: list
                     extra:
                         button_data: {method: delete, confirm: 'Are you sure?'}
@@ -48,7 +48,7 @@ imatic_controller:
                     group: item
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
                     controller: ImaticControllerBundle:Resource/Edit:edit
-                    command: imatic_data.generic_edit
+                    command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\EditHandler
                     redirect: list
                     extra:
                         button_data: {target: modal, modal-size: large, data-modal-close-on-form-success: 'true'}

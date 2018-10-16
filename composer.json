@@ -17,12 +17,12 @@
     ],
     "require": {
         "php": "^7.1",
-        "symfony/framework-bundle": "~3.1|~4.0",
+        "symfony/framework-bundle": "^3.4|^4.0",
         "sensio/framework-extra-bundle": "~3.0|~4.0|~5.0",
         "imatic/data-bundle": "dev-parklane"
     },
     "require-dev": {
-        "imatic/testing": "dev-parklane",
+        "imatic/testing": "^3.0",
         "imatic/view-bundle": "dev-parklane",
         "imatic/form-bundle": "dev-parklane",
         "friendsofphp/php-cs-fixer": "^2.7",

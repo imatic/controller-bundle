@@ -100,7 +100,7 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Config\Route("/user")
@@ -117,7 +117,7 @@ class UserController extends Controller
     public function deleteAction($id)
     {
         return $this
-            ->command('user.delete', ['user' => $id])
+            ->command(UserDeleteHandler::class, ['user' => $id])
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -140,7 +140,7 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Config\Route("/user")
@@ -156,7 +156,7 @@ class UserController extends Controller
     public function greetBatchAction()
     {
         return $this
-            ->batchCommand('user.greet.batch')
+            ->batchCommand(UserGreetHandler::class)
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -204,7 +204,7 @@ class UserController extends Controller
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Config\Route("/user")
@@ -221,7 +221,7 @@ class UserController extends Controller
     public function activateAction($id)
     {
         return $this
-            ->objectCommand('user.activate', [], new UserQuery($id))
+            ->objectCommand(UserActivateHandler::class, [], new UserQuery($id))
             ->redirect('app_user_list')
             ->getResponse();
     }
@@ -364,7 +364,7 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Config\Route("/user")
@@ -382,7 +382,7 @@ class UserController extends Controller
     {
         return $this
             ->form(UserType::class)
-            ->commandName('user.edit')
+            ->commandName(UserEditHandler::class)
             ->edit(new UserQuery($id))
             ->successRedirect('app_user_edit', ['id' => $id])
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
@@ -397,7 +397,7 @@ class UserController extends Controller
     {
         return $this
             ->form(UserType::class, new User())
-            ->commandName('user.create')
+            ->commandName(UserCreateHandler::class)
             ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
             })
@@ -602,7 +602,7 @@ class UserController extends Controller
                     'active',
                 ],
                 'form' => 'app_imatic_controller_user',
-                'command' => 'user.create',
+                'command' => UserCreateHandler::class,
             ])
             ->successRedirect('app_user_import_success')
             ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')

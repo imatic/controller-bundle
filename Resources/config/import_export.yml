@@ -9,7 +9,7 @@ services:
             - '@imatic_controller.api.feature.response'
             - '@imatic_importexport.exporter'
             - '@imatic_controller.api.download'
-            - '@imatic_data.filter_factory'
+            - '@Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory'
         shared: false
 
     imatic_controller.api.import:
@@ -26,6 +26,6 @@ services:
         class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer
         arguments:
             - '@form.factory'
-            - '@imatic_data.command_executor'
+            - '@Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface'
         tags:
             - { name: kernel.event_subscriber }
