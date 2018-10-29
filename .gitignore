@@ -1,5 +1,6 @@
 /vendor/
 /composer
+/phpunit.xml
 /.php_cs.cache
 /phpda.svg
 

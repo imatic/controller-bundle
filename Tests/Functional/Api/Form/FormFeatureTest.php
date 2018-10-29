@@ -2,9 +2,10 @@
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
 
-class FormFeatureTest extends \PHPUnit_Framework_TestCase
+class FormFeatureTest extends TestCase
 {
     public function testOptions()
     {

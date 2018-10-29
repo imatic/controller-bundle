@@ -4,16 +4,16 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticContro
 use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerInterface;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager;
+use Imatic\Bundle\DataBundle\Data\ObjectManagerInterface;
 
 class UserCreateHandler implements HandlerInterface
 {
     /**
-     * @var ObjectManager
+     * @var ObjectManagerInterface
      */
     private $objectManager;
 
-    public function __construct(ObjectManager $objectManager)
+    public function __construct(ObjectManagerInterface $objectManager)
     {
         $this->objectManager = $objectManager;
     }

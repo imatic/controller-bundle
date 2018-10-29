@@ -5,8 +5,9 @@ use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
+use PHPUnit\Framework\TestCase;
 
-class ConfigurationRepositoryTest extends \PHPUnit_Framework_TestCase
+class ConfigurationRepositoryTest extends TestCase
 {
     public function testGetResources()
     {

@@ -42,11 +42,11 @@
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -54,8 +54,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/autocomplete", name="app_user_autocomplete")
-     * @Config\Method("GET")
+     * @Route("/autocomplete", name="app_user_autocomplete", methods={"GET"})
      */
     public function autoCompleteAction()
     {
@@ -99,11 +98,11 @@ class UserController extends Controller
 <?php
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -111,8 +110,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/delete/{id}", name="app_user_delete")
-     * @Config\Method("DELETE")
+     * @Route("/delete/{id}", name="app_user_delete", methods={"DELETE"})
      */
     public function deleteAction($id)
     {
@@ -139,11 +137,11 @@ class UserController extends Controller
 <?php
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -151,7 +149,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/greet-batch")
+     * @Route("/greet-batch")
      */
     public function greetBatchAction()
     {
@@ -203,11 +201,11 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -215,8 +213,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/activate/{id}", name="app_user_activate")
-     * @Config\Method("PATCH")
+     * @Route("/activate/{id}", name="app_user_activate", methods={"PATCH"})
      */
     public function activateAction($id)
     {
@@ -280,11 +277,11 @@ class UserController extends Controller
 <?php
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -292,7 +289,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/data")
+     * @Route("/data")
      */
     public function dataAction()
     {
@@ -363,11 +360,11 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -375,8 +372,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/edit/{id}", name="app_user_edit")
-     * @Config\Method({"GET", "POST"})
+     * @Route("/edit/{id}", name="app_user_edit", methods={"GET", "POST"})
      */
     public function editAction($id)
     {
@@ -390,8 +386,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Config\Route("/create", name="app_user_create")
-     * @Config\Method({"GET", "PUT"})
+     * @Route("/create", name="app_user_create", methods={"GET", "PUT"})
      */
     public function createAction()
     {
@@ -458,11 +453,11 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -470,8 +465,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("", name="app_user_list")
-     * @Config\Method("GET")
+     * @Route("", name="app_user_list", methods={"GET"})
      */
     public function listAction()
     {
@@ -527,11 +521,11 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -539,8 +533,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/{id}", name="app_user_show", requirements={"id"="\d+"})
-     * @Config\Method("GET")
+     * @Route("/{id}", name="app_user_show", requirements={"id"="\d+"}, methods={"GET"})
      */
     public function showAction($id)
     {
@@ -578,11 +571,11 @@ class UserController extends Controller
 <?php
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -590,7 +583,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/import", name="app_user_import")
+     * @Route("/import", name="app_user_import")
      */
     public function importAction()
     {
@@ -641,11 +634,11 @@ class UserController extends Controller
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
@@ -653,7 +646,7 @@ class UserController extends Controller
     use ApiTrait;
 
     /**
-     * @Config\Route("/export")
+     * @Route("/export")
      */
     public function exportAction()
     {

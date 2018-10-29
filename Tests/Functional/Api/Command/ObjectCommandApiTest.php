@@ -19,7 +19,6 @@ class ObjectCommandApiTest extends WebTestCase
         $client->request('PATCH', \sprintf('/test/user/activate/%s', $activeUser->getId()));
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->getEntityManager()->refresh($activeUser);
         $this->assertFalse($activeUser->isActive());
     }
 
@@ -28,7 +27,7 @@ class ObjectCommandApiTest extends WebTestCase
      */
     private function getActiveUser()
     {
-        $user = $this->getEntityManager()->getRepository('AppImaticControllerBundle:User')->findOneByActive(true);
+        $user = $this->getEntityManager()->getRepository('AppImaticControllerBundle:User')->findOneBy(['active' => true]);
         $this->assertTrue($user->isActive());
 
         return $user;

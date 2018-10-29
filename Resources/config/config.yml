@@ -7,18 +7,18 @@ imatic_controller:
                     type: list
                     group: list
                     route: { methods: [get], path: "/" }
-                    controller: ImaticControllerBundle:Resource/List:list
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\ListController::listAction
                 autocomplete:
                     type: autocomplete
                     group: api
                     route: { methods: [get], path: "/autocomplete" }
-                    controller: ImaticControllerBundle:Resource/Autocomplete:autocomplete
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\AutocompleteController::autocompleteAction
                 create:
                     template: ImaticViewBundle:Crud:edit.html.twig
                     type: create
                     group: list
                     route: { methods: [post, get], path: "/create" }
-                    controller: ImaticControllerBundle:Resource/Create:create
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\CreateController::createAction
                     command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\CreateHandler
                     redirect: show
                     extra:
@@ -28,7 +28,7 @@ imatic_controller:
                     type: show
                     group: item
                     route: { methods: [get], path: "/{id}", requirements: { id: '\d+' } }
-                    controller: ImaticControllerBundle:Resource/Show:show
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\ShowController::showAction
                     extra:
                         button_data: {target: modal, modal-size: large, modal-on-close: '@current'}
                 delete:
@@ -36,7 +36,7 @@ imatic_controller:
                     type: delete
                     group: item
                     route: { methods: [delete, get], path: "/{id}/delete", requirements: { id: '\d+' } }
-                    controller: ImaticControllerBundle:Resource/Delete:delete
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\DeleteController::deleteAction
                     command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\DeleteHandler
                     redirect: list
                     extra:
@@ -47,7 +47,7 @@ imatic_controller:
                     type: edit
                     group: item
                     route: { methods: [put, get], path: "/{id}/edit", requirements: { id: '\d+' } }
-                    controller: ImaticControllerBundle:Resource/Edit:edit
+                    controller: Imatic\Bundle\ControllerBundle\Controller\Resource\EditController::editAction
                     command: Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\EditHandler
                     redirect: list
                     extra:

@@ -5,8 +5,9 @@ use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationProcessor;
+use PHPUnit\Framework\TestCase;
 
-class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
+class ConfigurationProcessorTest extends TestCase
 {
     public function testProcessResources()
     {
@@ -61,7 +62,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider testProcessResourceDataProvider
+     * @dataProvider processResourceDataProvider
      */
     public function testProcessResource($prototype, $resource, Resource $expected)
     {
@@ -71,7 +72,7 @@ class ConfigurationProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $processed);
     }
 
-    public function testProcessResourceDataProvider()
+    public function processResourceDataProvider()
     {
         return [
             // --------------------------------------------

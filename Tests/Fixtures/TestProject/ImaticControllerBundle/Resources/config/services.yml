@@ -1,47 +1,13 @@
 services:
-    # forms
-    app_imatic_controller.form.type.user:
-        class: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
-        tags:
-            - { name: form.type }
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    # handlers
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler:
-        tags:
-            - { name: imatic_data.handler }
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity}'
 
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler:
-        arguments:
-            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\QueryExecutor'
-        tags:
-            - { name: imatic_data.handler }
-
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler:
-        arguments:
-            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
-        tags:
-            - { name: imatic_data.handler }
-
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler:
-        arguments:
-            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
-        tags:
-            - { name: imatic_data.handler }
-
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler:
-        arguments:
-            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
-            - '@Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface'
-        tags:
-            - { name: imatic_data.handler }
-
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler:
-        arguments:
-            - '@Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager'
-        tags:
-            - { name: imatic_data.handler }
-
-    # Display Criteria
-    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter\UserFilter:
-        tags:
-            - { name: imatic_data.filter, alias: app_imatic_controller_user }
+    Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']

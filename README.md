@@ -13,19 +13,18 @@ The bundle allows you to write simple actions in 2 forms
 <?php
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
     use ApiTrait;
 
     /**
-     * @Config\Route("", name="app_user_list")
-     * @Config\Method("GET")
+     * @Route("", name="app_user_list", methods={"GET"})
      */
     public function listAction()
     {
