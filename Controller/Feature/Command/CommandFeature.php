@@ -5,7 +5,6 @@ use Imatic\Bundle\ControllerBundle\Exception\InvalidCommandExecutionException;
 use Imatic\Bundle\DataBundle\Data\Command\Command as CommandToExecute;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
-use Imatic\Bundle\DataBundle\Data\Command\HandlerRepositoryInterface;
 
 class CommandFeature
 {
@@ -23,17 +22,9 @@ class CommandFeature
      */
     private $commandExecutor;
 
-    /**
-     * @var HandlerRepositoryInterface
-     */
-    private $handlerRepository;
-
-    public function __construct(
-        CommandExecutorInterface $commandExecutor,
-        HandlerRepositoryInterface $handlerRepository
-    ) {
+    public function __construct(CommandExecutorInterface $commandExecutor)
+    {
         $this->commandExecutor = $commandExecutor;
-        $this->handlerRepository = $handlerRepository;
         $this->commandParameters = [];
     }
 
