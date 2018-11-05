@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature;

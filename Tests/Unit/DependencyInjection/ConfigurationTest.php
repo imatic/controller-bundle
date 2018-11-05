@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\DependencyInjection;
 
 use Imatic\Bundle\ControllerBundle\DependencyInjection\Configuration;

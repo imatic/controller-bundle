@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Response;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
