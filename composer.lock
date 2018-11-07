@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d80ff2fb0e4a2b92dae31b627992c09a",
+    "content-hash": "e8ca583955c9269c516c6a1f09c241ee",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -955,16 +955,16 @@
         },
         {
             "name": "imatic/data-bundle",
-            "version": "dev-parklane",
+            "version": "v4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imatic/data-bundle.git",
-                "reference": "d5a3fd527447c85b694d7dd74a83584dbe87d79a"
+                "reference": "ecc03587f3d0eb9f1acdb9e5fe6d704d91a3a6d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/d5a3fd527447c85b694d7dd74a83584dbe87d79a",
-                "reference": "d5a3fd527447c85b694d7dd74a83584dbe87d79a",
+                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/ecc03587f3d0eb9f1acdb9e5fe6d704d91a3a6d8",
+                "reference": "ecc03587f3d0eb9f1acdb9e5fe6d704d91a3a6d8",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +976,7 @@
                 "doctrine/doctrine-fixtures-bundle": "^3.0",
                 "doctrine/orm": "^2.3",
                 "friendsofphp/php-cs-fixer": "^2.7",
-                "imatic/form-bundle": "dev-parklane",
+                "imatic/form-bundle": "^4.0",
                 "imatic/testing": "^5.0",
                 "mikey179/vfsstream": "^1.4",
                 "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0",
@@ -1013,7 +1013,7 @@
                 "data",
                 "symfony"
             ],
-            "time": "2018-11-05T17:06:52+00:00"
+            "time": "2018-11-07T17:51:04+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -4093,9 +4093,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "imatic/data-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

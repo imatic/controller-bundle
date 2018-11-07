@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "imatic/data-bundle": "dev-parklane",
+        "imatic/data-bundle": "^4.0",
         "symfony/framework-bundle": "^3.4|^4.0"
     },
     "require-dev": {
