@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Download;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
@@ -15,6 +15,6 @@ class DownloadApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertEquals('count: 100', $client->getInternalResponse()->getContent());
-        $this->assertEquals('attachment; filename="userData"', $client->getInternalResponse()->getHeader('Content-Disposition'));
+        $this->assertEquals('attachment; filename=userData', $client->getInternalResponse()->getHeader('Content-Disposition'));
     }
 }

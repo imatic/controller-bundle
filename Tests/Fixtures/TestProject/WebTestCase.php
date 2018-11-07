@@ -1,18 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 
 use Doctrine\ORM\EntityManager;
-use Imatic\Bundle\TestingBundle\Test\WebTestCase as BaseWebTestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Imatic\Testing\Test\WebTestCase as BaseWebTestCase;
 
 class WebTestCase extends BaseWebTestCase
 {
-    /** @var ContainerInterface */
-    protected $container;
-
     protected function setUp()
     {
-        $this->container = static::createClient()->getContainer();
+        static::createClient()->getContainer();
     }
 
     /**
@@ -20,7 +17,7 @@ class WebTestCase extends BaseWebTestCase
      */
     public function getEntityManager()
     {
-        return $this->container->get('doctrine.orm.entity_manager');
+        return self::$container->get(EntityManagerInterface::class);
     }
 
     /**

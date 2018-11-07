@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Test\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -6,8 +6,9 @@ use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
 use Imatic\Bundle\ControllerBundle\Resource\RouteLoader;
+use PHPUnit\Framework\TestCase;
 
-class RouteLoaderTest extends \PHPUnit_Framework_TestCase
+class RouteLoaderTest extends TestCase
 {
     public function testEmptyRouteLoader()
     {

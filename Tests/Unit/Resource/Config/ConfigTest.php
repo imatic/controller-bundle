@@ -1,11 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Resource;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\AccessTrait;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Config as BaseConfig;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
+use PHPUnit\Framework\TestCase;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
     public function testSerializable()
     {
@@ -41,11 +42,11 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         // Get
         $this->assertEquals('a', $config['a']);
-        $this->assertEquals(true, $config['b']);
+        $this->assertTrue($config['b']);
         $this->assertEquals([1, 12], $config['c']);
 
         $this->assertEquals('a', $config->a);
-        $this->assertEquals(true, $config->b);
+        $this->assertTrue($config->b);
         $this->assertEquals([1, 12], $config->c);
 
         // Set

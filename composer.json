@@ -12,24 +12,22 @@
         },
         {
             "name": "Imatic Software s.r.o.",
-            "homepage": "http://imatic.cz/"
+            "homepage": "https://www.imatic.cz"
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "symfony/framework-bundle": "~3.1",
-        "sensio/framework-extra-bundle": "~3.0",
-        "imatic/data-bundle": "~3.0"
+        "php": "^7.1",
+        "imatic/data-bundle": "dev-parklane",
+        "symfony/framework-bundle": "^3.4|^4.0"
     },
     "require-dev": {
-        "imatic/testing": "^3.0",
-        "phpunit/phpunit": "~5.2",
-        "imatic/view-bundle": "~3.0",
-        "imatic/form-bundle": "^3.0.10",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "doctrine/orm": "^2.6",
         "friendsofphp/php-cs-fixer": "^2.7",
+        "imatic/testing": "^5.0",
+        "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0",
         "phpmd/phpmd": "^2.6",
-        "mamuz/php-dependency-analysis": "^1.3",
-        "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0"
+        "symfony/phpunit-bridge": "^4.1"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
@@ -38,6 +36,9 @@
         "psr-4": {
             "Imatic\\Bundle\\ControllerBundle\\": ""
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

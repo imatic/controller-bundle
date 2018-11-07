@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\DependencyInjection;
 
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
@@ -28,8 +28,8 @@ class ImaticControllerExtension extends Extension
         $this->processResourcesConfiguration($config['resources_config'], $config['resources'], $container);
 
         // Load services
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.xml');
         $this->loadImportConfiguration($loader);
     }
 
@@ -50,10 +50,10 @@ class ImaticControllerExtension extends Extension
         $container->setDefinition('imatic_controller.resources.resource_repository', $definition);
     }
 
-    private function loadImportConfiguration(Loader\YamlFileLoader $loader)
+    private function loadImportConfiguration(Loader\XmlFileLoader $loader)
     {
         if (\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
-            $loader->load('import_export.yml');
+            $loader->load('import_export.xml');
         }
     }
 }

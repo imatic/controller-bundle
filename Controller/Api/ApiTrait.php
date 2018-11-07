@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi;
@@ -26,7 +26,7 @@ trait ApiTrait
      */
     protected function autocomplete()
     {
-        return $this->getApi('imatic_controller.api.autocomplete', 'autocomplete', \func_get_args());
+        return $this->getApi(AutocompleteApi::class, 'autocomplete', \func_get_args());
     }
 
     /**
@@ -34,7 +34,7 @@ trait ApiTrait
      */
     protected function batchCommand()
     {
-        return $this->getApi('imatic_controller.api.command.batch', 'batchCommand', \func_get_args());
+        return $this->getApi(BatchCommandApi::class, 'batchCommand', \func_get_args());
     }
 
     /**
@@ -42,7 +42,7 @@ trait ApiTrait
      */
     protected function command()
     {
-        return $this->getApi('imatic_controller.api.command', 'command', \func_get_args());
+        return $this->getApi(CommandApi::class, 'command', \func_get_args());
     }
 
     /**
@@ -50,7 +50,7 @@ trait ApiTrait
      */
     protected function objectCommand()
     {
-        return $this->getApi('imatic_controller.api.command.object', 'objectCommand', \func_get_args());
+        return $this->getApi(ObjectCommandApi::class, 'objectCommand', \func_get_args());
     }
 
     /**
@@ -58,7 +58,7 @@ trait ApiTrait
      */
     protected function download()
     {
-        return $this->getApi('imatic_controller.api.download', 'download', \func_get_args());
+        return $this->getApi(DownloadApi::class, 'download', \func_get_args());
     }
 
     /**
@@ -66,7 +66,7 @@ trait ApiTrait
      */
     protected function form()
     {
-        return $this->getApi('imatic_controller.api.form', 'form', \func_get_args());
+        return $this->getApi(FormApi::class, 'form', \func_get_args());
     }
 
     /**
@@ -74,7 +74,7 @@ trait ApiTrait
      */
     protected function namedForm()
     {
-        return $this->getApi('imatic_controller.api.form', 'namedForm', \func_get_args());
+        return $this->getApi(FormApi::class, 'namedForm', \func_get_args());
     }
 
     /**
@@ -82,7 +82,7 @@ trait ApiTrait
      */
     protected function listing()
     {
-        return $this->getApi('imatic_controller.api.listing', 'listing', \func_get_args());
+        return $this->getApi(ListingApi::class, 'listing', \func_get_args());
     }
 
     /**
@@ -90,7 +90,7 @@ trait ApiTrait
      */
     protected function show()
     {
-        return $this->getApi('imatic_controller.api.show', 'show', \func_get_args());
+        return $this->getApi(ShowApi::class, 'show', \func_get_args());
     }
 
     /**
@@ -98,9 +98,9 @@ trait ApiTrait
      */
     protected function export()
     {
-        $this->checkVendor('imatic_controller.api.export', 'imatic/importexport-bundle');
+        $this->checkVendor(ExportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('imatic_controller.api.export', 'export', \func_get_args());
+        return $this->getApi(ExportApi::class, 'export', \func_get_args());
     }
 
     /**
@@ -108,9 +108,9 @@ trait ApiTrait
      */
     protected function import()
     {
-        $this->checkVendor('imatic_controller.api.import', 'imatic/importexport-bundle');
+        $this->checkVendor(ImportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('imatic_controller.api.import', 'import', \func_get_args());
+        return $this->getApi(ImportApi::class, 'import', \func_get_args());
     }
 
     private function checkVendor($name, $vendor)

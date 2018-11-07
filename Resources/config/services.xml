@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <defaults public="false" />
+
+        <!-- api - features -->
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" shared="false">
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" shared="false">
+            <argument type="service" id="templating" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature" shared="false">
+            <argument type="service" id="form.factory" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" shared="false">
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" shared="false">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaFactory" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature" shared="false">
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" shared="false">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" shared="false">
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature" shared="false">
+            <argument type="service" id="security.authorization_checker" />
+        </service>
+
+        <!-- api - concrete -->
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Reader\DisplayCriteriaReader" />
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" />
+        </service>
+
+        <!-- Resources -->
+        <service id="Imatic\Bundle\ControllerBundle\Resource\RouteLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="imatic_controller.resources.resource_repository" />
+        </service>
+    </services>
+</container>

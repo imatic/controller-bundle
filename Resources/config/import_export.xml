@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="imatic_importexport.file_import.class">Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileImport</parameter>
+    </parameters>
+
+    <services>
+        <defaults public="false" />
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="imatic_importexport.exporter" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi" />
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi" public="true" shared="false">
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" />
+            <argument type="service" id="Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature" />
+            <argument type="service" id="imatic_importexport.importer" />
+        </service>
+
+        <service id="Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface" />
+        </service>
+    </services>
+</container>

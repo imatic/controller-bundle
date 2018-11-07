@@ -20,12 +20,12 @@ imatic_controller:
                 autocomplete:
                 create:
                     form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
-                    command: user.create
+                    command: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler
                     redirect: imatic_controller_user_show
                 show: ~
                 edit:
                     form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
-                    command: user.edit
+                    command: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler
                     redirect: imatic_controller_user_show
                 delete:
                     redirect: imatic_controller_user_list

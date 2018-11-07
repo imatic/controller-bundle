@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data;
 
 use Doctrine\ORM\EntityManager;
@@ -15,7 +15,7 @@ class UserQuery implements QueryObjectInterface, SingleResultQueryObjectInterfac
         $this->id = $id;
     }
 
-    public function build(EntityManager $em)
+    public function build(EntityManager $em): QueryBuilder
     {
         return (new QueryBuilder($em))
             ->from('AppImaticControllerBundle:User', 'u')

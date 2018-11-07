@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter;
 
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Filter;

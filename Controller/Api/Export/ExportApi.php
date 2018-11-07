@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Export;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Api;
