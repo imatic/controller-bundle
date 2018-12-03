@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler;
 
 use Imatic\Bundle\DataBundle\Data\Command\Command;
@@ -24,7 +23,7 @@ class UserGreetBatchHandler extends AbstractBatchHandler implements HandlerInter
 
     protected function handleOne($id)
     {
-        return $this->commandExecutor->execute(new Command('user.greet', ['username' => $id]));
+        return $this->commandExecutor->execute(new Command(UserGreetHandler::class, ['username' => $id]));
     }
 
     protected function handleAll(DisplayCriteriaInterface $displayCriteria)

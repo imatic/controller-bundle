@@ -1,9 +1,8 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Form;
 
-use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>

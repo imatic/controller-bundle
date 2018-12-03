@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
@@ -7,13 +6,13 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerInterface;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\ObjectManager;
+use Imatic\Bundle\DataBundle\Data\ObjectManagerInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface;
 
 class UserDeleteHandler implements HandlerInterface
 {
     /**
-     * @var ObjectManager
+     * @var ObjectManagerInterface
      */
     private $objectManager;
 
@@ -22,7 +21,7 @@ class UserDeleteHandler implements HandlerInterface
      */
     private $queryExecutor;
 
-    public function __construct(ObjectManager $objectManager, QueryExecutorInterface $queryExecutor)
+    public function __construct(ObjectManagerInterface $objectManager, QueryExecutorInterface $queryExecutor)
     {
         $this->objectManager = $objectManager;
         $this->queryExecutor = $queryExecutor;

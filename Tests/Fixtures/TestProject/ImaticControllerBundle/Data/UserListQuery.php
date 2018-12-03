@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data;
 
 use Doctrine\ORM\EntityManager;
@@ -9,7 +8,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterableQueryObjectInt
 
 class UserListQuery implements QueryObjectInterface, FilterableQueryObjectInterface
 {
-    public function build(EntityManager $em)
+    public function build(EntityManager $em): QueryBuilder
     {
         return (new QueryBuilder($em))
             ->from('AppImaticControllerBundle:User', 'u')

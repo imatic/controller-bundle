@@ -10,5 +10,8 @@ app_imatic_controller:
     resource: "@AppImaticControllerBundle/Resources/config/routing.yml"
     prefix: /test
 
-#imatic_controller:
-#    resource: @ImaticControllerBundle/Resources/config/routing.yml
+imatic_controller:
+    resource: "@ImaticControllerBundle/Resources/config/routing.yml"
+
+homepage:
+    path: /

@@ -1,39 +1,42 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Controller;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Filter\UserFilter;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserActivateHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserDeleteHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetBatchHandler;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserGreetHandler;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Config\Route("/user")
+ * @Route("/user")
  */
 class UserController extends Controller
 {
     use ApiTrait;
 
     /**
-     * @Config\Route("/autocomplete", name="app_user_autocomplete")
-     * @Config\Method("GET")
+     * @Route("/autocomplete", name="app_user_autocomplete", methods={"GET"})
      */
     public function autoCompleteAction()
     {
         return $this->autocomplete()
             ->autocomplete(new UserListQuery())
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
-     * @Config\Route("/{id}", name="app_user_show", requirements={"id"="\d+"})
-     * @Config\Method("GET")
+     * @Route("/{id}", name="app_user_show", requirements={"id"="\d+"}, methods={"GET"})
      */
     public function showAction($id)
     {
@@ -44,28 +47,26 @@ class UserController extends Controller
     }
 
     /**
-     * @Config\Route("", name="app_user_list")
-     * @Config\Method("GET")
+     * @Route("", name="app_user_list", methods={"GET"})
      */
     public function listAction()
     {
         return $this
             ->listing(new UserListQuery())
-            ->filter('app_imatic_controller_user')
+            ->filter(UserFilter::class)
             ->defaultLimit(10)
             ->setTemplateName('AppImaticControllerBundle:Test:list.html.twig')
             ->getResponse();
     }
 
     /**
-     * @Config\Route("/edit/{id}", name="app_user_edit")
-     * @Config\Method({"GET", "PUT"})
+     * @Route("/edit/{id}", name="app_user_edit", methods={"GET", "PUT"})
      */
     public function editAction($id)
     {
         return $this
             ->form(UserType::class)
-            ->commandName('user.edit')
+            ->commandName(UserEditHandler::class)
             ->edit(new UserQuery($id))
             ->successRedirect('app_user_edit', ['id' => $id])
             ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
@@ -73,14 +74,14 @@ class UserController extends Controller
     }
 
     /**
-     * @Config\Route("/create", name="app_user_create")
-     * @Config\Method({"GET", "POST"})
+     * @Route("/create", name="app_user_create", methods={"GET", "POST"})
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function createAction()
     {
         return $this
             ->form(UserType::class, new User())
-            ->commandName('user.create')
+            ->commandName(UserCreateHandler::class)
             ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
             })
@@ -89,79 +90,73 @@ class UserController extends Controller
     }
 
     /**
-     * @Config\Route("/delete/{id}", name="app_user_delete")
-     * @Config\Method("DELETE")
+     * @Route("/delete/{id}", name="app_user_delete", methods={"DELETE"})
      */
     public function deleteAction($id)
     {
         return $this
-            ->command('user.delete', ['user' => $id])
+            ->command(UserDeleteHandler::class, ['user' => $id])
             ->redirect('app_user_list')
             ->getResponse();
     }
 
     /**
-     * @Config\Route("/activate/{id}", name="app_user_activate")
-     * @Config\Method("PATCH")
+     * @Route("/activate/{id}", name="app_user_activate", methods={"PATCH"})
      */
     public function activateAction($id)
     {
         return $this
-            ->objectCommand('user.activate', [], new UserQuery($id))
+            ->objectCommand(UserActivateHandler::class, [], new UserQuery($id))
             ->redirect('app_user_list')
             ->getResponse();
     }
 
     /**
-     * @Config\Route("/greet/{username}")
-     * @Config\Method("GET")
+     * @Route("/greet/{username}", methods={"GET"})
      */
     public function greetAction($username)
     {
         return $this->command()
-            ->command('user.greet', [
+            ->command(UserGreetHandler::class, [
                 'username' => $username,
             ])
-            ->redirect('app_user_list')
-            ->getResponse()
-        ;
-    }
-
-    /**
-     * @Config\Route("/greet-batch")
-     */
-    public function greetBatchAction()
-    {
-        return $this
-            ->batchCommand('user.greet.batch')
             ->redirect('app_user_list')
             ->getResponse();
     }
 
     /**
-     * @Config\Route("/data")
+     * @Route("/greet-batch")
+     */
+    public function greetBatchAction()
+    {
+        return $this
+            ->batchCommand(UserGreetBatchHandler::class)
+            ->redirect('app_user_list')
+            ->getResponse();
+    }
+
+    /**
+     * @Route("/data")
      */
     public function dataAction()
     {
         return $this->download()
-            ->download(new \SplFileInfo(__DIR__.'/../../../userData'))
-            ->getResponse()
-        ;
+            ->download(new \SplFileInfo(__DIR__ . '/../../../userData'))
+            ->getResponse();
     }
 
     /**
-     * @Config\Route("/export")
+     * @Route("/export")
      */
     public function exportAction()
     {
         return $this->export()
             ->export(new UserListQuery(), 'csv', 'users.csv')
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
-     * @Config\Route("/import", name="app_user_import")
+     * @Route("/import", name="app_user_import")
      */
     public function importAction()
     {
@@ -173,12 +168,11 @@ class UserController extends Controller
                     'active',
                 ],
                 'form' => UserType::class,
-                'command' => 'user.create',
+                'command' => UserCreateHandler::class,
             ])
             ->successRedirect('app_user_import_success')
             ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
-            ->getResponse()
-        ;
+            ->getResponse();
     }
 
     /**
@@ -190,7 +184,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Config\Route("import-success", name="app_user_import_success")
+     * @Route("import-success", name="app_user_import_success")
      */
     public function importSuccessAction()
     {

@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Command;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
@@ -16,6 +15,6 @@ class CommandApiTest extends WebTestCase
         $crawler = $client->request('GET', '/test/user/greet/USERNAME');
         $this->assertEquals(200, $client->getInternalResponse()->getStatus());
 
-        $this->assertContains('Hello USERNAME!', trim($crawler->filter('#messages')->text()));
+        $this->assertContains('Hello USERNAME!', \trim($crawler->filter('#messages')->text()));
     }
 }

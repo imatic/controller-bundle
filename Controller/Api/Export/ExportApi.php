@@ -1,17 +1,16 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Export;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Api;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory;
+use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\SorterInterface;
 use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
 use Imatic\Bundle\ImportExportBundle\Export\Exporter;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Imatic\Bundle\ImportExportBundle\Util\File;
-use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\SorterInterface;
-use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
@@ -52,7 +51,7 @@ class ExportApi extends Api
 
     public function export(QueryObjectInterface $queryObject, $format, $name, array $options = [])
     {
-        if (!array_key_exists('displayCriteria', $options)) {
+        if (!\array_key_exists('displayCriteria', $options)) {
             $dcOptions = [];
             if ($this->filter) {
                 $dcOptions['filter'] = $this->filterFactory->create($this->filter);
@@ -66,7 +65,7 @@ class ExportApi extends Api
 
         $result = $this->exporter->export($queryObject, $format, $options);
         $tmpUri = File::createTempFile('csv');
-        file_put_contents($tmpUri, $result);
+        \file_put_contents($tmpUri, $result);
 
         $this->outputFile = new UploadedFile($tmpUri, $name);
 

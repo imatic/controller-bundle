@@ -1,10 +1,10 @@
 {
     "name": "imatic/controller-bundle",
     "type": "symfony-bundle",
-    "description": "Imatic Controller Bundle",
-    "keywords": [],
-    "homepage": "http://imatic.cz",
-    "license": "proprietary",
+    "description": "Bundle to write simple controllers",
+    "keywords": ["controller", "symfony"],
+    "homepage": "https://www.imatic.cz",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stepan Koci",
@@ -12,24 +12,22 @@
         },
         {
             "name": "Imatic Software s.r.o.",
-            "homepage": "http://imatic.cz/"
-        }
-    ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://composer.imatic.cz"
+            "homepage": "https://www.imatic.cz"
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "symfony/framework-bundle": "~3.0",
-        "sensio/framework-extra-bundle": "~3.0",
-        "imatic/data-bundle": "~3.0"
+        "php": "^7.1",
+        "imatic/data-bundle": "^4.0",
+        "symfony/framework-bundle": "^3.4|^4.0"
     },
     "require-dev": {
-        "imatic/testing-bundle": "~3.0",
-        "phpunit/phpunit": "~5.2"
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "doctrine/orm": "^2.6",
+        "friendsofphp/php-cs-fixer": "^2.7",
+        "imatic/testing": "^5.0",
+        "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0",
+        "phpmd/phpmd": "^2.6",
+        "symfony/phpunit-bridge": "^4.1"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
@@ -38,6 +36,9 @@
         "psr-4": {
             "Imatic\\Bundle\\ControllerBundle\\": ""
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

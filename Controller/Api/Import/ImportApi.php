@@ -1,16 +1,15 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Import;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Api;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
+use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeatureTrait;
 use Imatic\Bundle\ImportExportBundle\Import\Importer;
 use Symfony\Component\HttpFoundation\Response;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeatureTrait;
-use Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
@@ -20,7 +19,7 @@ class ImportApi extends Api
     use TemplateFeatureTrait;
     use RedirectFeatureTrait;
 
-    /** @var TemplateFeature; */
+    /** @var TemplateFeature */
     protected $template;
 
     /** @var RedirectFeature */

@@ -1,11 +1,11 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Form;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
 
-class FormFeatureTest extends \PHPUnit_Framework_TestCase
+class FormFeatureTest extends TestCase
 {
     public function testOptions()
     {
@@ -16,7 +16,7 @@ class FormFeatureTest extends \PHPUnit_Framework_TestCase
 
         $feature = new FormFeature($formFactory);
 
-        $this->assertEquals(null, $feature->getOption('o1'));
+        $this->assertNull($feature->getOption('o1'));
         $this->assertEquals('v', $feature->getOption('o1', 'v'));
 
         $feature->addOption('o1', 'v1');

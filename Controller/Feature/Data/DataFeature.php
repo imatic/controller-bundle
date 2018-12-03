@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Data;
 
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
@@ -76,7 +75,7 @@ class DataFeature
 
     public function get($name, $default = null)
     {
-        if (array_key_exists($name, $this->data)) {
+        if (\array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
 

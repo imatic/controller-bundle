@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;

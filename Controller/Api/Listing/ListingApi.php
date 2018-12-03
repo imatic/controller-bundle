@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Listing;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Query\QueryApi;
@@ -8,10 +7,10 @@ use Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature;
 use Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
-use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Reader\DisplayCriteriaReader;
+use Imatic\Bundle\DataBundle\Data\Query\QueryObjectInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListingApi extends QueryApi
 {
@@ -203,7 +202,7 @@ class ListingApi extends QueryApi
         }
 
         $query = [];
-        if (is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
+        if (\is_string($this->filter)) { // this is here to avoid crash of unprepaired projects
             $filterKey = $this->displayCriteriaReader->attributeName(DisplayCriteriaReader::FILTER);
             $filterValue = $this->displayCriteriaReader->readAttribute(DisplayCriteriaReader::FILTER, null, $this->getComponentId(), $this->enablePersistentDisplayCriteria);
             $query = [
@@ -212,7 +211,7 @@ class ListingApi extends QueryApi
             $query['filter_type'] = $this->filter;
         }
 
-        $this->data->set('query', json_encode($query));
+        $this->data->set('query', \json_encode($query));
         $this->dataCalculated = true;
     }
 
@@ -227,7 +226,7 @@ class ListingApi extends QueryApi
         $componentId = $route;
 
         if (!empty($routeParams)) {
-            $componentId .= sprintf('_%x', crc32(http_build_query($routeParams)));
+            $componentId .= \sprintf('_%x', \crc32(\http_build_query($routeParams)));
         }
 
         return $componentId;

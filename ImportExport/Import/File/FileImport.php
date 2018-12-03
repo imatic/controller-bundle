@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\ImportExport\Import\File;
 
 use Imatic\Bundle\ImportExportBundle\Import\File\FileImport as BaseFileImport;

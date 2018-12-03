@@ -1,0 +1,31 @@
+imatic_controller:
+    resources:
+        imatic_controller_user:
+            config:
+                route: { path: /test/resource/user }
+                entity: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User
+                query:
+                    list: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery
+                    item: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserQuery
+                fields:
+                    - {name: id, format: number}
+                    - {name: name, format: text}
+                    - {name: age, format: number}
+                    - {name: active, format: boolean}
+                translation_domain: UserDomain
+                name: user
+                role: ROLE_USER_ADMIN
+            actions:
+                list: ~
+                autocomplete:
+                create:
+                    form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
+                    command: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserCreateHandler
+                    redirect: imatic_controller_user_show
+                show: ~
+                edit:
+                    form: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType
+                    command: Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler\UserEditHandler
+                    redirect: imatic_controller_user_show
+                delete:
+                    redirect: imatic_controller_user_list

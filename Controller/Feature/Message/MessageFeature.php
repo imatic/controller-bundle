@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Message;
 
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
@@ -28,7 +27,7 @@ class MessageFeature
     {
         foreach ($commandResult->getMessages() as $message) {
             $translated = $this->trans($message->getMessage(), $message->getParameters(), $message->getTranslationDomain());
-            if ($message->getMessage() == $translated) {
+            if ($message->getMessage() === $translated) {
                 // Default translation for untranslated messages
                 $this->session->getFlashBag()->add(
                     $message->getType(),

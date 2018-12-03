@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api\Command;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Api;
@@ -49,6 +48,13 @@ class CommandApi extends Api
         return $this;
     }
 
+    public function commandParameters(array $commandParameters = [])
+    {
+        $this->command->addCommandParameters($commandParameters);
+
+        return $this;
+    }
+
     /**
      * @return CommandResultInterface
      */
@@ -73,7 +79,7 @@ class CommandApi extends Api
         } else {
             $name = $result->isSuccessful() ? 'success' : 'error';
             if (!$this->redirect->hasRedirect($name)) {
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'Command "%s" has failed.',
                     $this->command->getCommandName()
                 ));

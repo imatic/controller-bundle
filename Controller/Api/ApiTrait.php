@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Api;
 
 use Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi;
@@ -7,13 +6,12 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi;
+use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi;
 use Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi;
-use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
 use Imatic\Bundle\ControllerBundle\Exception\MissingVendorException;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi;
-use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
 
 /**
  * ApiTrait
@@ -21,122 +19,98 @@ use Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi;
  */
 trait ApiTrait
 {
+    use GetApiTrait;
+
     /**
      * @return AutocompleteApi
      */
-    public function autocomplete()
+    protected function autocomplete()
     {
-        return $this->getApi('imatic_controller.api.autocomplete', 'autocomplete', func_get_args());
+        return $this->getApi(AutocompleteApi::class, 'autocomplete', \func_get_args());
     }
 
     /**
      * @return BatchCommandApi
      */
-    public function batchCommand()
+    protected function batchCommand()
     {
-        return $this->getApi('imatic_controller.api.command.batch', 'batchCommand', func_get_args());
+        return $this->getApi(BatchCommandApi::class, 'batchCommand', \func_get_args());
     }
 
     /**
      * @return CommandApi
      */
-    public function command()
+    protected function command()
     {
-        return $this->getApi('imatic_controller.api.command', 'command', func_get_args());
+        return $this->getApi(CommandApi::class, 'command', \func_get_args());
     }
 
     /**
      * @return ObjectCommandApi
      */
-    public function objectCommand()
+    protected function objectCommand()
     {
-        return $this->getApi('imatic_controller.api.command.object', 'objectCommand', func_get_args());
+        return $this->getApi(ObjectCommandApi::class, 'objectCommand', \func_get_args());
     }
 
     /**
      * @return DownloadApi
      */
-    public function download()
+    protected function download()
     {
-        return $this->getApi('imatic_controller.api.download', 'download', func_get_args());
+        return $this->getApi(DownloadApi::class, 'download', \func_get_args());
     }
 
     /**
      * @return FormApi
      */
-    public function form()
+    protected function form()
     {
-        return $this->getApi('imatic_controller.api.form', 'form', func_get_args());
+        return $this->getApi(FormApi::class, 'form', \func_get_args());
     }
 
     /**
      * @return FormApi
      */
-    public function namedForm()
+    protected function namedForm()
     {
-        return $this->getApi('imatic_controller.api.form', 'namedForm', func_get_args());
+        return $this->getApi(FormApi::class, 'namedForm', \func_get_args());
     }
 
     /**
      * @return ListingApi
      */
-    public function listing()
+    protected function listing()
     {
-        return $this->getApi('imatic_controller.api.listing', 'listing', func_get_args());
+        return $this->getApi(ListingApi::class, 'listing', \func_get_args());
     }
 
     /**
      * @return ShowApi
      */
-    public function show()
+    protected function show()
     {
-        return $this->getApi('imatic_controller.api.show', 'show', func_get_args());
+        return $this->getApi(ShowApi::class, 'show', \func_get_args());
     }
 
     /**
      * @return ExportApi
      */
-    public function export()
+    protected function export()
     {
-        $this->checkVendor('imatic_controller.api.export', 'imatic/importexport-bundle');
+        $this->checkVendor(ExportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('imatic_controller.api.export', 'export', func_get_args());
+        return $this->getApi(ExportApi::class, 'export', \func_get_args());
     }
 
     /**
      * @return ImportApi
      */
-    public function import()
+    protected function import()
     {
-        $this->checkVendor('imatic_controller.api.import', 'imatic/importexport-bundle');
+        $this->checkVendor(ImportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('imatic_controller.api.import', 'import', func_get_args());
-    }
-
-    /**
-     * @param string $id
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @return Api
-     */
-    protected function getApi($id, $name, array $arguments = [])
-    {
-        if (!isset($this->container)) {
-            throw new \RuntimeException(sprintf('$container is not attribute of class "%s"', __CLASS__));
-        }
-
-        if (!$this->container->has($id)) {
-            throw new ApiNotFoundException($name);
-        }
-
-        $api = $this->container->get($id);
-
-        if ($arguments) {
-            return call_user_func_array([$api, $name], $arguments);
-        }
-
-        return $api;
+        return $this->getApi(ImportApi::class, 'import', \func_get_args());
     }
 
     private function checkVendor($name, $vendor)
