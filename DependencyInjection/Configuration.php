@@ -8,8 +8,8 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('imatic_controller');
+        $treeBuilder = new TreeBuilder('imatic_controller');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
@@ -41,8 +41,8 @@ class Configuration implements ConfigurationInterface
 
     public function getResourceActionsSection()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('actions', 'array');
+        $builder = new TreeBuilder('actions');
+        $node = $builder->getRootNode();
 
         $actionGroups = ['list', 'item', 'batch', 'api'];
         $actionTypes = ['list', 'autocomplete', 'show', 'edit', 'create', 'delete', 'batch'];
@@ -99,8 +99,8 @@ class Configuration implements ConfigurationInterface
 
     public function getResourceConfigSection()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('config', 'array');
+        $builder = new TreeBuilder('config');
+        $node = $builder->getRootNode();
 
         $node
             ->info('Generic config usable by all actions.')
@@ -143,8 +143,8 @@ class Configuration implements ConfigurationInterface
 
     public function getRouteSection()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('route', 'array');
+        $builder = new TreeBuilder('route');
+        $node = $builder->getRootNode();
 
         $methods = ['get', 'post', 'put', 'delete'];
 

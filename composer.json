@@ -17,15 +17,14 @@
     ],
     "require": {
         "php": "^7.1",
-        "imatic/data-bundle": "^4.0",
-        "symfony/framework-bundle": "^3.4|^4.0"
+        "imatic/data-bundle": "^4.2.1",
+        "symfony/framework-bundle": "^4.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/orm": "^2.6",
         "friendsofphp/php-cs-fixer": "^2.7",
-        "imatic/testing": "^5.0",
-        "phpdocumentor/reflection-docblock": "4.1.1 as 3.3.0",
+        "imatic/testing": "^5.0.2",
         "phpmd/phpmd": "^2.6",
         "symfony/phpunit-bridge": "^4.1"
     },
