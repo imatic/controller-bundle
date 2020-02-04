@@ -42,6 +42,7 @@ class ImaticControllerExtension extends Extension
         foreach ($config as $resourceName => $resource) {
             $resourceDefinition = new Definition(Resource::class);
             $resourceDefinition->addMethodCall('unserialize', [\serialize($resource)]);
+            $resourceDefinition->setPublic(true);
             $container->setDefinition('imatic_controller.resource.' . $resourceName, $resourceDefinition);
 
             $definition->addMethodCall('addResource', [$resourceName, $resourceDefinition]);
