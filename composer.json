@@ -16,17 +16,17 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "imatic/data-bundle": "^4.2.1",
-        "symfony/framework-bundle": "^4.0"
+        "php": "^7.2",
+        "imatic/data-bundle": "5.0.0-alpha.2",
+        "symfony/framework-bundle": "^5.1"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "doctrine/orm": "^2.6",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "doctrine/orm": "^2.7",
         "friendsofphp/php-cs-fixer": "^2.7",
-        "imatic/testing": "^5.0.2",
+        "imatic/testing": "^6.0.0",
         "phpmd/phpmd": "^2.6",
-        "symfony/phpunit-bridge": "^4.1"
+        "symfony/phpunit-bridge": "^5.1"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
