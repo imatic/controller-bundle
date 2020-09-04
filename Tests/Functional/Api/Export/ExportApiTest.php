@@ -11,6 +11,7 @@ class ExportApiTest extends WebTestCase
     protected function setUp()
     {
         parent::setUp();
+
         if (!\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
             $this->markTestSkipped('ImaticImportExportBundle is not installed.');
         }
@@ -18,11 +19,10 @@ class ExportApiTest extends WebTestCase
 
     public function testExportShouldExportUsers()
     {
-        $client = static::createClient();
-        $client->request('GET', '/test/user/export');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->client->request('GET', '/test/user/export');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $response = $client->getResponse();
+        $response = $this->client->getResponse();
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
     }
 }

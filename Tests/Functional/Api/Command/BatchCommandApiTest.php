@@ -10,9 +10,8 @@ class BatchCommandApiTest extends WebTestCase
 {
     public function testCommandShouldGreetUsers()
     {
-        $client = static::createClient();
-        $client->followRedirects();
-        $crawler = $client->request('POST', '/test/user/greet-batch', [
+        $this->client->followRedirects();
+        $crawler = $this->client->request('POST', '/test/user/greet-batch', [
             'greet' => 'command',
             'selected' => [
                 'user1',
@@ -20,7 +19,7 @@ class BatchCommandApiTest extends WebTestCase
                 'user3',
             ],
         ]);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertContains('Hromadná akce byla provedena pro 3', $crawler->filter('#messages')->text());
     }

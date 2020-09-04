@@ -39,6 +39,8 @@ class Resource extends Config
     }
 
     /**
+     * @param string $name
+     *
      * @return ResourceAction
      */
     public function getAction($name)
@@ -47,6 +49,8 @@ class Resource extends Config
     }
 
     /**
+     * @param string $name
+     *
      * @return bool
      */
     public function hasAction($name)

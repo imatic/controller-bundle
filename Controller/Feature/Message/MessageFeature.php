@@ -3,7 +3,7 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Message;
 
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MessageFeature
 {

@@ -6,13 +6,9 @@ use Imatic\Bundle\ControllerBundle\Exception\ApiNotFoundException;
 trait GetApiTrait
 {
     /**
-     * @param string $id
-     * @param string $name
-     * @param array $arguments
-     *
      * @return Api
      */
-    protected function getApi($id, $name, array $arguments = [])
+    protected function getApi(string $id, string $name, array $arguments = [])
     {
         if (!isset($this->container)) {
             throw new \RuntimeException(\sprintf('$container is not attribute of class "%s"', __CLASS__));

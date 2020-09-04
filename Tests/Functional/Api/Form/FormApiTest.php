@@ -14,17 +14,16 @@ class FormApiTest extends WebTestCase
         // guard
         $this->assertNull($this->findUserByName('new user'));
 
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/test/user/create');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/test/user/create');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $form = $crawler->filter('form')->form([
             'user[name]' => 'new user',
             'user[age]' => 23,
             'user[active]' => true,
         ]);
-        $client->submit($form);
-        $client->followRedirect();
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->client->submit($form);
+        $this->client->followRedirect();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $newUser = $this->findUserByName('new user');
         $this->assertNotNull($newUser);
@@ -40,8 +39,6 @@ class FormApiTest extends WebTestCase
      */
     private function findUserByName($name)
     {
-        $userRepository = $this->getEntityManager()->getRepository('AppImaticControllerBundle:User');
-
-        return $userRepository->findOneByName($name);
+        return $this->getEntityManager()->getRepository(User::class)->findOneBy(['name' => $name]);
     }
 }

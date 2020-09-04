@@ -29,7 +29,7 @@ class RouteLoader extends Loader
         $this->repository = $configurationRepository;
     }
 
-    public function load($resource, $type = null)
+    public function load($resource, string $type = null)
     {
         if (true === $this->loaded) {
             throw new \RuntimeException('Do not add the "' . $this->name . '" loader twice');

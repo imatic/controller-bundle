@@ -21,96 +21,114 @@ trait ApiTrait
 {
     use GetApiTrait;
 
+    public static function getSubscribedServices()
+    {
+        $services = parent::getSubscribedServices();
+
+        $services['autocompleteApi'] = AutocompleteApi::class;
+        $services['batchCommandApi'] = BatchCommandApi::class;
+        $services['commandApi'] = CommandApi::class;
+        $services['objectCommandApi'] = ObjectCommandApi::class;
+        $services['downloadApi'] = DownloadApi::class;
+        $services['formApi'] = FormApi::class;
+        $services['listingApi'] = ListingApi::class;
+        $services['showApi'] = ShowApi::class;
+        $services['exportApi'] = '?' . ExportApi::class;
+        $services['importApi'] = '?' . ImportApi::class;
+
+        return $services;
+    }
+
     /**
-     * @return AutocompleteApi
+     * @return Api|AutocompleteApi
      */
     protected function autocomplete()
     {
-        return $this->getApi(AutocompleteApi::class, 'autocomplete', \func_get_args());
+        return $this->getApi('autocompleteApi', 'autocomplete', \func_get_args());
     }
 
     /**
-     * @return BatchCommandApi
+     * @return Api|BatchCommandApi
      */
     protected function batchCommand()
     {
-        return $this->getApi(BatchCommandApi::class, 'batchCommand', \func_get_args());
+        return $this->getApi('batchCommandApi', 'batchCommand', \func_get_args());
     }
 
     /**
-     * @return CommandApi
+     * @return Api|CommandApi
      */
     protected function command()
     {
-        return $this->getApi(CommandApi::class, 'command', \func_get_args());
+        return $this->getApi('commandApi', 'command', \func_get_args());
     }
 
     /**
-     * @return ObjectCommandApi
+     * @return Api|ObjectCommandApi
      */
     protected function objectCommand()
     {
-        return $this->getApi(ObjectCommandApi::class, 'objectCommand', \func_get_args());
+        return $this->getApi('objectCommandApi', 'objectCommand', \func_get_args());
     }
 
     /**
-     * @return DownloadApi
+     * @return Api|DownloadApi
      */
     protected function download()
     {
-        return $this->getApi(DownloadApi::class, 'download', \func_get_args());
+        return $this->getApi('downloadApi', 'download', \func_get_args());
     }
 
     /**
-     * @return FormApi
+     * @return Api|FormApi
      */
     protected function form()
     {
-        return $this->getApi(FormApi::class, 'form', \func_get_args());
+        return $this->getApi('formApi', 'form', \func_get_args());
     }
 
     /**
-     * @return FormApi
+     * @return Api|FormApi
      */
     protected function namedForm()
     {
-        return $this->getApi(FormApi::class, 'namedForm', \func_get_args());
+        return $this->getApi('formApi', 'namedForm', \func_get_args());
     }
 
     /**
-     * @return ListingApi
+     * @return Api|ListingApi
      */
     protected function listing()
     {
-        return $this->getApi(ListingApi::class, 'listing', \func_get_args());
+        return $this->getApi('listingApi', 'listing', \func_get_args());
     }
 
     /**
-     * @return ShowApi
+     * @return Api|ShowApi
      */
     protected function show()
     {
-        return $this->getApi(ShowApi::class, 'show', \func_get_args());
+        return $this->getApi('showApi', 'show', \func_get_args());
     }
 
     /**
-     * @return ExportApi
+     * @return Api|ExportApi
      */
     protected function export()
     {
-        $this->checkVendor(ExportApi::class, 'imatic/importexport-bundle');
+        $this->checkVendor('exportApi', 'imatic/importexport-bundle');
 
-        return $this->getApi(ExportApi::class, 'export', \func_get_args());
+        return $this->getApi('exportApi', 'export', \func_get_args());
     }
 
     /**
-     * @return ImportApi
+     * @return Api|ImportApi
      */
     protected function import()
     {
-        $this->checkVendor(ImportApi::class, 'imatic/importexport-bundle');
+        $this->checkVendor('importApi', 'imatic/importexport-bundle');
 
-        return $this->getApi(ImportApi::class, 'import', \func_get_args());
+        return $this->getApi('importApi', 'import', \func_get_args());
     }
 
     private function checkVendor($name, $vendor)
