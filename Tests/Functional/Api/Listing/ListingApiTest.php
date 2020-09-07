@@ -11,9 +11,8 @@ class ListingApiTest extends WebTestCase
 {
     public function testListingShouldShowListOfUsers()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/test/user');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/test/user');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $records = $crawler->filter('#action table tr');
         $this->assertEquals(10, $records->count());
@@ -24,8 +23,6 @@ class ListingApiTest extends WebTestCase
     /** @test */
     public function shouldUseFilter()
     {
-        $client = static::createClient();
-
         /*
          * Filter all users with names containing "User 1"
          *
@@ -40,8 +37,8 @@ class ListingApiTest extends WebTestCase
             ],
         ];
 
-        $crawler = $client->request('GET', '/test/user?' . \http_build_query($displayCriteria));
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/test/user?' . \http_build_query($displayCriteria));
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $records = $crawler->filter('#action table tr');
 
@@ -53,9 +50,8 @@ class ListingApiTest extends WebTestCase
     /** @test */
     public function shouldUsePager()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/test/user?page=2');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/test/user?page=2');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $records = $crawler->filter('#action table tr');
         $this->assertEquals(10, $records->count());

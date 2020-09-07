@@ -7,13 +7,19 @@
     <services>
         <defaults public="true" />
 
+        <!-- commands -->
+        <service id="Imatic\Bundle\ControllerBundle\Command\ResourceDebugCommand">
+            <argument type="service" id="imatic_controller.resources.resource_repository" />
+            <tag name="console.command" command="imatic:controller:resource-debug" />
+        </service>
+
         <!-- api - features -->
         <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature" shared="false">
             <argument type="service" id="Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface" />
         </service>
 
         <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature" shared="false">
-            <argument type="service" id="templating" />
+            <argument type="service" id="twig" />
         </service>
 
         <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature" shared="false">

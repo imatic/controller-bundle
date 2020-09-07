@@ -14,14 +14,14 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity\User;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Form\Type\UserType;
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/user")
  */
-class UserController extends Controller
+class UserController extends AbstractController
 {
     use ApiTrait;
 
@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         return $this
             ->show(new UserQuery($id))
-            ->setTemplateName('AppImaticControllerBundle:Test:show.html.twig')
+            ->setTemplateName('@AppImaticController/Test/show.html.twig')
             ->getResponse();
     }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
             ->listing(new UserListQuery())
             ->filter(UserFilter::class)
             ->defaultLimit(10)
-            ->setTemplateName('AppImaticControllerBundle:Test:list.html.twig')
+            ->setTemplateName('@AppImaticController\Test\list.html.twig')
             ->getResponse();
     }
 
@@ -69,7 +69,7 @@ class UserController extends Controller
             ->commandName(UserEditHandler::class)
             ->edit(new UserQuery($id))
             ->successRedirect('app_user_edit', ['id' => $id])
-            ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
+            ->setTemplateName('@AppImaticController/Test/edit.html.twig')
             ->getResponse();
     }
 
@@ -85,7 +85,7 @@ class UserController extends Controller
             ->successRedirect('app_user_edit', function (CommandResultInterface $result, User $user) {
                 return ['id' => $user->getId()];
             })
-            ->setTemplateName('AppImaticControllerBundle:Test:edit.html.twig')
+            ->setTemplateName('@AppImaticController/Test/edit.html.twig')
             ->getResponse();
     }
 
@@ -171,7 +171,7 @@ class UserController extends Controller
                 'command' => UserCreateHandler::class,
             ])
             ->successRedirect('app_user_import_success')
-            ->setTemplateName('AppImaticControllerBundle:Test:import.html.twig')
+            ->setTemplateName('@AppImaticController/Test/import.html.twig')
             ->getResponse();
     }
 
@@ -188,6 +188,6 @@ class UserController extends Controller
      */
     public function importSuccessAction()
     {
-        return $this->render('AppImaticControllerBundle:Test:importSuccess.html.twig');
+        return $this->render('@AppImaticController/Test/importSuccess.html.twig');
     }
 }

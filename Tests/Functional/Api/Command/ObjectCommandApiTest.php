@@ -11,13 +11,12 @@ class ObjectCommandApiTest extends WebTestCase
 {
     public function testCommandShouldDeactivateUser()
     {
-        $client = static::createClient();
-        $client->followRedirects();
+        $this->client->followRedirects();
 
         $activeUser = $this->getActiveUser();
 
-        $client->request('PATCH', \sprintf('/test/user/activate/%s', $activeUser->getId()));
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->client->request('PATCH', \sprintf('/test/user/activate/%s', $activeUser->getId()));
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertFalse($activeUser->isActive());
     }
@@ -27,7 +26,7 @@ class ObjectCommandApiTest extends WebTestCase
      */
     private function getActiveUser()
     {
-        $user = $this->getEntityManager()->getRepository('AppImaticControllerBundle:User')->findOneBy(['active' => true]);
+        $user = $this->getEntityManager()->getRepository(User::class)->findOneBy(['active' => true]);
         $this->assertTrue($user->isActive());
 
         return $user;

@@ -10,9 +10,6 @@ use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
 class TestKernel extends BaseTestKernel
 {
-    /**
-     * {@inheritdoc}
-     */
     public function registerBundles()
     {
         $parentBundles = parent::registerBundles();

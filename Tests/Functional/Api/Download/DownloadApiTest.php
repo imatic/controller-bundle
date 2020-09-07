@@ -10,11 +10,10 @@ class DownloadApiTest extends WebTestCase
 {
     public function testCommandShouldDownloadFile()
     {
-        $client = static::createClient();
-        $client->request('GET', '/test/user/data');
+        $this->client->request('GET', '/test/user/data');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertEquals('count: 100', $client->getInternalResponse()->getContent());
-        $this->assertEquals('attachment; filename=userData', $client->getInternalResponse()->getHeader('Content-Disposition'));
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals('count: 100', $this->client->getInternalResponse()->getContent());
+        $this->assertEquals('attachment; filename=userData', $this->client->getInternalResponse()->getHeader('Content-Disposition'));
     }
 }

@@ -1,22 +1,22 @@
 <?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Template;
 
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 class TemplateFeature
 {
     /**
-     * @var EngineInterface
+     * @var Environment
      */
-    private $templating;
+    private $twig;
 
     private $templateName;
 
     private $templateVariables;
 
-    public function __construct(EngineInterface $templating)
+    public function __construct(Environment $twig)
     {
-        $this->templating = $templating;
+        $this->twig = $twig;
         $this->templateVariables = [];
     }
 
@@ -49,6 +49,6 @@ class TemplateFeature
 
     public function render()
     {
-        return $this->templating->render($this->templateName, $this->templateVariables);
+        return $this->twig->render($this->templateName, $this->templateVariables);
     }
 }

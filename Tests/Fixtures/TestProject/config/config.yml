@@ -22,9 +22,8 @@ framework:
     translator:
         enabled:                true
     router:
+        utf8:                   true
         resource:               "%kernel.project_dir%/config/routing.yml"
-    templating:
-        engines:                [twig]
     default_locale:             cs_CZ
     profiler:                   { only_exceptions: false }
 
@@ -52,7 +51,8 @@ doctrine:
 monolog:
     handlers:
         main:
-          type:                 "null"
+            type: "null"
+            process_psr_3_messages: false
 
 security:
     encoders:

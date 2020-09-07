@@ -10,10 +10,9 @@ class CommandApiTest extends WebTestCase
 {
     public function testCommandShouldGreetUser()
     {
-        $client = static::createClient();
-        $client->followRedirects();
-        $crawler = $client->request('GET', '/test/user/greet/USERNAME');
-        $this->assertEquals(200, $client->getInternalResponse()->getStatus());
+        $this->client->followRedirects();
+        $crawler = $this->client->request('GET', '/test/user/greet/USERNAME');
+        $this->assertEquals(200, $this->client->getInternalResponse()->getStatusCode());
 
         $this->assertContains('Hello USERNAME!', \trim($crawler->filter('#messages')->text()));
     }

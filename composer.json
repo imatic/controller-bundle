@@ -16,17 +16,29 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "imatic/data-bundle": "^4.2.1",
-        "symfony/framework-bundle": "^4.0"
+        "php": "^7.2",
+        "ext-iconv": "*",
+        "imatic/data-bundle": "^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/framework-bundle": "^4.4|^5.0",
+        "symfony/mime": "^4.4|^5.0",
+        "symfony/translation": "^4.4|^5.0",
+        "symfony/twig-bundle": "^4.4|^5.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "doctrine/orm": "^2.6",
+        "ext-json": "*",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "doctrine/orm": "^2.7",
         "friendsofphp/php-cs-fixer": "^2.7",
-        "imatic/testing": "^5.0.2",
+        "imatic/testing": "^6.0.0",
         "phpmd/phpmd": "^2.6",
-        "symfony/phpunit-bridge": "^4.1"
+        "symfony/browser-kit": "^4.4|^5.0",
+        "symfony/css-selector": "^4.4|^5.0",
+        "symfony/phpunit-bridge": "^4.4|^5.0",
+        "symfony/security-bundle": "^4.4|^5.0",
+        "symfony/validator": "^4.4|^5.0",
+        "symfony/web-profiler-bundle": "^4.4|^5.0",
+        "symfony/yaml": "^4.4|^5.0"
     },
     "suggest": {
         "imatic/importexport-bundle": "Allows to use import and export apis"
@@ -34,7 +46,10 @@
     "autoload": {
         "psr-4": {
             "Imatic\\Bundle\\ControllerBundle\\": ""
-        }
+        },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
     },
     "config": {
         "sort-packages": true

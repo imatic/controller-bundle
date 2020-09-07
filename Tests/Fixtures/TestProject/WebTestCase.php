@@ -4,12 +4,18 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Imatic\Testing\Test\WebTestCase as BaseWebTestCase;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class WebTestCase extends BaseWebTestCase
 {
+    /**
+     * @var KernelBrowser
+     */
+    protected $client;
+
     protected function setUp()
     {
-        static::createClient()->getContainer();
+        $this->client = static::createClient();
     }
 
     /**

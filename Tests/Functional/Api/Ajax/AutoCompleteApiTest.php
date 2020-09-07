@@ -10,32 +10,30 @@ class AutoCompleteApiTest extends WebTestCase
 {
     public function testAutocompletionShouldFindNothingIfNoRecordsContainsGivenValue()
     {
-        $client = static::createClient();
-        $client->request('GET', '/test/user/autocomplete', [
+        $this->client->request('GET', '/test/user/autocomplete', [
             'filter' => [
                 'search' => [
                     'value' => 'NoExistingValue',
                 ],
             ],
         ]);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $response = \json_decode($client->getInternalResponse()->getContent());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $response = \json_decode($this->client->getInternalResponse()->getContent());
 
         $this->assertEmpty($response);
     }
 
     public function testAutocompletionShouldFindRecordsContainingGivenValue()
     {
-        $client = static::createClient();
-        $client->request('GET', '/test/user/autocomplete', [
+        $this->client->request('GET', '/test/user/autocomplete', [
             'filter' => [
                 'search' => [
                     'value' => 'ser 1',
                 ],
             ],
         ]);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $response = \json_decode($client->getInternalResponse()->getContent());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $response = \json_decode($this->client->getInternalResponse()->getContent());
 
         $this->assertCount(12, $response);
     }

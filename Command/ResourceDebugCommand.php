@@ -4,7 +4,7 @@ namespace Imatic\Bundle\ControllerBundle\Command;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,8 +12,17 @@ use Symfony\Component\Console\Style\StyleInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\VarDumper\VarDumper;
 
-class ResourceDebugCommand extends ContainerAwareCommand
+class ResourceDebugCommand extends Command
 {
+    private $repository;
+
+    public function __construct(ConfigurationRepository $repository)
+    {
+        $this->repository = $repository;
+
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this
@@ -26,13 +35,10 @@ class ResourceDebugCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $resourceName = $input->getArgument('resource');
-        /** @var ConfigurationRepository $repository */
-        $repository = $this->getContainer()->get('imatic_controller.resources.resource_repository');
-
         $io = new SymfonyStyle($input, $output);
 
         if ($resourceName) {
-            $resource = $repository->getResource($resourceName);
+            $resource = $this->repository->getResource($resourceName);
 
             if ($actionName = $input->getArgument('action')) {
                 $io->title(\sprintf('Controller resource action %s:%s', $resourceName, $actionName));
@@ -44,8 +50,10 @@ class ResourceDebugCommand extends ContainerAwareCommand
             }
         } else {
             $io->title('Controller resources');
-            $this->executeResources($io, $repository);
+            $this->executeResources($io, $this->repository);
         }
+
+        return 0;
     }
 
     private function executeAction(StyleInterface $io, ResourceAction $action)

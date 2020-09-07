@@ -10,9 +10,8 @@ class ShowApiTest extends WebTestCase
 {
     public function testShowShouldShowTheUser()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/test/user/1');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/test/user/1');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertEquals('user: User 1', \trim($crawler->filter('#action')->text()));
     }
