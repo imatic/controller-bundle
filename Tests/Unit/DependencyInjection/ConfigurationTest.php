@@ -17,7 +17,7 @@ class ConfigurationTest extends TestCase
         $processor = new Processor();
         $processor->processConfiguration($configuration, [$config['imatic_controller']]);
 
-        $this->assertInternalType('array', $config);
+        $this->assertIsArray($config);
     }
 
     public function testResourcesConfiguration()
@@ -29,6 +29,6 @@ class ConfigurationTest extends TestCase
         $processor = new Processor();
         $processor->processConfiguration($configuration, [$config['imatic_controller']]);
 
-        $this->assertInternalType('array', $config);
+        $this->assertIsArray($config);
     }
 }

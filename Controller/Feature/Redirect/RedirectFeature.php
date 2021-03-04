@@ -72,7 +72,11 @@ class RedirectFeature
         }
 
         if ($this->redirects[$name]['parameters'] instanceof \Closure) {
-            $parameters = \call_user_func_array($this->redirects[$name]['parameters'], $parameters);
+            $args = [
+                $parameters['result'],
+                $parameters['data'],
+            ];
+            $parameters = \call_user_func_array($this->redirects[$name]['parameters'], $args);
         } else {
             $parameters = \array_merge($this->redirects[$name]['parameters'], $parameters);
         }

@@ -14,6 +14,6 @@ class CommandApiTest extends WebTestCase
         $crawler = $this->client->request('GET', '/test/user/greet/USERNAME');
         $this->assertEquals(200, $this->client->getInternalResponse()->getStatusCode());
 
-        $this->assertContains('Hello USERNAME!', \trim($crawler->filter('#messages')->text()));
+        $this->assertStringContainsString('Hello USERNAME!', \trim($crawler->filter('#messages')->text()));
     }
 }
