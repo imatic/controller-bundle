@@ -8,7 +8,7 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
  */
 class ExportApiTest extends WebTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

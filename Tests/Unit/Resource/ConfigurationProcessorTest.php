@@ -50,7 +50,7 @@ class ConfigurationProcessorTest extends TestCase
         $processor = new ConfigurationProcessor();
         $processed = $processor->processResources($resources, $prototype);
 
-        $this->assertInternalType('array', $processed);
+        $this->assertIsArray($processed);
         $this->assertCount(2, $processed);
         $this->assertInstanceOf(Resource::class, $processed['app_book']);
         $this->assertInstanceOf(Resource::class, $processed['app_user']);

@@ -13,7 +13,7 @@ class WebTestCase extends BaseWebTestCase
      */
     protected $client;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->client = static::createClient();
     }

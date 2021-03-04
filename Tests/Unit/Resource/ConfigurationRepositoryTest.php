@@ -31,12 +31,11 @@ class ConfigurationRepositoryTest extends TestCase
         $this->assertEquals('E1', $repository->getResources()['key1']->getConfig()->entity);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Resource "key2" not found
-     */
     public function testGetResourceNotExists()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Resource "key2" not found');
+
         $repository = new ConfigurationRepository();
         $repository->addResource('key1', new Resource([new ResourceAction(['list' => []])], new ResourceConfig(['entity' => 'E1']), 'r1'));
 
