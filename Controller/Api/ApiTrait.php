@@ -25,16 +25,16 @@ trait ApiTrait
     {
         $services = parent::getSubscribedServices();
 
-        $services['autocompleteApi'] = AutocompleteApi::class;
-        $services['batchCommandApi'] = BatchCommandApi::class;
-        $services['commandApi'] = CommandApi::class;
-        $services['objectCommandApi'] = ObjectCommandApi::class;
-        $services['downloadApi'] = DownloadApi::class;
-        $services['formApi'] = FormApi::class;
-        $services['listingApi'] = ListingApi::class;
-        $services['showApi'] = ShowApi::class;
-        $services['exportApi'] = '?' . ExportApi::class;
-        $services['importApi'] = '?' . ImportApi::class;
+        $services[AutocompleteApi::class] = AutocompleteApi::class;
+        $services[BatchCommandApi::class] = BatchCommandApi::class;
+        $services[CommandApi::class] = CommandApi::class;
+        $services[ObjectCommandApi::class] = ObjectCommandApi::class;
+        $services[DownloadApi::class] = DownloadApi::class;
+        $services[FormApi::class] = FormApi::class;
+        $services[ListingApi::class] = ListingApi::class;
+        $services[ShowApi::class] = ShowApi::class;
+        $services[ExportApi::class] = '?' . ExportApi::class;
+        $services[ImportApi::class] = '?' . ImportApi::class;
 
         return $services;
     }
@@ -44,7 +44,7 @@ trait ApiTrait
      */
     protected function autocomplete()
     {
-        return $this->getApi('autocompleteApi', 'autocomplete', \func_get_args());
+        return $this->getApi(AutocompleteApi::class, 'autocomplete', \func_get_args());
     }
 
     /**
@@ -52,7 +52,7 @@ trait ApiTrait
      */
     protected function batchCommand()
     {
-        return $this->getApi('batchCommandApi', 'batchCommand', \func_get_args());
+        return $this->getApi(BatchCommandApi::class, 'batchCommand', \func_get_args());
     }
 
     /**
@@ -60,7 +60,7 @@ trait ApiTrait
      */
     protected function command()
     {
-        return $this->getApi('commandApi', 'command', \func_get_args());
+        return $this->getApi(CommandApi::class, 'command', \func_get_args());
     }
 
     /**
@@ -68,7 +68,7 @@ trait ApiTrait
      */
     protected function objectCommand()
     {
-        return $this->getApi('objectCommandApi', 'objectCommand', \func_get_args());
+        return $this->getApi(ObjectCommandApi::class, 'objectCommand', \func_get_args());
     }
 
     /**
@@ -76,7 +76,7 @@ trait ApiTrait
      */
     protected function download()
     {
-        return $this->getApi('downloadApi', 'download', \func_get_args());
+        return $this->getApi(DownloadApi::class, 'download', \func_get_args());
     }
 
     /**
@@ -84,7 +84,7 @@ trait ApiTrait
      */
     protected function form()
     {
-        return $this->getApi('formApi', 'form', \func_get_args());
+        return $this->getApi(FormApi::class, 'form', \func_get_args());
     }
 
     /**
@@ -92,7 +92,7 @@ trait ApiTrait
      */
     protected function namedForm()
     {
-        return $this->getApi('formApi', 'namedForm', \func_get_args());
+        return $this->getApi(FormApi::class, 'namedForm', \func_get_args());
     }
 
     /**
@@ -100,7 +100,7 @@ trait ApiTrait
      */
     protected function listing()
     {
-        return $this->getApi('listingApi', 'listing', \func_get_args());
+        return $this->getApi(ListingApi::class, 'listing', \func_get_args());
     }
 
     /**
@@ -108,7 +108,7 @@ trait ApiTrait
      */
     protected function show()
     {
-        return $this->getApi('showApi', 'show', \func_get_args());
+        return $this->getApi(ShowApi::class, 'show', \func_get_args());
     }
 
     /**
@@ -116,9 +116,9 @@ trait ApiTrait
      */
     protected function export()
     {
-        $this->checkVendor('exportApi', 'imatic/importexport-bundle');
+        $this->checkVendor(ExportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('exportApi', 'export', \func_get_args());
+        return $this->getApi(ExportApi::class, 'export', \func_get_args());
     }
 
     /**
@@ -126,9 +126,9 @@ trait ApiTrait
      */
     protected function import()
     {
-        $this->checkVendor('importApi', 'imatic/importexport-bundle');
+        $this->checkVendor(ImportApi::class, 'imatic/importexport-bundle');
 
-        return $this->getApi('importApi', 'import', \func_get_args());
+        return $this->getApi(ImportApi::class, 'import', \func_get_args());
     }
 
     private function checkVendor($name, $vendor)
