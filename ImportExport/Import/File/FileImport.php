@@ -13,7 +13,7 @@ class FileImport extends BaseFileImport
     {
         parent::configureOptions($optionsResolver);
 
-        $optionsResolver->setOptional([
+        $optionsResolver->setDefined([
             'command',
         ]);
     }
