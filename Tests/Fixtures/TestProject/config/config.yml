@@ -1,6 +1,6 @@
 imports:
-    - { resource: "@ImaticDataBundle/Resources/config/data_doctrine.xml" }
-    - { resource: "@ImaticDataBundle/Resources/config/data_doctrine_orm.xml" }
+    - { resource: "@ImaticDataBundle/config/data_doctrine.xml" }
+    - { resource: "@ImaticDataBundle/config/data_doctrine_orm.xml" }
     - { resource: "@ImaticControllerBundle/Resources/config/config.yml" }
     - { resource: "resources/user.yml" }
 
@@ -38,7 +38,6 @@ doctrine:
     dbal:
         connections:
             default:
-                wrapper_class: "Imatic\\Testing\\Doctrine\\DBAL\\PersistedConnection"
                 driver:         pdo_sqlite
                 memory:         false
                 path:           "%kernel.project_dir%/var/cache/test.db"

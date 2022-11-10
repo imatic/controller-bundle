@@ -7,7 +7,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterOperatorMap;
 
 class AutocompleteFilter extends Filter
 {
-    public function configure()
+    public function configure(): void
     {
         $this->add((new TextRule('search'))->setOperator(FilterOperatorMap::OPERATOR_CONTAINS));
     }

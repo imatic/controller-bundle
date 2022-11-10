@@ -6,7 +6,7 @@ use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Filter\TextRule;
 
 class UserFilter extends Filter
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this->add(new TextRule('search'));
     }

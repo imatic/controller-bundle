@@ -1,33 +1,38 @@
 <?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\Handler;
 
-use Imatic\Bundle\DataBundle\Data\Command\Command;
+use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Data\UserListQuery;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorAwareInterface;
 use Imatic\Bundle\DataBundle\Data\Command\CommandExecutorAwareTrait;
+use Imatic\Bundle\DataBundle\Data\Command\CommandInterface;
+use Imatic\Bundle\DataBundle\Data\Command\CommandResult;
 use Imatic\Bundle\DataBundle\Data\Command\HandlerInterface;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\AbstractBatchHandler;
-use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\QueryExecutor;
-use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaInterface;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\RecordIterator;
+use Imatic\Bundle\DataBundle\Data\Driver\DoctrineORM\Command\RecordIteratorArgs;
 
-/**
- * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
- */
-class UserGreetBatchHandler extends AbstractBatchHandler implements HandlerInterface, CommandExecutorAwareInterface
+final class UserGreetBatchHandler implements HandlerInterface, CommandExecutorAwareInterface
 {
     use CommandExecutorAwareTrait;
 
-    public function __construct(QueryExecutor $queryExecutor)
+    private RecordIterator $iterator;
+
+    public function __construct(RecordIterator $iterator)
     {
-        $this->queryExecutor = $queryExecutor;
+        $this->iterator = $iterator;
     }
 
-    protected function handleOne($id)
+    public function handle(CommandInterface $command)
     {
-        return $this->commandExecutor->execute(new Command(UserGreetHandler::class, ['username' => $id]));
-    }
+        $count = 0;
 
-    protected function handleAll(DisplayCriteriaInterface $displayCriteria)
-    {
-        throw new \LogicException('unimplemented');
+        $iterator = new RecordIteratorArgs($command, new UserListQuery(), function () use (&$count) {
+            ++$count;
+
+            return CommandResult::success();
+        });
+
+        $this->iterator->each($iterator);
+
+        return CommandResult::success("Hromadná akce byla provedena pro $count");
     }
 }

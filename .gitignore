@@ -1,7 +1,8 @@
 /vendor/
 /composer
 /phpunit.xml
-/.php_cs.cache
+/.phpunit.result.cache
+/.php-cs-fixer.cache
 /phpda.svg
 
 # ide directories
