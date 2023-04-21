@@ -25,7 +25,7 @@ class ImaticControllerExtension extends Extension
         $config = $this->processConfiguration($configuration, [$config]);
 
         // Resources configuration
-        $this->processResourcesConfiguration($config['resources_config'], $config['resources'], $container);
+        $this->processResourcesConfiguration($config['resources_config'] ?? [], $config['resources'], $container);
 
         // Load services
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
