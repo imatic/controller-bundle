@@ -9,7 +9,7 @@ class ConfigurationProcessor
 {
     public function process(array $resourcesConfig, array $resources)
     {
-        return $this->processResources($resources, $resourcesConfig['prototype']);
+        return $this->processResources($resources, $resourcesConfig['prototype'] ?? []);
     }
 
     public function processResources(array $resources, array $prototype)
