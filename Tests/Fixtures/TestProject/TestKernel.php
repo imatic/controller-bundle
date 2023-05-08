@@ -5,12 +5,15 @@ use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Imatic\Bundle\ControllerBundle\ImaticControllerBundle;
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\AppImaticControllerBundle;
 use Imatic\Bundle\DataBundle\ImaticDataBundle;
+use Imatic\Bundle\ImportBundle\ImaticImportBundle;
+use Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle;
 use Imatic\Testing\Test\TestKernel as BaseTestKernel;
+use JMS\SerializerBundle\JMSSerializerBundle;
 use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
 class TestKernel extends BaseTestKernel
 {
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         $parentBundles = parent::registerBundles();
 
@@ -23,15 +26,15 @@ class TestKernel extends BaseTestKernel
         ];
 
         if (\class_exists('Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle')) {
-            $bundles[] = new Imatic\Bundle\ImportExportBundle\ImaticImportExportBundle();
-            $bundles[] = new JMS\SerializerBundle\JMSSerializerBundle();
-            $bundles[] = new Imatic\Bundle\ImportBundle\ImaticImportBundle();
+            $bundles[] = new ImaticImportExportBundle();
+            $bundles[] = new JMSSerializerBundle();
+            $bundles[] = new ImaticImportBundle();
         }
 
         return \array_merge($parentBundles, $bundles);
     }
 
-    public function getProjectDir()
+    public function getProjectDir(): string
     {
         return __DIR__;
     }

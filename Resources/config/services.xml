@@ -45,7 +45,7 @@
         </service>
 
         <service id="Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature" shared="false">
-            <argument type="service" id="session" />
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack" />
             <argument type="service" id="translator" />
         </service>
 
