@@ -21,7 +21,7 @@ trait ApiTrait
 {
     use GetApiTrait;
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         $services = parent::getSubscribedServices();
 

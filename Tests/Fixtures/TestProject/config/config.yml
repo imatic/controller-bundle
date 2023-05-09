@@ -13,7 +13,7 @@ framework:
     secret:                     test
     test: ~
     session:
-        storage_id:             session.storage.filesystem
+        storage_factory_id:     session.storage.factory.mock_file
     form:                       true
     csrf_protection:            true
     validation:
@@ -54,8 +54,9 @@ monolog:
             process_psr_3_messages: false
 
 security:
-    encoders:
+    password_hashers:
         Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\InMemoryUser: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:             ROLE_USER
@@ -75,7 +76,6 @@ security:
             context:            user
             pattern:            /
             http_basic:
-            anonymous:          false
 
     access_control:
         - { path: ^/admin, role: [ROLE_ADMIN] }
@@ -83,3 +83,9 @@ security:
 imatic_data:
     pager:
         default_limit: 20
+
+services:
+    _defaults:
+        public: true
+    annotation_reader:
+        class: Doctrine\Common\Annotations\AnnotationReader

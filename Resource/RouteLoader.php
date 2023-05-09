@@ -57,7 +57,7 @@ class RouteLoader extends Loader
                 $requirements = !empty($action['route']['requirements']) ? $action['route']['requirements'] : [];
                 $options = [];
                 $host = null;
-                $schemes = null;
+                $schemes = '';
                 $methods = $action['route']['methods'];
 
                 $route = new Route($path, $defaults, $requirements, $options, $host, $schemes, $methods);

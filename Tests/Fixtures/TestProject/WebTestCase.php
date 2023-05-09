@@ -23,13 +23,13 @@ class WebTestCase extends BaseWebTestCase
      */
     public function getEntityManager()
     {
-        return self::$container->get(EntityManagerInterface::class);
+        return self::getContainer()->get(EntityManagerInterface::class);
     }
 
     /**
      * @return string
      */
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return 'Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\TestKernel';
     }

@@ -75,6 +75,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/create", name="app_user_create", methods={"GET", "POST"})
+     *
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function createAction()
