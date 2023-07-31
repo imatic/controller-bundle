@@ -3,24 +3,17 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Feature\Message;
 
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MessageFeature
 {
-    /**
-     * @var Session
-     */
-    private $session;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private SessionInterface $session;
+    private TranslatorInterface $translator;
 
     public function __construct(RequestStack $requestStack, TranslatorInterface $translator)
     {
-        $this->session = $requestStack->getSession();
+        $this->session = $requestStack->getCurrentRequest()->getSession();
         $this->translator = $translator;
     }
 
