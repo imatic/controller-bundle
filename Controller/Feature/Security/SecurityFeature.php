@@ -33,7 +33,7 @@ class SecurityFeature
         $this->dataAuthorizationEnabled = $enable;
     }
 
-    public function addDataCheck($attributes, $dataKey, \Closure $callback = null)
+    public function addDataCheck($attributes, $dataKey, ?\Closure $callback = null)
     {
         $this->dataAuthorizationEnabled = true;
 

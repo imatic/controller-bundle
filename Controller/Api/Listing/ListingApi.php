@@ -50,7 +50,7 @@ class ListingApi extends QueryApi
         $this->displayCriteriaReader = $displayCriteriaReader;
     }
 
-    public function listing(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    public function listing(QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         $this->displayCriteria = $displayCriteria;
         $this->queryObject = $queryObject;

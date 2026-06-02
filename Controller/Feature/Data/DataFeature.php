@@ -24,7 +24,7 @@ class DataFeature
      *
      * @return mixed
      */
-    public function query($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    public function query($name, QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         $result = $this->doQuery($queryObject, $displayCriteria);
         $this->data[$name] = $result;
@@ -39,7 +39,7 @@ class DataFeature
      *
      * @return int
      */
-    public function count($name, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    public function count($name, QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         $count = $this->doCount($queryObject, $displayCriteria);
         $this->data[$name] = $count;
@@ -55,7 +55,7 @@ class DataFeature
      *
      * @return array result, count
      */
-    public function queryAndCount($resultName, $countName, QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    public function queryAndCount($resultName, $countName, QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         list($result, $count) = $this->doQueryAndCount($queryObject, $displayCriteria);
 
@@ -87,17 +87,17 @@ class DataFeature
         $this->data[$name] = $value;
     }
 
-    protected function doQuery(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    protected function doQuery(QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->execute($queryObject, $displayCriteria);
     }
 
-    protected function doCount(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    protected function doCount(QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->count($queryObject, $displayCriteria);
     }
 
-    protected function doQueryAndCount(QueryObjectInterface $queryObject, DisplayCriteriaInterface $displayCriteria = null)
+    protected function doQueryAndCount(QueryObjectInterface $queryObject, ?DisplayCriteriaInterface $displayCriteria = null)
     {
         return $this->queryExecutor->executeAndCount($queryObject, $displayCriteria);
     }

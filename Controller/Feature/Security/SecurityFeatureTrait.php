@@ -15,7 +15,7 @@ trait SecurityFeatureTrait
      *
      * @return $this
      */
-    public function addDataAuthorizationCheck($attributes, $dataKey = null, \Closure $callback = null)
+    public function addDataAuthorizationCheck($attributes, $dataKey = null, ?\Closure $callback = null)
     {
         if (null === $dataKey) {
             $dataKey = 'item';

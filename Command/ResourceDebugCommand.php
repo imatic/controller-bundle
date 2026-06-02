@@ -32,7 +32,7 @@ class ResourceDebugCommand extends Command
             ->addArgument('action', InputArgument::OPTIONAL, 'Action to debug');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $resourceName = $input->getArgument('resource');
         $io = new SymfonyStyle($input, $output);

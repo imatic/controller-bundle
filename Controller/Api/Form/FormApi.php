@@ -80,7 +80,7 @@ class FormApi extends CommandApi
         return $this;
     }
 
-    public function edit(QueryObjectInterface $queryObject, \Closure $closure = null)
+    public function edit(QueryObjectInterface $queryObject, ?\Closure $closure = null)
     {
         $item = $this->data->query('item', $queryObject);
         $this->response->throwNotFoundUnless($item);
