@@ -36,7 +36,7 @@ class RequestFeature
      */
     public function getCurrentRoute()
     {
-        return $this->getCurrentRequest()->get('_route');
+        return $this->getCurrentRequest()->attributes->get('_route');
     }
 
     /**
@@ -44,7 +44,7 @@ class RequestFeature
      */
     public function getCurrentRouteParams()
     {
-        return $this->getCurrentRequest()->get('_route_params');
+        return $this->getCurrentRequest()->attributes->get('_route_params');
     }
 
     /**

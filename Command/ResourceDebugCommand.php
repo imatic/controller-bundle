@@ -23,7 +23,7 @@ class ResourceDebugCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('imatic:controller:resource-debug')

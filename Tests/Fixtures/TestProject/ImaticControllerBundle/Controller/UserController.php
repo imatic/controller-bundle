@@ -16,18 +16,14 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 use Imatic\Bundle\DataBundle\Data\Command\CommandResultInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactory;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-/**
- * @Route("/user")
- */
+#[Route('/user')]
 class UserController extends AbstractController
 {
     use ApiTrait;
 
-    /**
-     * @Route("/autocomplete", name="app_user_autocomplete", methods={"GET"})
-     */
+    #[Route('/autocomplete', name: 'app_user_autocomplete', methods: ['GET'])]
     public function autoCompleteAction()
     {
         return $this->autocomplete()
@@ -35,9 +31,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/{id}", name="app_user_show", requirements={"id"="\d+"}, methods={"GET"})
-     */
+    #[Route('/{id}', name: 'app_user_show', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function showAction($id)
     {
         return $this
@@ -46,9 +40,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("", name="app_user_list", methods={"GET"})
-     */
+    #[Route('', name: 'app_user_list', methods: ['GET'])]
     public function listAction()
     {
         return $this
@@ -59,9 +51,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/edit/{id}", name="app_user_edit", methods={"GET", "PUT"})
-     */
+    #[Route('/edit/{id}', name: 'app_user_edit', methods: ['GET', 'PUT'])]
     public function editAction($id)
     {
         return $this
@@ -73,11 +63,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/create", name="app_user_create", methods={"GET", "POST"})
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
+    #[Route('/create', name: 'app_user_create', methods: ['GET', 'POST'])]
     public function createAction()
     {
         return $this
@@ -90,9 +76,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/delete/{id}", name="app_user_delete", methods={"DELETE"})
-     */
+    #[Route('/delete/{id}', name: 'app_user_delete', methods: ['DELETE'])]
     public function deleteAction($id)
     {
         return $this
@@ -101,9 +85,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/activate/{id}", name="app_user_activate", methods={"PATCH"})
-     */
+    #[Route('/activate/{id}', name: 'app_user_activate', methods: ['PATCH'])]
     public function activateAction($id)
     {
         return $this
@@ -112,9 +94,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/greet/{username}", methods={"GET"})
-     */
+    #[Route('/greet/{username}', methods: ['GET'])]
     public function greetAction($username)
     {
         return $this->command()
@@ -125,9 +105,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/greet-batch")
-     */
+    #[Route('/greet-batch')]
     public function greetBatchAction()
     {
         return $this
@@ -136,9 +114,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/data")
-     */
+    #[Route('/data')]
     public function dataAction()
     {
         return $this->download()
@@ -146,9 +122,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/export")
-     */
+    #[Route('/export')]
     public function exportAction()
     {
         return $this->export()
@@ -156,9 +130,7 @@ class UserController extends AbstractController
             ->getResponse();
     }
 
-    /**
-     * @Route("/import", name="app_user_import")
-     */
+    #[Route('/import', name: 'app_user_import')]
     public function importAction()
     {
         return $this->import()
@@ -184,9 +156,7 @@ class UserController extends AbstractController
         return $this->container->get('form.factory');
     }
 
-    /**
-     * @Route("import-success", name="app_user_import_success")
-     */
+    #[Route('import-success', name: 'app_user_import_success')]
     public function importSuccessAction()
     {
         return $this->render('@AppImaticController/Test/importSuccess.html.twig');

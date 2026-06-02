@@ -1,6 +1,6 @@
 imports:
-    - { resource: "@ImaticDataBundle/config/data_doctrine.xml" }
-    - { resource: "@ImaticDataBundle/config/data_doctrine_orm.xml" }
+    - { resource: "@ImaticDataBundle/config/data_doctrine.yaml" }
+    - { resource: "@ImaticDataBundle/config/data_doctrine_orm.yaml" }
     - { resource: "@ImaticControllerBundle/Resources/config/config.yml" }
     - { resource: "resources/user.yml" }
 
@@ -18,14 +18,17 @@ framework:
     csrf_protection:            true
     validation:
         enabled:                true
-        enable_annotations:     true
     translator:
         enabled:                true
     router:
         utf8:                   true
         resource:               "%kernel.project_dir%/config/routing.yml"
     default_locale:             cs_CZ
-    profiler:                   { only_exceptions: false }
+    profiler:
+        only_exceptions:            false
+        collect_serializer_data:    true
+    property_info:
+        with_constructor_extractor: true
 
 web_profiler:
     toolbar: true
@@ -45,7 +48,14 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:           true
+        report_fields_where_declared: true
         resolve_target_entities: []
+        mappings:
+            ImaticControllerBundle:
+                type: attribute
+                dir: '%kernel.project_dir%/ImaticControllerBundle/Entity'
+                prefix: 'Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBundle\Entity'
+                alias: ImaticControllerBundle
 
 monolog:
     handlers:
@@ -87,5 +97,3 @@ imatic_data:
 services:
     _defaults:
         public: true
-    annotation_reader:
-        class: Doctrine\Common\Annotations\AnnotationReader

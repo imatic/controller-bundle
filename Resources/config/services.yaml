@@ -1,0 +1,156 @@
+services:
+    _defaults:
+        public: true
+
+    # commands
+    Imatic\Bundle\ControllerBundle\Command\ResourceDebugCommand:
+        public: false
+        arguments:
+            - '@imatic_controller.resources.resource_repository'
+        tags:
+            - { name: console.command, command: 'imatic:controller:resource-debug' }
+
+    # api - features
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@Imatic\Bundle\DataBundle\Data\Query\QueryExecutorInterface'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@twig'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@form.factory'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@request_stack'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@request_stack'
+            - '@Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\DisplayCriteriaFactory'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@router'
+            - '@request_stack'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@Symfony\Component\HttpFoundation\RequestStack'
+            - '@translator'
+
+    Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature:
+        shared: false
+        public: false
+        arguments:
+            - '@security.authorization_checker'
+
+    # api - concrete
+    Imatic\Bundle\ControllerBundle\Controller\Api\Show\ShowApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Listing\ListingApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+            - '@Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\Reader\DisplayCriteriaReader'
+            - '@Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Form\FormApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Form\FormFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Command\CommandApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Command\ObjectCommandApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Command\BatchCommandApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Command\CommandFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Message\MessageFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Security\SecurityFeature'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Ajax\AutocompleteApi:
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Data\DataFeature'
+
+    # Resources
+    Imatic\Bundle\ControllerBundle\Resource\RouteLoader:
+        public: false
+        tags:
+            - { name: routing.loader }
+        arguments:
+            - '@imatic_controller.resources.resource_repository'
