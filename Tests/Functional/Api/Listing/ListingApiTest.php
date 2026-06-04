@@ -3,6 +3,7 @@ namespace Imatic\Bundle\ControllerBundle\Tests\Functional\Listing;
 
 use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\WebTestCase;
 use Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterOperatorMap;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @author Miloslav Nenadal <miloslav.nenadal@imatic.cz>
@@ -20,7 +21,7 @@ class ListingApiTest extends WebTestCase
         $this->assertEquals('User 10 (Active)', \trim($records->last()->filter('td')->first()->text()));
     }
 
-    /** @test */
+    #[Test]
     public function shouldUseFilter()
     {
         /*
@@ -47,7 +48,7 @@ class ListingApiTest extends WebTestCase
         $this->assertEquals('User 18 (Active)', \trim($records->last()->filter('td')->first()->text()));
     }
 
-    /** @test */
+    #[Test]
     public function shouldUsePager()
     {
         $crawler = $this->client->request('GET', '/test/user?page=2');

@@ -46,9 +46,7 @@ doctrine:
                 path:           "%kernel.project_dir%/var/cache/test.db"
 
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:           true
-        report_fields_where_declared: true
         resolve_target_entities: []
         mappings:
             ImaticControllerBundle:
