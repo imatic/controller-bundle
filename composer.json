@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.5",
         "ext-iconv": "*",
-        "imatic/data-bundle": "dev-symfony-8.1",
+        "imatic/data-bundle": "^7.0",
         "symfony/form": "^8.1",
         "symfony/framework-bundle": "^8.1",
         "symfony/mime": "^8.1",

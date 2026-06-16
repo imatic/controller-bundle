@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac3964fa3234cd42ac2ff8f6ebcd675a",
+    "content-hash": "76f99eb1dea43cc54957f79bf8489855",
     "packages": [
         {
             "name": "doctrine/dbal",
@@ -518,16 +518,16 @@
         },
         {
             "name": "imatic/data-bundle",
-            "version": "dev-symfony-8.1",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imatic/data-bundle.git",
-                "reference": "e1fde30b52c24141c574094cb8c43f2f300464ab"
+                "reference": "689205659931c84816327f197a84a19e818a1e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/e1fde30b52c24141c574094cb8c43f2f300464ab",
-                "reference": "e1fde30b52c24141c574094cb8c43f2f300464ab",
+                "url": "https://api.github.com/repos/imatic/data-bundle/zipball/689205659931c84816327f197a84a19e818a1e3e",
+                "reference": "689205659931c84816327f197a84a19e818a1e3e",
                 "shasum": ""
             },
             "require": {
@@ -541,8 +541,8 @@
                 "doctrine/doctrine-fixtures-bundle": "^4.0",
                 "doctrine/orm": "^3.0",
                 "friendsofphp/php-cs-fixer": "^3.75",
-                "imatic/form-bundle": "dev-symfony-8.1",
-                "imatic/testing": "dev-symfony-8.1",
+                "imatic/form-bundle": "^6.0",
+                "imatic/testing": "^7.0",
                 "mikey179/vfsstream": "^1.4",
                 "phpstan/phpstan": "^2.0",
                 "symfony/browser-kit": "^8.1",
@@ -582,9 +582,9 @@
             ],
             "support": {
                 "issues": "https://github.com/imatic/data-bundle/issues",
-                "source": "https://github.com/imatic/data-bundle/tree/symfony-8.1"
+                "source": "https://github.com/imatic/data-bundle/tree/v7.0.0"
             },
-            "time": "2026-06-10T11:24:35+00:00"
+            "time": "2026-06-16T07:51:20+00:00"
         },
         {
             "name": "psr/cache",
@@ -9336,9 +9336,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "imatic/data-bundle": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
