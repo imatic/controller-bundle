@@ -7,7 +7,7 @@ use Imatic\Bundle\ControllerBundle\Tests\Fixtures\TestProject\ImaticControllerBu
 
 class LoadUserData extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         for ($i = 1; $i <= 100; ++$i) {
             $user = new User($i);

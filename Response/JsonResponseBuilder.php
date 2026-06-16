@@ -64,14 +64,14 @@ class JsonResponseBuilder
         return $this;
     }
 
-    public function setForm(FormInterface $form = null)
+    public function setForm(?FormInterface $form = null)
     {
         $this->form = $form;
 
         return $this;
     }
 
-    public function setCommandResult(CommandResultInterface $commandResult = null)
+    public function setCommandResult(?CommandResultInterface $commandResult = null)
     {
         $this->commandResult = $commandResult;
 

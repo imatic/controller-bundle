@@ -23,7 +23,7 @@ class ResourceDebugCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('imatic:controller:resource-debug')
@@ -32,7 +32,7 @@ class ResourceDebugCommand extends Command
             ->addArgument('action', InputArgument::OPTIONAL, 'Action to debug');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $resourceName = $input->getArgument('resource');
         $io = new SymfonyStyle($input, $output);

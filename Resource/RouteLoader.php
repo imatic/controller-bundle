@@ -29,7 +29,7 @@ class RouteLoader extends Loader
         $this->repository = $configurationRepository;
     }
 
-    public function load($resource, $type = null)
+    public function load(mixed $resource, ?string $type = null): mixed
     {
         if (true === $this->loaded) {
             throw new \RuntimeException('Do not add the "' . $this->name . '" loader twice');
@@ -73,7 +73,7 @@ class RouteLoader extends Loader
         return $routes;
     }
 
-    public function supports($resource, $type = null)
+    public function supports(mixed $resource, ?string $type = null): bool
     {
         return $this->name === $type;
     }

@@ -24,7 +24,7 @@ class BatchCommandApi extends CommandApi
         $this->command->addCommandParameters([
             'selected' => $request->request->all()['selected'] ?? [],
             'selectedAll' => $request->request->get('selectedAll', false),
-            'query' => $request->get('query', '[]'),
+            'query' => $request->request->get('query', $request->query->get('query', '[]')),
         ]);
 
         return $this;

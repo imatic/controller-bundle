@@ -4,27 +4,28 @@ namespace Imatic\Bundle\ControllerBundle\Controller\Resource;
 use Imatic\Bundle\ControllerBundle\Controller\Api\ApiTrait;
 use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Imatic\Bundle\ControllerBundle\Resource\ConfigurationRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ResourceController implements ContainerAwareInterface
+class ResourceController extends AbstractController
 {
-    use ContainerAwareTrait;
     use ApiTrait;
-    use SecurityTrait;
 
-    /**
-     * @return ResourceAction
-     */
-    protected function getActionConfig()
+    public static function getSubscribedServices(): array
     {
-        $container = $this->container;
-        $request = $container->get('request_stack')->getCurrentRequest();
+        return array_merge(parent::getSubscribedServices(), [
+            ConfigurationRepository::class => ConfigurationRepository::class,
+        ]);
+    }
+
+    protected function getActionConfig(): ResourceAction
+    {
+        $request = $this->container->get('request_stack')->getCurrentRequest();
 
         $resourceName = $request->attributes->get('resource');
         $actionName = $request->attributes->get('action');
 
-        $resource = $container->get('imatic_controller.resource.' . $resourceName);
+        $resource = $this->container->get(ConfigurationRepository::class)->getResource($resourceName);
         $action = $resource->getAction($actionName);
 
         $this->checkAuthorization($resource, $action);
@@ -32,20 +33,15 @@ class ResourceController implements ContainerAwareInterface
         return $action;
     }
 
-    /**
-     * @return \Imatic\Bundle\ControllerBundle\Resource\Config\Resource
-     */
-    protected function getResourceConfig()
+    protected function getResourceConfig(): Resource
     {
-        $container = $this->container;
-        $request = $container->get('request_stack')->getCurrentRequest();
-
+        $request = $this->container->get('request_stack')->getCurrentRequest();
         $resourceName = $request->attributes->get('resource');
 
-        return $container->get('imatic_controller.resource.' . $resourceName);
+        return $this->container->get(ConfigurationRepository::class)->getResource($resourceName);
     }
 
-    protected function checkAuthorization(Resource $resource, ResourceAction $action)
+    protected function checkAuthorization(Resource $resource, ResourceAction $action): void
     {
         if (isset($resource->getConfig()['role'])) {
             $this->denyAccessUnlessGranted($resource->getConfig()['role']);

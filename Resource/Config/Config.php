@@ -1,20 +1,23 @@
 <?php declare(strict_types=1);
 namespace Imatic\Bundle\ControllerBundle\Resource\Config;
 
-class Config implements \Serializable
+class Config
 {
-    public function serialize()
+    public function __serialize(): array
     {
-        return \serialize(\get_object_vars($this));
+        return \get_object_vars($this);
     }
 
-    public function unserialize($serialized)
+    public function __unserialize(array $data): void
     {
-        $unserialized = \unserialize($serialized, ['allowed_classes' => true]);
-
-        foreach ($unserialized as $name => $value) {
+        foreach ($data as $name => $value) {
             $this->{$name} = $value;
         }
+    }
+
+    public static function fromSerialized(string $data): static
+    {
+        return \unserialize($data, ['allowed_classes' => true]);
     }
 
     public function copy()

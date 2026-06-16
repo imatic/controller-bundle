@@ -1,0 +1,33 @@
+parameters:
+    imatic_importexport.file_import.class: Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileImport
+
+services:
+    _defaults:
+        public: false
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Export\ExportApi:
+        public: true
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@imatic_importexport.exporter'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Api\Download\DownloadApi'
+            - '@Imatic\Bundle\DataBundle\Data\Query\DisplayCriteria\FilterFactory'
+
+    Imatic\Bundle\ControllerBundle\Controller\Api\Import\ImportApi:
+        public: true
+        shared: false
+        arguments:
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Request\RequestFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Response\ResponseFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Template\TemplateFeature'
+            - '@Imatic\Bundle\ControllerBundle\Controller\Feature\Redirect\RedirectFeature'
+            - '@imatic_importexport.importer'
+
+    Imatic\Bundle\ControllerBundle\ImportExport\Import\File\FileTransformer:
+        tags:
+            - { name: kernel.event_subscriber }
+        arguments:
+            - '@form.factory'
+            - '@Imatic\Bundle\DataBundle\Data\Command\CommandExecutorInterface'

@@ -5,6 +5,7 @@ use Imatic\Bundle\ControllerBundle\Resource\Config\Resource;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceAction;
 use Imatic\Bundle\ControllerBundle\Resource\Config\ResourceConfig;
 use Imatic\Bundle\ControllerBundle\Resource\ConfigurationProcessor;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ConfigurationProcessorTest extends TestCase
@@ -61,9 +62,7 @@ class ConfigurationProcessorTest extends TestCase
         $this->assertEquals($processed['app_user']->getAction('show'), $linkedAction['target']);
     }
 
-    /**
-     * @dataProvider processResourceDataProvider
-     */
+    #[DataProvider('processResourceDataProvider')]
     public function testProcessResource($prototype, $resource, Resource $expected)
     {
         $processor = new ConfigurationProcessor();
@@ -72,7 +71,7 @@ class ConfigurationProcessorTest extends TestCase
         $this->assertEquals($expected, $processed);
     }
 
-    public function processResourceDataProvider()
+    public static function processResourceDataProvider()
     {
         return [
             // --------------------------------------------

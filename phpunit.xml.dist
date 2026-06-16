@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-        backupGlobals="false"
-        colors="true"
-        stopOnFailure="false"
-        bootstrap="Tests/bootstrap.php"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+    colors="true"
+    bootstrap="Tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="ImaticControllerBundle test suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
-
-    <php>
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
-    </php>
-
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
-
-    <coverage>
+    <source>
         <include>
             <directory>./</directory>
         </include>
@@ -29,5 +18,5 @@
             <directory>./Tests</directory>
             <directory>./vendor</directory>
         </exclude>
-    </coverage>
+    </source>
 </phpunit>
